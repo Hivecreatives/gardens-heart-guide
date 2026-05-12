@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Menu, X, Wine } from "lucide-react";
 
 const nav = [
-  { to: "/gardar", label: "Gårdar" },
+  { to: "/gardar", label: "Producenter" },
   { to: "/regioner", label: "Regioner" },
   { to: "/kategorier", label: "Kategorier" },
   { to: "/karta", label: "Karta" },

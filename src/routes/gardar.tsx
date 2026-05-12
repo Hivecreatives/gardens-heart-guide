@@ -6,9 +6,9 @@ import { farms } from "@/data/site";
 export const Route = createFileRoute("/gardar")({
   head: () => ({
     meta: [
-      { title: "Alla gårdar — Gårdsförsäljning av Alkohol" },
+      { title: "Alla producenter — Gårdsförsäljning av Alkohol" },
       { name: "description", content: "Bläddra bland alla destillerier, bryggerier och vingårdar med gårdsförsäljning i Sverige." },
-      { property: "og:title", content: "Alla gårdar — svenska producenter" },
+      { property: "og:title", content: "Alla producenter — svenska producenter" },
       { property: "og:description", content: "Bläddra bland alla destillerier, bryggerier och vingårdar med gårdsförsäljning." },
     ],
   }),
@@ -19,8 +19,8 @@ function GardarPage() {
   return (
     <PageLayout>
       <PageHero
-        kicker="Gårdar"
-        title="Alla gårdar med direktförsäljning"
+        kicker="Producenter"
+        title="Alla producenter med direktförsäljning"
         lead="Här hittar du svenska producenter som du själv kan besöka. Filtrera på region, kategori eller bara bläddra för inspiration."
       />
       <section className="section-pad">

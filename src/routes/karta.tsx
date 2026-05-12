@@ -20,7 +20,7 @@ function KartaPage() {
     <PageLayout>
       <PageHero
         kicker="Karta"
-        title="Hitta gårdar på kartan"
+        title="Hitta producenter på kartan"
         lead="Visualisera Sveriges producenter och planera ditt nästa besök. Filtrera på kategori och region."
       />
       <section className="section-pad">

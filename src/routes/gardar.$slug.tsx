@@ -8,9 +8,9 @@ export const Route = createFileRoute("/gardar/$slug")({
     const f = farms.find(x => x.slug === params.slug);
     return {
       meta: [
-        { title: `${f?.name ?? "Gård"} — Gårdsförsäljning av Alkohol` },
+        { title: `${f?.name ?? "Producent"} — Gårdsförsäljning av Alkohol` },
         { name: "description", content: f?.blurb ?? "Svensk producent med gårdsförsäljning." },
-        { property: "og:title", content: f?.name ?? "Gård" },
+        { property: "og:title", content: f?.name ?? "Producent" },
         { property: "og:description", content: f?.blurb ?? "" },
         { property: "og:image", content: f?.image ?? "" },
       ],
@@ -24,7 +24,7 @@ export const Route = createFileRoute("/gardar/$slug")({
   notFoundComponent: () => (
     <PageLayout>
       <div className="container-x py-32 text-center">
-        <h1 className="text-4xl mb-4">Gården finns inte</h1>
+        <h1 className="text-4xl mb-4">Producenten finns inte</h1>
         <Link to="/gardar" className="btn-secondary mt-4">Tillbaka</Link>
       </div>
     </PageLayout>
@@ -44,7 +44,7 @@ function FarmPage() {
       <article>
         <div className="container-x pt-10">
           <Link to="/gardar" className="inline-flex items-center gap-2 text-sm text-body hover:text-primary">
-            <ArrowLeft className="h-4 w-4" /> Alla gårdar
+            <ArrowLeft className="h-4 w-4" /> Alla producenter
           </Link>
         </div>
         <div className="container-x py-10 grid lg:grid-cols-12 gap-10">

@@ -1,9 +1,22 @@
-import regionSkane from "@/assets/region-skane.jpg";
-import regionVg from "@/assets/region-vg.jpg";
-import regionSthlm from "@/assets/region-sthlm.jpg";
+import regionBlekinge from "@/assets/region-blekinge.jpg";
+import regionDalarna from "@/assets/region-dalarna.jpg";
 import regionGotland from "@/assets/region-gotland.jpg";
+import regionGavleborg from "@/assets/region-gavleborg.jpg";
 import regionHalland from "@/assets/region-halland.jpg";
+import regionJamtland from "@/assets/region-jamtland.jpg";
+import regionNorrbotten from "@/assets/region-norrbotten.jpg";
+import regionSkane from "@/assets/region-skane.jpg";
 import regionSmaland from "@/assets/region-smaland.jpg";
+import regionSthlm from "@/assets/region-sthlm.jpg";
+import regionSodermanland from "@/assets/region-sodermanland.jpg";
+import regionUppsala from "@/assets/region-uppsala.jpg";
+import regionVarmland from "@/assets/region-varmland.jpg";
+import regionVasterbotten from "@/assets/region-vasterbotten.jpg";
+import regionVasternorrland from "@/assets/region-vasternorrland.jpg";
+import regionVastmanland from "@/assets/region-vastmanland.jpg";
+import regionVg from "@/assets/region-vg.jpg";
+import regionOrebro from "@/assets/region-orebro.jpg";
+import regionOstergotland from "@/assets/region-ostergotland.jpg";
 import catOl from "@/assets/cat-ol.jpg";
 import catVin from "@/assets/cat-vin.jpg";
 import catSprit from "@/assets/cat-sprit.jpg";
@@ -332,25 +345,25 @@ export const farms: Farm[] = [
 ];
 
 export const regions: Region[] = [
-  { slug: "blekinge", name: "Blekinge", count: 7, image: regionSkane },
-  { slug: "dalarna", name: "Dalarna", count: 9, image: regionVg },
+  { slug: "blekinge", name: "Blekinge", count: 7, image: regionBlekinge },
+  { slug: "dalarna", name: "Dalarna", count: 9, image: regionDalarna },
   { slug: "gotland", name: "Gotland", count: 12, image: regionGotland },
-  { slug: "gavleborg", name: "Gävleborg", count: 3, image: regionGotland },
+  { slug: "gavleborg", name: "Gävleborg", count: 3, image: regionGavleborg },
   { slug: "halland", name: "Halland", count: 13, image: regionHalland },
-  { slug: "jamtland", name: "Jämtland", count: 6, image: regionSmaland },
-  { slug: "norrbotten", name: "Norrbotten", count: 6, image: regionSkane },
+  { slug: "jamtland", name: "Jämtland", count: 6, image: regionJamtland },
+  { slug: "norrbotten", name: "Norrbotten", count: 6, image: regionNorrbotten },
   { slug: "skane", name: "Skåne", count: 78, image: regionSkane },
   { slug: "smaland", name: "Småland", count: 28, image: regionSmaland },
   { slug: "stockholm", name: "Stockholm", count: 39, image: regionSthlm },
-  { slug: "sodermanland", name: "Södermanland", count: 13, image: regionHalland },
-  { slug: "uppsala", name: "Uppsala", count: 4, image: regionSmaland },
-  { slug: "varmland", name: "Värmland", count: 3, image: regionSkane },
-  { slug: "vasterbotten", name: "Västerbotten", count: 10, image: regionVg },
-  { slug: "vasternorrland", name: "Västernorrland", count: 10, image: regionSthlm },
-  { slug: "vastmanland", name: "Västmanland", count: 7, image: regionGotland },
+  { slug: "sodermanland", name: "Södermanland", count: 13, image: regionSodermanland },
+  { slug: "uppsala", name: "Uppsala", count: 4, image: regionUppsala },
+  { slug: "varmland", name: "Värmland", count: 3, image: regionVarmland },
+  { slug: "vasterbotten", name: "Västerbotten", count: 10, image: regionVasterbotten },
+  { slug: "vasternorrland", name: "Västernorrland", count: 10, image: regionVasternorrland },
+  { slug: "vastmanland", name: "Västmanland", count: 7, image: regionVastmanland },
   { slug: "vastra-gotaland", name: "Västra Götaland", count: 44, image: regionVg },
-  { slug: "orebro", name: "Örebro", count: 7, image: regionSmaland },
-  { slug: "ostergotland", name: "Östergötland", count: 16, image: regionSkane },
+  { slug: "orebro", name: "Örebro", count: 7, image: regionOrebro },
+  { slug: "ostergotland", name: "Östergötland", count: 16, image: regionOstergotland },
 ];
 
 export const categories: Category[] = [

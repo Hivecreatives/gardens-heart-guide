@@ -9,38 +9,230 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RegionerRouteImport } from './routes/regioner'
+import { Route as OmOssRouteImport } from './routes/om-oss'
+import { Route as KontaktRouteImport } from './routes/kontakt'
+import { Route as KategorierRouteImport } from './routes/kategorier'
+import { Route as KartaRouteImport } from './routes/karta'
+import { Route as GardarRouteImport } from './routes/gardar'
+import { Route as BloggNyheterRouteImport } from './routes/blogg-nyheter'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as RegionerSlugRouteImport } from './routes/regioner.$slug'
+import { Route as KategorierSlugRouteImport } from './routes/kategorier.$slug'
+import { Route as GardarSlugRouteImport } from './routes/gardar.$slug'
+import { Route as BloggNyheterSlugRouteImport } from './routes/blogg-nyheter.$slug'
 
+const RegionerRoute = RegionerRouteImport.update({
+  id: '/regioner',
+  path: '/regioner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OmOssRoute = OmOssRouteImport.update({
+  id: '/om-oss',
+  path: '/om-oss',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KontaktRoute = KontaktRouteImport.update({
+  id: '/kontakt',
+  path: '/kontakt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KategorierRoute = KategorierRouteImport.update({
+  id: '/kategorier',
+  path: '/kategorier',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KartaRoute = KartaRouteImport.update({
+  id: '/karta',
+  path: '/karta',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GardarRoute = GardarRouteImport.update({
+  id: '/gardar',
+  path: '/gardar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BloggNyheterRoute = BloggNyheterRouteImport.update({
+  id: '/blogg-nyheter',
+  path: '/blogg-nyheter',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RegionerSlugRoute = RegionerSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => RegionerRoute,
+} as any)
+const KategorierSlugRoute = KategorierSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => KategorierRoute,
+} as any)
+const GardarSlugRoute = GardarSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => GardarRoute,
+} as any)
+const BloggNyheterSlugRoute = BloggNyheterSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => BloggNyheterRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/blogg-nyheter': typeof BloggNyheterRouteWithChildren
+  '/gardar': typeof GardarRouteWithChildren
+  '/karta': typeof KartaRoute
+  '/kategorier': typeof KategorierRouteWithChildren
+  '/kontakt': typeof KontaktRoute
+  '/om-oss': typeof OmOssRoute
+  '/regioner': typeof RegionerRouteWithChildren
+  '/blogg-nyheter/$slug': typeof BloggNyheterSlugRoute
+  '/gardar/$slug': typeof GardarSlugRoute
+  '/kategorier/$slug': typeof KategorierSlugRoute
+  '/regioner/$slug': typeof RegionerSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/blogg-nyheter': typeof BloggNyheterRouteWithChildren
+  '/gardar': typeof GardarRouteWithChildren
+  '/karta': typeof KartaRoute
+  '/kategorier': typeof KategorierRouteWithChildren
+  '/kontakt': typeof KontaktRoute
+  '/om-oss': typeof OmOssRoute
+  '/regioner': typeof RegionerRouteWithChildren
+  '/blogg-nyheter/$slug': typeof BloggNyheterSlugRoute
+  '/gardar/$slug': typeof GardarSlugRoute
+  '/kategorier/$slug': typeof KategorierSlugRoute
+  '/regioner/$slug': typeof RegionerSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/blogg-nyheter': typeof BloggNyheterRouteWithChildren
+  '/gardar': typeof GardarRouteWithChildren
+  '/karta': typeof KartaRoute
+  '/kategorier': typeof KategorierRouteWithChildren
+  '/kontakt': typeof KontaktRoute
+  '/om-oss': typeof OmOssRoute
+  '/regioner': typeof RegionerRouteWithChildren
+  '/blogg-nyheter/$slug': typeof BloggNyheterSlugRoute
+  '/gardar/$slug': typeof GardarSlugRoute
+  '/kategorier/$slug': typeof KategorierSlugRoute
+  '/regioner/$slug': typeof RegionerSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/blogg-nyheter'
+    | '/gardar'
+    | '/karta'
+    | '/kategorier'
+    | '/kontakt'
+    | '/om-oss'
+    | '/regioner'
+    | '/blogg-nyheter/$slug'
+    | '/gardar/$slug'
+    | '/kategorier/$slug'
+    | '/regioner/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/blogg-nyheter'
+    | '/gardar'
+    | '/karta'
+    | '/kategorier'
+    | '/kontakt'
+    | '/om-oss'
+    | '/regioner'
+    | '/blogg-nyheter/$slug'
+    | '/gardar/$slug'
+    | '/kategorier/$slug'
+    | '/regioner/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/blogg-nyheter'
+    | '/gardar'
+    | '/karta'
+    | '/kategorier'
+    | '/kontakt'
+    | '/om-oss'
+    | '/regioner'
+    | '/blogg-nyheter/$slug'
+    | '/gardar/$slug'
+    | '/kategorier/$slug'
+    | '/regioner/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BloggNyheterRoute: typeof BloggNyheterRouteWithChildren
+  GardarRoute: typeof GardarRouteWithChildren
+  KartaRoute: typeof KartaRoute
+  KategorierRoute: typeof KategorierRouteWithChildren
+  KontaktRoute: typeof KontaktRoute
+  OmOssRoute: typeof OmOssRoute
+  RegionerRoute: typeof RegionerRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/regioner': {
+      id: '/regioner'
+      path: '/regioner'
+      fullPath: '/regioner'
+      preLoaderRoute: typeof RegionerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/om-oss': {
+      id: '/om-oss'
+      path: '/om-oss'
+      fullPath: '/om-oss'
+      preLoaderRoute: typeof OmOssRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kontakt': {
+      id: '/kontakt'
+      path: '/kontakt'
+      fullPath: '/kontakt'
+      preLoaderRoute: typeof KontaktRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kategorier': {
+      id: '/kategorier'
+      path: '/kategorier'
+      fullPath: '/kategorier'
+      preLoaderRoute: typeof KategorierRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/karta': {
+      id: '/karta'
+      path: '/karta'
+      fullPath: '/karta'
+      preLoaderRoute: typeof KartaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gardar': {
+      id: '/gardar'
+      path: '/gardar'
+      fullPath: '/gardar'
+      preLoaderRoute: typeof GardarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogg-nyheter': {
+      id: '/blogg-nyheter'
+      path: '/blogg-nyheter'
+      fullPath: '/blogg-nyheter'
+      preLoaderRoute: typeof BloggNyheterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +240,93 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/regioner/$slug': {
+      id: '/regioner/$slug'
+      path: '/$slug'
+      fullPath: '/regioner/$slug'
+      preLoaderRoute: typeof RegionerSlugRouteImport
+      parentRoute: typeof RegionerRoute
+    }
+    '/kategorier/$slug': {
+      id: '/kategorier/$slug'
+      path: '/$slug'
+      fullPath: '/kategorier/$slug'
+      preLoaderRoute: typeof KategorierSlugRouteImport
+      parentRoute: typeof KategorierRoute
+    }
+    '/gardar/$slug': {
+      id: '/gardar/$slug'
+      path: '/$slug'
+      fullPath: '/gardar/$slug'
+      preLoaderRoute: typeof GardarSlugRouteImport
+      parentRoute: typeof GardarRoute
+    }
+    '/blogg-nyheter/$slug': {
+      id: '/blogg-nyheter/$slug'
+      path: '/$slug'
+      fullPath: '/blogg-nyheter/$slug'
+      preLoaderRoute: typeof BloggNyheterSlugRouteImport
+      parentRoute: typeof BloggNyheterRoute
+    }
   }
 }
 
+interface BloggNyheterRouteChildren {
+  BloggNyheterSlugRoute: typeof BloggNyheterSlugRoute
+}
+
+const BloggNyheterRouteChildren: BloggNyheterRouteChildren = {
+  BloggNyheterSlugRoute: BloggNyheterSlugRoute,
+}
+
+const BloggNyheterRouteWithChildren = BloggNyheterRoute._addFileChildren(
+  BloggNyheterRouteChildren,
+)
+
+interface GardarRouteChildren {
+  GardarSlugRoute: typeof GardarSlugRoute
+}
+
+const GardarRouteChildren: GardarRouteChildren = {
+  GardarSlugRoute: GardarSlugRoute,
+}
+
+const GardarRouteWithChildren =
+  GardarRoute._addFileChildren(GardarRouteChildren)
+
+interface KategorierRouteChildren {
+  KategorierSlugRoute: typeof KategorierSlugRoute
+}
+
+const KategorierRouteChildren: KategorierRouteChildren = {
+  KategorierSlugRoute: KategorierSlugRoute,
+}
+
+const KategorierRouteWithChildren = KategorierRoute._addFileChildren(
+  KategorierRouteChildren,
+)
+
+interface RegionerRouteChildren {
+  RegionerSlugRoute: typeof RegionerSlugRoute
+}
+
+const RegionerRouteChildren: RegionerRouteChildren = {
+  RegionerSlugRoute: RegionerSlugRoute,
+}
+
+const RegionerRouteWithChildren = RegionerRoute._addFileChildren(
+  RegionerRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BloggNyheterRoute: BloggNyheterRouteWithChildren,
+  GardarRoute: GardarRouteWithChildren,
+  KartaRoute: KartaRoute,
+  KategorierRoute: KategorierRouteWithChildren,
+  KontaktRoute: KontaktRoute,
+  OmOssRoute: OmOssRoute,
+  RegionerRoute: RegionerRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

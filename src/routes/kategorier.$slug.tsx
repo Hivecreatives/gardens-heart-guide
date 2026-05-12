@@ -53,7 +53,7 @@ function CategoryPage() {
             <p className="text-body">Vi listar snart producenter inom {cat.name.toLowerCase()}. <Link to="/gardar" className="text-primary underline">Visa alla gårdar</Link></p>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
-              {list.map(f => <FarmCard key={f.slug} farm={f} />)}
+              {list.map((f: typeof farms[number]) => <FarmCard key={f.slug} farm={f} />)}
             </div>
           )}
         </div>

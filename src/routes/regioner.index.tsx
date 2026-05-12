@@ -19,7 +19,7 @@ function RegionerPage() {
   return (
     <PageLayout>
       <PageHero
-        kicker="21 svenska län"
+        kicker="19 svenska län"
         title="Utforska Sverige region för region"
         lead="Från Skånes vingårdar till Norrlands hantverksbryggerier – välj region för att se vilka producenter du kan besöka där."
       />

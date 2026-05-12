@@ -41,7 +41,7 @@ function HomePage() {
               dryckeskulturen — på riktigt.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/gardar" className="btn-primary">Utforska gårdar</Link>
+              <Link to="/gardar" className="btn-primary">Utforska producenter</Link>
               <Link to="/karta" className="btn-secondary">Visa kartan</Link>
             </div>
             <div className="mt-10 grid grid-cols-3 gap-6 max-w-md border-t border-border pt-7">
@@ -55,7 +55,7 @@ function HomePage() {
               <img src={hero} alt="Svensk vingård i sommarljus" width={1600} height={1024} className="w-full h-[420px] lg:h-[520px] object-cover" />
               <div className="absolute bottom-5 left-5 right-5 bg-background/95 backdrop-blur rounded-xl p-4 border border-border flex items-center justify-between">
                 <div>
-                  <div className="text-xs text-muted-foreground uppercase tracking-wider">Veckans gård</div>
+                  <div className="text-xs text-muted-foreground uppercase tracking-wider">Veckans producent</div>
                   <div className="font-display text-lg text-heading">Kullaberg Vingård, Höganäs</div>
                 </div>
                 <Link to="/gardar/$slug" params={{ slug: "kullaberg-vingard" }} className="btn-secondary !py-2 !px-4 text-xs">Besök</Link>
@@ -71,7 +71,7 @@ function HomePage() {
           <div className="max-w-2xl mb-14">
             <span className="kicker">Varför Gårdsförsäljning</span>
             <h2 className="text-3xl md:text-4xl mt-4">En enkel väg till svenska producenter</h2>
-            <p className="mt-4 text-body">Vi samlar gårdar, bryggerier och destillerier som säljer direkt – så att du kan handla närproducerat och möta människorna bakom dryckerna.</p>
+            <p className="mt-4 text-body">Vi samlar producenter, bryggerier och destillerier som säljer direkt – så att du kan handla närproducerat och möta människorna bakom dryckerna.</p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map(f => (

@@ -4,6 +4,7 @@ import { Search } from "lucide-react";
 import { PageLayout, PageHero } from "@/components/PageLayout";
 import { FarmCard } from "@/components/Cards";
 import { farms } from "@/data/site";
+import { getFarmCategories, getFarmSearchHaystack } from "@/lib/farmCategories";
 
 export const Route = createFileRoute("/producenter/")({
   head: () => ({
@@ -22,9 +23,9 @@ function GardarPage() {
   const [query, setQuery] = useState("");
   const q = query.trim().toLowerCase();
   const filtered = farms.filter(f => {
-    if (filter !== "Alla" && f.category !== filter) return false;
+    if (filter !== "Alla" && !getFarmCategories(f).includes(filter)) return false;
     if (!q) return true;
-    return f.name.toLowerCase().includes(q) || f.location.toLowerCase().includes(q);
+    return getFarmSearchHaystack(f).includes(q);
   });
   return (
     <PageLayout>
@@ -47,7 +48,7 @@ function GardarPage() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value.slice(0, 100))}
                 maxLength={100}
-                placeholder="Skriv namn på producent eller ort, t.ex. Göteborg…"
+                placeholder="Sök på namn, ort eller dryck (t.ex. gin, cider, IPA)…"
                 className="w-full pl-12 pr-4 py-3 rounded-full text-sm bg-card border border-border text-body placeholder:text-muted focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/30"
               />
             </div>

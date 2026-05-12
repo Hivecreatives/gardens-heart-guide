@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState, lazy, Suspense } from "react";
 import { PageLayout, PageHero } from "@/components/PageLayout";
 import { regions, farms } from "@/data/site";
+import { getFarmCategories } from "@/lib/farmCategories";
 
 const FarmsMap = lazy(() => import("@/components/FarmsMap"));
 
@@ -23,7 +24,7 @@ function KartaPage() {
   const [regs, setRegs] = useState<string[]>([]);
 
   const filtered = useMemo(() => farms.filter(f =>
-    (cats.length === 0 || cats.includes(f.category)) &&
+    (cats.length === 0 || getFarmCategories(f).some(c => cats.includes(c))) &&
     (regs.length === 0 || regs.includes(f.region))
   ), [cats, regs]);
 

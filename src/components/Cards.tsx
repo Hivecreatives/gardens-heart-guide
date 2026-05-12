@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, MapPin } from "lucide-react";
+import { getFarmCategories } from "@/lib/farmCategories";
 
 export function ImageCard({
   to, params, image, title, meta, blurb,
@@ -28,7 +29,7 @@ export function FarmCard({ farm }: { farm: { slug: string; name: string; region:
       </div>
       <div className="p-6">
         <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-primary mb-2 font-medium">
-          <span>{farm.category}</span><span className="text-border">•</span><span>{farm.region}</span>
+          <span>{getFarmCategories(farm).join(" · ")}</span><span className="text-border">•</span><span>{farm.region}</span>
         </div>
         <h3 className="font-display text-xl text-heading mb-2">{farm.name}</h3>
         <p className="text-sm text-body leading-relaxed line-clamp-3">{farm.blurb}</p>

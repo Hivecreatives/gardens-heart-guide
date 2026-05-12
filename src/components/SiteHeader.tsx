@@ -34,7 +34,7 @@ export function SiteHeader() {
           ))}
         </nav>
         <div className="hidden lg:block">
-          <Link to="/kontakt" className="btn-primary !py-2.5 !px-5 text-sm">Synas hos oss</Link>
+          <Link to="/kontakt" className="btn-primary !py-2.5 !px-5 text-sm">Kontakta oss</Link>
         </div>
         <button className="lg:hidden p-2 -mr-2 text-heading" onClick={() => setOpen(!open)} aria-label="Meny">
           {open ? <X /> : <Menu />}
@@ -49,7 +49,7 @@ export function SiteHeader() {
               </Link>
             ))}
             <Link to="/kontakt" className="btn-primary mt-3 self-start" onClick={() => setOpen(false)}>
-              Synas hos oss
+              Kontakta oss
             </Link>
           </div>
         </div>

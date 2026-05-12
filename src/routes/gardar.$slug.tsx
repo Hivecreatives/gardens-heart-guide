@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { PageLayout } from "@/components/PageLayout";
 import { farms } from "@/data/site";
-import { MapPin, Phone, Globe, Clock, ArrowLeft } from "lucide-react";
+import { MapPin, Globe, ArrowLeft, ExternalLink } from "lucide-react";
 
 export const Route = createFileRoute("/gardar/$slug")({
   head: ({ params }) => {
@@ -62,14 +62,31 @@ function FarmPage() {
             <h1 className="text-4xl lg:text-5xl">{farm.name}</h1>
             <p className="mt-5 text-lg text-body leading-relaxed">{lead}</p>
             <ul className="mt-8 space-y-3 text-sm">
-              <li className="flex gap-3"><MapPin className="h-4 w-4 mt-0.5 text-primary" /> {farm.location}</li>
-              <li className="flex gap-3"><Clock className="h-4 w-4 mt-0.5 text-primary" /> Lör–sön 11–16, övriga tider efter överenskommelse</li>
-              <li className="flex gap-3"><Phone className="h-4 w-4 mt-0.5 text-primary" /> 070-123 45 67</li>
-              <li className="flex gap-3"><Globe className="h-4 w-4 mt-0.5 text-primary" /> www.exempel.se</li>
+              <li className="flex gap-3"><MapPin className="h-4 w-4 mt-0.5 text-primary shrink-0" /> {farm.address || `${farm.location}, ${farm.region}`}</li>
+              {farm.website && (
+                <li className="flex gap-3">
+                  <Globe className="h-4 w-4 mt-0.5 text-primary shrink-0" />
+                  <a href={farm.website} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline break-all">
+                    {farm.website.replace(/^https?:\/\//, '').replace(/\/$/, '')}
+                  </a>
+                </li>
+              )}
             </ul>
-            <div className="mt-8 flex gap-3">
-              <a href="#" className="btn-primary">Boka besök</a>
+            <div className="mt-8 flex gap-3 flex-wrap">
+              {farm.website && (
+                <a href={farm.website} target="_blank" rel="noopener noreferrer" className="btn-primary inline-flex items-center gap-2">
+                  Besök hemsida <ExternalLink className="h-4 w-4" />
+                </a>
+              )}
               <Link to="/karta" className="btn-secondary">Visa på karta</Link>
+              <a
+                href={`https://gardsforsaljningavalkohol.se/${farm.slug}/`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+              >
+                Mer info
+              </a>
             </div>
           </div>
         </div>
@@ -87,9 +104,13 @@ function FarmPage() {
               <dl className="space-y-3 text-sm">
                 <Row k="Kategori" v={farm.category} />
                 <Row k="Region" v={farm.region} />
-                <Row k="Ort" v={farm.location} />
-                <Row k="Provning" v="Ja, mot bokning" />
-                <Row k="Familjevänligt" v="Ja" />
+                {farm.address && <Row k="Adress" v={farm.address} />}
+                {farm.website && (
+                  <Row
+                    k="Hemsida"
+                    v={farm.website.replace(/^https?:\/\//, '').replace(/\/$/, '')}
+                  />
+                )}
               </dl>
             </aside>
           </div>

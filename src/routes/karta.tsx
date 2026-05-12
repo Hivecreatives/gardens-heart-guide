@@ -16,7 +16,7 @@ export const Route = createFileRoute("/karta")({
   ssr: false,
 });
 
-const CATEGORIES = ["Öl", "Vin", "Sprit", "Cider", "Övrigt"];
+const CATEGORIES = ["Öl", "Vin", "Sprit", "Cider", "Musteri"];
 
 function KartaPage() {
   const [cats, setCats] = useState<string[]>([]);

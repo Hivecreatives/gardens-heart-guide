@@ -7,7 +7,7 @@ export function ImageCard({
   to: string; params?: Record<string, string>; image: string; title: string; meta?: string; blurb?: string;
 }) {
   return (
-    <Link to={to} params={params as never} className="card-soft group block">
+    <Link to={to as never} params={params as never} className="card-soft group block">
       <div className="aspect-[4/3] overflow-hidden bg-muted">
         <img src={image} alt={title} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
       </div>

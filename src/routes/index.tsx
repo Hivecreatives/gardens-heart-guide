@@ -31,7 +31,7 @@ function HomePage() {
       <section className="relative bg-section overflow-hidden">
         <div className="container-x grid lg:grid-cols-12 gap-10 lg:gap-16 py-16 lg:py-24 items-center">
           <div className="lg:col-span-6">
-            <span className="kicker mb-5">Över 170 producenter</span>
+            <span className="kicker mb-5">Över 300 producenter</span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl mt-4 leading-[1.08]">
               Hitta destillerier, bryggerier &amp; vingårdar med <em className="not-italic text-primary">gårdsförsäljning</em>
             </h1>
@@ -45,7 +45,7 @@ function HomePage() {
               <Link to="/karta" className="btn-secondary">Visa kartan</Link>
             </div>
             <div className="mt-10 grid grid-cols-3 gap-6 max-w-md border-t border-border pt-7">
-              <Stat n="170+" l="Producenter" />
+              <Stat n="300+" l="Producenter" />
               <Stat n="21" l="Län" />
               <Stat n="5" l="Drycktyper" />
             </div>

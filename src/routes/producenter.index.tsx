@@ -4,6 +4,7 @@ import { Search } from "lucide-react";
 import { PageLayout, PageHero } from "@/components/PageLayout";
 import { FarmCard } from "@/components/Cards";
 import { farms } from "@/data/site";
+import { getFarmCategories, getFarmSearchHaystack } from "@/lib/farmCategories";
 
 export const Route = createFileRoute("/producenter/")({
   head: () => ({

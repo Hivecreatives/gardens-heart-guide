@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { AgeGate } from "@/components/AgeGate";
 
 function NotFoundComponent() {
   return (

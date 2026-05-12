@@ -10,25 +10,30 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as RegionerRouteImport } from './routes/regioner'
+import { Route as ProducenterRouteImport } from './routes/producenter'
 import { Route as OmOssRouteImport } from './routes/om-oss'
 import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as KategorierRouteImport } from './routes/kategorier'
 import { Route as KartaRouteImport } from './routes/karta'
-import { Route as GardarRouteImport } from './routes/gardar'
 import { Route as BloggNyheterRouteImport } from './routes/blogg-nyheter'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as RegionerIndexRouteImport } from './routes/regioner.index'
+import { Route as ProducenterIndexRouteImport } from './routes/producenter.index'
 import { Route as KategorierIndexRouteImport } from './routes/kategorier.index'
-import { Route as GardarIndexRouteImport } from './routes/gardar.index'
 import { Route as BloggNyheterIndexRouteImport } from './routes/blogg-nyheter.index'
 import { Route as RegionerSlugRouteImport } from './routes/regioner.$slug'
+import { Route as ProducenterSlugRouteImport } from './routes/producenter.$slug'
 import { Route as KategorierSlugRouteImport } from './routes/kategorier.$slug'
-import { Route as GardarSlugRouteImport } from './routes/gardar.$slug'
 import { Route as BloggNyheterSlugRouteImport } from './routes/blogg-nyheter.$slug'
 
 const RegionerRoute = RegionerRouteImport.update({
   id: '/regioner',
   path: '/regioner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProducenterRoute = ProducenterRouteImport.update({
+  id: '/producenter',
+  path: '/producenter',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OmOssRoute = OmOssRouteImport.update({
@@ -51,11 +56,6 @@ const KartaRoute = KartaRouteImport.update({
   path: '/karta',
   getParentRoute: () => rootRouteImport,
 } as any)
-const GardarRoute = GardarRouteImport.update({
-  id: '/gardar',
-  path: '/gardar',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const BloggNyheterRoute = BloggNyheterRouteImport.update({
   id: '/blogg-nyheter',
   path: '/blogg-nyheter',
@@ -71,15 +71,15 @@ const RegionerIndexRoute = RegionerIndexRouteImport.update({
   path: '/',
   getParentRoute: () => RegionerRoute,
 } as any)
+const ProducenterIndexRoute = ProducenterIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ProducenterRoute,
+} as any)
 const KategorierIndexRoute = KategorierIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => KategorierRoute,
-} as any)
-const GardarIndexRoute = GardarIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => GardarRoute,
 } as any)
 const BloggNyheterIndexRoute = BloggNyheterIndexRouteImport.update({
   id: '/',
@@ -91,15 +91,15 @@ const RegionerSlugRoute = RegionerSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => RegionerRoute,
 } as any)
+const ProducenterSlugRoute = ProducenterSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ProducenterRoute,
+} as any)
 const KategorierSlugRoute = KategorierSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
   getParentRoute: () => KategorierRoute,
-} as any)
-const GardarSlugRoute = GardarSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => GardarRoute,
 } as any)
 const BloggNyheterSlugRoute = BloggNyheterSlugRouteImport.update({
   id: '/$slug',
@@ -110,19 +110,19 @@ const BloggNyheterSlugRoute = BloggNyheterSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blogg-nyheter': typeof BloggNyheterRouteWithChildren
-  '/gardar': typeof GardarRouteWithChildren
   '/karta': typeof KartaRoute
   '/kategorier': typeof KategorierRouteWithChildren
   '/kontakt': typeof KontaktRoute
   '/om-oss': typeof OmOssRoute
+  '/producenter': typeof ProducenterRouteWithChildren
   '/regioner': typeof RegionerRouteWithChildren
   '/blogg-nyheter/$slug': typeof BloggNyheterSlugRoute
-  '/gardar/$slug': typeof GardarSlugRoute
   '/kategorier/$slug': typeof KategorierSlugRoute
+  '/producenter/$slug': typeof ProducenterSlugRoute
   '/regioner/$slug': typeof RegionerSlugRoute
   '/blogg-nyheter/': typeof BloggNyheterIndexRoute
-  '/gardar/': typeof GardarIndexRoute
   '/kategorier/': typeof KategorierIndexRoute
+  '/producenter/': typeof ProducenterIndexRoute
   '/regioner/': typeof RegionerIndexRoute
 }
 export interface FileRoutesByTo {
@@ -131,31 +131,31 @@ export interface FileRoutesByTo {
   '/kontakt': typeof KontaktRoute
   '/om-oss': typeof OmOssRoute
   '/blogg-nyheter/$slug': typeof BloggNyheterSlugRoute
-  '/gardar/$slug': typeof GardarSlugRoute
   '/kategorier/$slug': typeof KategorierSlugRoute
+  '/producenter/$slug': typeof ProducenterSlugRoute
   '/regioner/$slug': typeof RegionerSlugRoute
   '/blogg-nyheter': typeof BloggNyheterIndexRoute
-  '/gardar': typeof GardarIndexRoute
   '/kategorier': typeof KategorierIndexRoute
+  '/producenter': typeof ProducenterIndexRoute
   '/regioner': typeof RegionerIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/blogg-nyheter': typeof BloggNyheterRouteWithChildren
-  '/gardar': typeof GardarRouteWithChildren
   '/karta': typeof KartaRoute
   '/kategorier': typeof KategorierRouteWithChildren
   '/kontakt': typeof KontaktRoute
   '/om-oss': typeof OmOssRoute
+  '/producenter': typeof ProducenterRouteWithChildren
   '/regioner': typeof RegionerRouteWithChildren
   '/blogg-nyheter/$slug': typeof BloggNyheterSlugRoute
-  '/gardar/$slug': typeof GardarSlugRoute
   '/kategorier/$slug': typeof KategorierSlugRoute
+  '/producenter/$slug': typeof ProducenterSlugRoute
   '/regioner/$slug': typeof RegionerSlugRoute
   '/blogg-nyheter/': typeof BloggNyheterIndexRoute
-  '/gardar/': typeof GardarIndexRoute
   '/kategorier/': typeof KategorierIndexRoute
+  '/producenter/': typeof ProducenterIndexRoute
   '/regioner/': typeof RegionerIndexRoute
 }
 export interface FileRouteTypes {
@@ -163,19 +163,19 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/blogg-nyheter'
-    | '/gardar'
     | '/karta'
     | '/kategorier'
     | '/kontakt'
     | '/om-oss'
+    | '/producenter'
     | '/regioner'
     | '/blogg-nyheter/$slug'
-    | '/gardar/$slug'
     | '/kategorier/$slug'
+    | '/producenter/$slug'
     | '/regioner/$slug'
     | '/blogg-nyheter/'
-    | '/gardar/'
     | '/kategorier/'
+    | '/producenter/'
     | '/regioner/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -184,41 +184,41 @@ export interface FileRouteTypes {
     | '/kontakt'
     | '/om-oss'
     | '/blogg-nyheter/$slug'
-    | '/gardar/$slug'
     | '/kategorier/$slug'
+    | '/producenter/$slug'
     | '/regioner/$slug'
     | '/blogg-nyheter'
-    | '/gardar'
     | '/kategorier'
+    | '/producenter'
     | '/regioner'
   id:
     | '__root__'
     | '/'
     | '/blogg-nyheter'
-    | '/gardar'
     | '/karta'
     | '/kategorier'
     | '/kontakt'
     | '/om-oss'
+    | '/producenter'
     | '/regioner'
     | '/blogg-nyheter/$slug'
-    | '/gardar/$slug'
     | '/kategorier/$slug'
+    | '/producenter/$slug'
     | '/regioner/$slug'
     | '/blogg-nyheter/'
-    | '/gardar/'
     | '/kategorier/'
+    | '/producenter/'
     | '/regioner/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BloggNyheterRoute: typeof BloggNyheterRouteWithChildren
-  GardarRoute: typeof GardarRouteWithChildren
   KartaRoute: typeof KartaRoute
   KategorierRoute: typeof KategorierRouteWithChildren
   KontaktRoute: typeof KontaktRoute
   OmOssRoute: typeof OmOssRoute
+  ProducenterRoute: typeof ProducenterRouteWithChildren
   RegionerRoute: typeof RegionerRouteWithChildren
 }
 
@@ -229,6 +229,13 @@ declare module '@tanstack/react-router' {
       path: '/regioner'
       fullPath: '/regioner'
       preLoaderRoute: typeof RegionerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/producenter': {
+      id: '/producenter'
+      path: '/producenter'
+      fullPath: '/producenter'
+      preLoaderRoute: typeof ProducenterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/om-oss': {
@@ -259,13 +266,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KartaRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/gardar': {
-      id: '/gardar'
-      path: '/gardar'
-      fullPath: '/gardar'
-      preLoaderRoute: typeof GardarRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/blogg-nyheter': {
       id: '/blogg-nyheter'
       path: '/blogg-nyheter'
@@ -287,19 +287,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegionerIndexRouteImport
       parentRoute: typeof RegionerRoute
     }
+    '/producenter/': {
+      id: '/producenter/'
+      path: '/'
+      fullPath: '/producenter/'
+      preLoaderRoute: typeof ProducenterIndexRouteImport
+      parentRoute: typeof ProducenterRoute
+    }
     '/kategorier/': {
       id: '/kategorier/'
       path: '/'
       fullPath: '/kategorier/'
       preLoaderRoute: typeof KategorierIndexRouteImport
       parentRoute: typeof KategorierRoute
-    }
-    '/gardar/': {
-      id: '/gardar/'
-      path: '/'
-      fullPath: '/gardar/'
-      preLoaderRoute: typeof GardarIndexRouteImport
-      parentRoute: typeof GardarRoute
     }
     '/blogg-nyheter/': {
       id: '/blogg-nyheter/'
@@ -315,19 +315,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegionerSlugRouteImport
       parentRoute: typeof RegionerRoute
     }
+    '/producenter/$slug': {
+      id: '/producenter/$slug'
+      path: '/$slug'
+      fullPath: '/producenter/$slug'
+      preLoaderRoute: typeof ProducenterSlugRouteImport
+      parentRoute: typeof ProducenterRoute
+    }
     '/kategorier/$slug': {
       id: '/kategorier/$slug'
       path: '/$slug'
       fullPath: '/kategorier/$slug'
       preLoaderRoute: typeof KategorierSlugRouteImport
       parentRoute: typeof KategorierRoute
-    }
-    '/gardar/$slug': {
-      id: '/gardar/$slug'
-      path: '/$slug'
-      fullPath: '/gardar/$slug'
-      preLoaderRoute: typeof GardarSlugRouteImport
-      parentRoute: typeof GardarRoute
     }
     '/blogg-nyheter/$slug': {
       id: '/blogg-nyheter/$slug'
@@ -353,19 +353,6 @@ const BloggNyheterRouteWithChildren = BloggNyheterRoute._addFileChildren(
   BloggNyheterRouteChildren,
 )
 
-interface GardarRouteChildren {
-  GardarSlugRoute: typeof GardarSlugRoute
-  GardarIndexRoute: typeof GardarIndexRoute
-}
-
-const GardarRouteChildren: GardarRouteChildren = {
-  GardarSlugRoute: GardarSlugRoute,
-  GardarIndexRoute: GardarIndexRoute,
-}
-
-const GardarRouteWithChildren =
-  GardarRoute._addFileChildren(GardarRouteChildren)
-
 interface KategorierRouteChildren {
   KategorierSlugRoute: typeof KategorierSlugRoute
   KategorierIndexRoute: typeof KategorierIndexRoute
@@ -378,6 +365,20 @@ const KategorierRouteChildren: KategorierRouteChildren = {
 
 const KategorierRouteWithChildren = KategorierRoute._addFileChildren(
   KategorierRouteChildren,
+)
+
+interface ProducenterRouteChildren {
+  ProducenterSlugRoute: typeof ProducenterSlugRoute
+  ProducenterIndexRoute: typeof ProducenterIndexRoute
+}
+
+const ProducenterRouteChildren: ProducenterRouteChildren = {
+  ProducenterSlugRoute: ProducenterSlugRoute,
+  ProducenterIndexRoute: ProducenterIndexRoute,
+}
+
+const ProducenterRouteWithChildren = ProducenterRoute._addFileChildren(
+  ProducenterRouteChildren,
 )
 
 interface RegionerRouteChildren {
@@ -397,13 +398,23 @@ const RegionerRouteWithChildren = RegionerRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BloggNyheterRoute: BloggNyheterRouteWithChildren,
-  GardarRoute: GardarRouteWithChildren,
   KartaRoute: KartaRoute,
   KategorierRoute: KategorierRouteWithChildren,
   KontaktRoute: KontaktRoute,
   OmOssRoute: OmOssRoute,
+  ProducenterRoute: ProducenterRouteWithChildren,
   RegionerRoute: RegionerRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

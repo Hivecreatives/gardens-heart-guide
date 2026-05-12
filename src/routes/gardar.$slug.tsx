@@ -78,7 +78,7 @@ function FarmPage() {
           <div className="container-x grid lg:grid-cols-3 gap-10">
             <div className="lg:col-span-2 prose-like">
               <h2 className="text-3xl mb-6">Om {farm.name}</h2>
-              {paragraphs.map((p, i) => (
+              {paragraphs.map((p: string, i: number) => (
                 <p key={i} className="text-body leading-relaxed mt-4 first:mt-0">{p}</p>
               ))}
             </div>

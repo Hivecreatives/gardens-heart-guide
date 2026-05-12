@@ -115,6 +115,39 @@ function FarmPage() {
             </aside>
           </div>
         </section>
+
+        <section className="section-pad">
+          <div className="container-x">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+              <div>
+                <h2 className="text-3xl">Hitta hit</h2>
+                <p className="text-body mt-2 flex items-center gap-2">
+                  <MapPin className="h-4 w-4 text-primary" />
+                  {farm.address || `${farm.location}, ${farm.region}`}
+                </p>
+              </div>
+              <a
+                href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(farm.address || `${farm.name}, ${farm.location}, ${farm.region}, Sverige`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary inline-flex items-center gap-2 self-start"
+              >
+                <Navigation className="h-4 w-4" /> Vägbeskrivning
+              </a>
+            </div>
+            <div className="rounded-2xl overflow-hidden border border-border bg-muted">
+              <iframe
+                title={`Karta över ${farm.name}`}
+                src={`https://www.google.com/maps?q=${encodeURIComponent(farm.address || `${farm.name}, ${farm.location}, ${farm.region}, Sverige`)}&output=embed`}
+                width="100%"
+                height="420"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                style={{ border: 0, display: "block" }}
+              />
+            </div>
+          </div>
+        </section>
       </article>
     </PageLayout>
   );

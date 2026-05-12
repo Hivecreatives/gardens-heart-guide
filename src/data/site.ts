@@ -42,6 +42,20 @@ export const farms: Farm[] = [
   { slug: "appelgarden-orust", name: "Äppelgården Orust", region: "Västra Götaland", category: "Cider", image: catCider, location: "Henån", blurb: "Torra cidrar och ciderviner pressade på Bohuslänska äpplen." },
   { slug: "sjotuna-bubbel", name: "Sjötuna Bubbel", region: "Stockholm", category: "Mousserande", image: catMousserande, location: "Vaxholm", blurb: "Skärgårdens första metodklassiska producent." },
   { slug: "lilla-aros-bryggeri", name: "Lilla Åros Bryggeri", region: "Småland", category: "Öl", image: catOl, location: "Växjö", blurb: "Familjebryggeri med betoning på belgiska och tyska stilar." },
+  { slug: "osterlen-bryggeri", name: "Österlen Bryggeri", region: "Skåne", category: "Öl", image: catOl, location: "Simrishamn", blurb: "Lantligt bryggeri med säsongsöl och pilsner från egen brunn." },
+  { slug: "bjare-vingard", name: "Bjäre Vingård", region: "Skåne", category: "Vin", image: catVin, location: "Båstad", blurb: "Solvarma sluttningar med solaris och rondo som husdruvor." },
+  { slug: "hven-destilleri", name: "Hven Destilleri", region: "Skåne", category: "Sprit", image: catSprit, location: "Ven", blurb: "Single malt whisky och gin från ön mitt i Öresund." },
+  { slug: "kivik-musteri", name: "Kiviks Musteri", region: "Skåne", category: "Cider", image: catCider, location: "Kivik", blurb: "Klassisk cider och pressjuice från Österlens äppelodlingar." },
+  { slug: "goteborgs-nya", name: "Göteborgs Nya Bryggeri", region: "Västra Götaland", category: "Öl", image: catOl, location: "Göteborg", blurb: "Stadsnära bryggeri med IPA, lager och experimentella batcher." },
+  { slug: "hallands-vader", name: "Hallands Väderö Vingård", region: "Halland", category: "Vin", image: catVin, location: "Båstad", blurb: "Havsnära vingård med kalkrik jord och eleganta vita viner." },
+  { slug: "smaland-spirits", name: "Småland Spirits", region: "Småland", category: "Sprit", image: catSprit, location: "Vimmerby", blurb: "Hantverksdestilleri med gin smaksatt av skogens råvaror." },
+  { slug: "gotland-bryggeri", name: "Gotlands Bryggeri", region: "Gotland", category: "Öl", image: catOl, location: "Visby", blurb: "Ölets ö – välkända lager och säsongsöl från medeltidsstaden." },
+  { slug: "gute-vingard", name: "Gute Vingård", region: "Gotland", category: "Vin", image: catVin, location: "Hablingbo", blurb: "Solrik kalkmark ger nyanserade viner med havsbris." },
+  { slug: "ekero-cider", name: "Ekerö Cider", region: "Stockholm", category: "Cider", image: catCider, location: "Ekerö", blurb: "Mälaröarnas äppelträdgårdar i flaska – torra och fruktiga cidrar." },
+  { slug: "norrtelje-brenneri", name: "Norrtelje Brenneri", region: "Stockholm", category: "Sprit", image: catSprit, location: "Norrtälje", blurb: "Ekologisk akvavit, gin och frukteau-de-vie i Roslagen." },
+  { slug: "vasterbottens-mousserande", name: "Västerbottens Mousserande", region: "Småland", category: "Mousserande", image: catMousserande, location: "Jönköping", blurb: "Pet nat och traditionell metod på svenska druvor." },
+  { slug: "halland-cider", name: "Halland Cider Co.", region: "Halland", category: "Cider", image: catCider, location: "Falkenberg", blurb: "Småskalig cider med vild jäsning från lokala äppelsorter." },
+  { slug: "vg-mousserande", name: "Bohus Bubbel", region: "Västra Götaland", category: "Mousserande", image: catMousserande, location: "Lysekil", blurb: "Havsnära mousserande med saltstänk och frisk syra." },
 ];
 
 export const articles: Article[] = [

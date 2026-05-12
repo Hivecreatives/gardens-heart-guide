@@ -46,7 +46,7 @@ function HomePage() {
             </div>
             <div className="mt-10 grid grid-cols-3 gap-6 max-w-md border-t border-border pt-7">
               <Stat n="300+" l="Producenter" />
-              <Stat n="21" l="Län" />
+              <Stat n="19" l="Län" />
               <Stat n="5" l="Drycktyper" />
             </div>
           </div>

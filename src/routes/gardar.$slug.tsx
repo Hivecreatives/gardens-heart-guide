@@ -104,9 +104,13 @@ function FarmPage() {
               <dl className="space-y-3 text-sm">
                 <Row k="Kategori" v={farm.category} />
                 <Row k="Region" v={farm.region} />
-                <Row k="Ort" v={farm.location} />
-                <Row k="Provning" v="Ja, mot bokning" />
-                <Row k="Familjevänligt" v="Ja" />
+                {farm.address && <Row k="Adress" v={farm.address} />}
+                {farm.website && (
+                  <Row
+                    k="Hemsida"
+                    v={farm.website.replace(/^https?:\/\//, '').replace(/\/$/, '')}
+                  />
+                )}
               </dl>
             </aside>
           </div>

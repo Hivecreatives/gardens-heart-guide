@@ -18,13 +18,8 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 bg-background/85 backdrop-blur border-b border-border">
       <div className="container-x flex items-center justify-between h-[72px]">
         <Link to="/" className="flex items-center gap-2.5">
-          <span className="grid place-items-center h-9 w-9 rounded-full bg-primary text-primary-foreground">
-            <Wine className="h-4.5 w-4.5" strokeWidth={1.8} />
-          </span>
-          <span className="font-display text-[1.15rem] text-heading font-semibold leading-none">
-            Gårdsförsäljning<br />
-            <span className="text-[.78rem] tracking-wider text-body font-sans uppercase">av Alkohol</span>
-          </span>
+          <img src={logo} alt="Gårdsförsäljning av Alkohol" className="h-10 w-auto" />
+          <span className="sr-only">Gårdsförsäljning av Alkohol</span>
         </Link>
         <nav className="hidden lg:flex items-center gap-7">
           {nav.map(n => (

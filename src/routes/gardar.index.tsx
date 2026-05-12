@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { PageLayout, PageHero } from "@/components/PageLayout";
 import { FarmCard } from "@/components/Cards";
 import { farms } from "@/data/site";
@@ -16,6 +17,8 @@ export const Route = createFileRoute("/gardar/")({
 });
 
 function GardarPage() {
+  const [filter, setFilter] = useState("Alla");
+  const filtered = filter === "Alla" ? farms : farms.filter(f => f.category === filter);
   return (
     <PageLayout>
       <PageHero
@@ -25,18 +28,20 @@ function GardarPage() {
       />
       <section className="section-pad">
         <div className="container-x">
-          <div className="flex flex-wrap gap-2 mb-10">
-            {["Alla", "Öl", "Vin", "Sprit", "Cider", "Mousserande"].map((t, i) => (
+          <div className="flex flex-wrap gap-2 mb-6">
+            {["Alla", "Öl", "Vin", "Sprit", "Cider", "Mousserande"].map((t) => (
               <button
                 key={t}
-                className={`px-4 py-2 rounded-full text-sm border transition-colors ${i === 0 ? "bg-primary text-primary-foreground border-primary" : "bg-card border-border text-body hover:border-primary hover:text-primary"}`}
+                onClick={() => setFilter(t)}
+                className={`px-4 py-2 rounded-full text-sm border transition-colors ${filter === t ? "bg-primary text-primary-foreground border-primary" : "bg-card border-border text-body hover:border-primary hover:text-primary"}`}
               >
                 {t}
               </button>
             ))}
           </div>
+          <p className="text-sm text-muted mb-8">{filtered.length} producenter</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
-            {farms.map(f => <FarmCard key={f.slug} farm={f} />)}
+            {filtered.map(f => <FarmCard key={f.slug} farm={f} />)}
           </div>
         </div>
       </section>

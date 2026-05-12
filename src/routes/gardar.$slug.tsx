@@ -71,6 +71,12 @@ function FarmPage() {
                   </a>
                 </li>
               )}
+              {farm.contact && (
+                <li className="flex gap-3">
+                  <Phone className="h-4 w-4 mt-0.5 text-primary shrink-0" />
+                  <span>{farm.contact}</span>
+                </li>
+              )}
             </ul>
             <div className="mt-8 flex gap-3 flex-wrap">
               {farm.website && (

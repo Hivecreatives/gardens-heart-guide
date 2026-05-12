@@ -84,15 +84,6 @@ function FarmPage() {
                   Besök hemsida <ExternalLink className="h-4 w-4" />
                 </a>
               )}
-              <Link to="/karta" className="btn-secondary">Visa på karta</Link>
-              <a
-                href={`https://gardsforsaljningavalkohol.se/${farm.slug}/`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary"
-              >
-                Mer info
-              </a>
             </div>
           </div>
         </div>

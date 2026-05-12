@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { PageLayout } from "@/components/PageLayout";
 import { farms } from "@/data/site";
-import { MapPin, Phone, Globe, Clock, ArrowLeft } from "lucide-react";
+import { MapPin, Globe, ArrowLeft, ExternalLink } from "lucide-react";
 
 export const Route = createFileRoute("/gardar/$slug")({
   head: ({ params }) => {

@@ -117,6 +117,7 @@ function FarmPage() {
                     v={farm.website.replace(/^https?:\/\//, '').replace(/\/$/, '')}
                   />
                 )}
+                {farm.contact && <Row k="Kontakt" v={farm.contact} />}
               </dl>
             </aside>
           </div>

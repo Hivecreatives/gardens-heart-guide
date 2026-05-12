@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, Wine } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import logo from "@/assets/logo.webp";
 
 const nav = [
   { to: "/gardar", label: "Producenter" },

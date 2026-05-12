@@ -22,7 +22,7 @@ export function ImageCard({
 
 export function FarmCard({ farm }: { farm: { slug: string; name: string; region: string; category: string; image: string; location: string; blurb: string } }) {
   return (
-    <article className="card-soft group">
+    <Link to="/gardar/$slug" params={{ slug: farm.slug }} className="card-soft group block">
       <div className="aspect-[5/3] overflow-hidden">
         <img src={farm.image} alt={farm.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
       </div>
@@ -31,7 +31,7 @@ export function FarmCard({ farm }: { farm: { slug: string; name: string; region:
           <span>{farm.category}</span><span className="text-border">•</span><span>{farm.region}</span>
         </div>
         <h3 className="font-display text-xl text-heading mb-2">{farm.name}</h3>
-        <p className="text-sm text-body leading-relaxed">{farm.blurb}</p>
+        <p className="text-sm text-body leading-relaxed line-clamp-3">{farm.blurb}</p>
         <div className="flex items-center justify-between mt-5 pt-5 border-t border-border">
           <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
             <MapPin className="h-3.5 w-3.5" /> {farm.location}
@@ -41,6 +41,6 @@ export function FarmCard({ farm }: { farm: { slug: string; name: string; region:
           </span>
         </div>
       </div>
-    </article>
+    </Link>
   );
 }

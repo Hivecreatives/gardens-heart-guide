@@ -1,16 +1,14 @@
 import { Link } from "@tanstack/react-router";
-import { Wine, Mail, MapPin } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
+import logo from "@/assets/logo.webp";
 
 export function SiteFooter() {
   return (
     <footer className="bg-footer text-footer-foreground mt-20">
       <div className="container-x py-16 grid gap-12 md:grid-cols-4">
         <div className="md:col-span-1">
-          <div className="flex items-center gap-2.5 mb-5">
-            <span className="grid place-items-center h-9 w-9 rounded-full bg-primary text-primary-foreground">
-              <Wine className="h-4.5 w-4.5" strokeWidth={1.8} />
-            </span>
-            <span className="font-display text-lg text-background font-semibold">Gårdsförsäljning</span>
+          <div className="mb-5">
+            <img src={logo} alt="Gårdsförsäljning av Alkohol" className="h-12 w-auto brightness-0 invert" />
           </div>
           <p className="text-sm leading-relaxed text-footer-foreground/80">
             En guide till Sveriges lokala destillerier, bryggerier och vingårdar med

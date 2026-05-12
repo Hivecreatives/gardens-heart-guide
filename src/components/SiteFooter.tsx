@@ -31,7 +31,7 @@ export function SiteFooter() {
         <div>
           <h4 className="text-background font-display text-base mb-4">Kontakt</h4>
           <ul className="space-y-3 text-sm">
-            <li className="flex gap-2"><Mail className="h-4 w-4 mt-0.5 text-accent" /> hej@gardsforsaljning.se</li>
+            <li className="flex gap-2"><Mail className="h-4 w-4 mt-0.5 text-accent" /> <span suppressHydrationWarning>hej@gardsforsaljning.se</span></li>
             <li className="flex gap-2"><MapPin className="h-4 w-4 mt-0.5 text-accent" /> Stockholm, Sverige</li>
           </ul>
         </div>

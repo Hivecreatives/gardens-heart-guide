@@ -8,9 +8,9 @@ export const Route = createFileRoute("/gardar/$slug")({
     const f = farms.find(x => x.slug === params.slug);
     return {
       meta: [
-        { title: `${f?.name ?? "Gård"} — Gårdsförsäljning av Alkohol` },
+        { title: `${f?.name ?? "Producent"} — Gårdsförsäljning av Alkohol` },
         { name: "description", content: f?.blurb ?? "Svensk producent med gårdsförsäljning." },
-        { property: "og:title", content: f?.name ?? "Gård" },
+        { property: "og:title", content: f?.name ?? "Producent" },
         { property: "og:description", content: f?.blurb ?? "" },
         { property: "og:image", content: f?.image ?? "" },
       ],

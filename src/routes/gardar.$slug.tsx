@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { PageLayout } from "@/components/PageLayout";
 import { farms } from "@/data/site";
-import { MapPin, Globe, ArrowLeft, ExternalLink, Navigation } from "lucide-react";
+import { MapPin, Globe, ArrowLeft, ExternalLink, Navigation, Phone } from "lucide-react";
 
 export const Route = createFileRoute("/gardar/$slug")({
   head: ({ params }) => {
@@ -71,6 +71,12 @@ function FarmPage() {
                   </a>
                 </li>
               )}
+              {farm.contact && (
+                <li className="flex gap-3">
+                  <Phone className="h-4 w-4 mt-0.5 text-primary shrink-0" />
+                  <span>{farm.contact}</span>
+                </li>
+              )}
             </ul>
             <div className="mt-8 flex gap-3 flex-wrap">
               {farm.website && (
@@ -111,6 +117,7 @@ function FarmPage() {
                     v={farm.website.replace(/^https?:\/\//, '').replace(/\/$/, '')}
                   />
                 )}
+                {farm.contact && <Row k="Kontakt" v={farm.contact} />}
               </dl>
             </aside>
           </div>

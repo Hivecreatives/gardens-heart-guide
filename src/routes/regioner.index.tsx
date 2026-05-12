@@ -3,7 +3,7 @@ import { PageLayout, PageHero } from "@/components/PageLayout";
 import { ImageCard } from "@/components/Cards";
 import { regions } from "@/data/site";
 
-export const Route = createFileRoute("/regioner")({
+export const Route = createFileRoute("/regioner/")({
   head: () => ({
     meta: [
       { title: "Regioner — Gårdsförsäljning av Alkohol" },

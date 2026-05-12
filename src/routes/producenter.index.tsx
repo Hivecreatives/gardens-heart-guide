@@ -4,7 +4,7 @@ import { PageLayout, PageHero } from "@/components/PageLayout";
 import { FarmCard } from "@/components/Cards";
 import { farms } from "@/data/site";
 
-export const Route = createFileRoute("/gardar/")({
+export const Route = createFileRoute("/producenter/")({
   head: () => ({
     meta: [
       { title: "Alla producenter — Gårdsförsäljning av Alkohol" },

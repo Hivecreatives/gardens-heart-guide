@@ -3,7 +3,7 @@ import { PageLayout } from "@/components/PageLayout";
 import { farms } from "@/data/site";
 import { MapPin, Globe, ArrowLeft, ExternalLink, Navigation, Phone } from "lucide-react";
 
-export const Route = createFileRoute("/gardar/$slug")({
+export const Route = createFileRoute("/producenter/$slug")({
   head: ({ params }) => {
     const f = farms.find(x => x.slug === params.slug);
     return {
@@ -25,7 +25,7 @@ export const Route = createFileRoute("/gardar/$slug")({
     <PageLayout>
       <div className="container-x py-32 text-center">
         <h1 className="text-4xl mb-4">Producenten finns inte</h1>
-        <Link to="/gardar" className="btn-secondary mt-4">Tillbaka</Link>
+        <Link to="/producenter" className="btn-secondary mt-4">Tillbaka</Link>
       </div>
     </PageLayout>
   ),
@@ -45,7 +45,7 @@ function FarmPage() {
     <PageLayout>
       <article>
         <div className="container-x pt-10">
-          <Link to="/gardar" className="inline-flex items-center gap-2 text-sm text-body hover:text-primary">
+          <Link to="/producenter" className="inline-flex items-center gap-2 text-sm text-body hover:text-primary">
             <ArrowLeft className="h-4 w-4" /> Alla producenter
           </Link>
         </div>

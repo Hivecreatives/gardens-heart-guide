@@ -41,7 +41,7 @@ function HomePage() {
               dryckeskulturen — på riktigt.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/gardar" className="btn-primary">Utforska producenter</Link>
+              <Link to="/producenter" className="btn-primary">Utforska producenter</Link>
               <Link to="/karta" className="btn-secondary">Visa kartan</Link>
             </div>
             <div className="mt-10 grid grid-cols-3 gap-6 max-w-md border-t border-border pt-7">
@@ -58,7 +58,7 @@ function HomePage() {
                   <div className="text-xs text-muted-foreground uppercase tracking-wider">Veckans producent</div>
                   <div className="font-display text-lg text-heading">Kullaberg Vingård, Höganäs</div>
                 </div>
-                <Link to="/gardar/$slug" params={{ slug: "kullaberg-vingard" }} className="btn-secondary !py-2 !px-4 text-xs">Besök</Link>
+                <Link to="/producenter/$slug" params={{ slug: "kullaberg-vingard" }} className="btn-secondary !py-2 !px-4 text-xs">Besök</Link>
               </div>
             </div>
           </div>

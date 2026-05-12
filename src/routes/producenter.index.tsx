@@ -48,7 +48,7 @@ function GardarPage() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value.slice(0, 100))}
                 maxLength={100}
-                placeholder="Skriv namn på producent eller ort, t.ex. Göteborg…"
+                placeholder="Sök på namn, ort eller dryck (t.ex. gin, cider, IPA)…"
                 className="w-full pl-12 pr-4 py-3 rounded-full text-sm bg-card border border-border text-body placeholder:text-muted focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/30"
               />
             </div>

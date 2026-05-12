@@ -13,7 +13,12 @@ import blog1 from "@/assets/blog-1.jpg";
 import blog2 from "@/assets/blog-2.jpg";
 import blog3 from "@/assets/blog-3.jpg";
 
-export const regions = [
+export type Region = { slug: string; name: string; count: number; image: string };
+export type Category = { slug: string; name: string; count: number; image: string; blurb: string };
+export type Farm = { slug: string; name: string; region: string; category: string; image: string; location: string; blurb: string };
+export type Article = { slug: string; title: string; date: string; excerpt: string; image: string };
+
+export const regions: Region[] = [
   { slug: "skane", name: "Skåne", count: 38, image: regionSkane },
   { slug: "vastra-gotaland", name: "Västra Götaland", count: 46, image: regionVg },
   { slug: "stockholm", name: "Stockholm", count: 22, image: regionSthlm },

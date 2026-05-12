@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { Search } from "lucide-react";
 import { PageLayout, PageHero } from "@/components/PageLayout";
 import { FarmCard } from "@/components/Cards";
 import { farms } from "@/data/site";

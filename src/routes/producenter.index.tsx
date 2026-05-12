@@ -47,7 +47,7 @@ function GardarPage() {
             />
           </div>
           <div className="flex flex-wrap gap-2 mb-6">
-            {["Alla", "Öl", "Vin", "Sprit", "Cider", "Övrigt"].map((t) => (
+            {["Alla", "Öl", "Vin", "Sprit", "Cider", "Musteri"].map((t) => (
               <button
                 key={t}
                 onClick={() => setFilter(t)}

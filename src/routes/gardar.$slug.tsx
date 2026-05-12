@@ -40,7 +40,7 @@ export const Route = createFileRoute("/gardar/$slug")({
 function FarmPage() {
   const farm = Route.useLoaderData();
   const lead = farm.blurb.length > 220 ? farm.blurb.slice(0, 217).trimEnd() + "…" : farm.blurb;
-  const paragraphs = farm.blurb.split(/\n+|(?<=\.)\s{2,}/).map(p => p.trim()).filter(Boolean);
+  const paragraphs: string[] = farm.blurb.split(/\n+|(?<=\.)\s{2,}/).map((p: string) => p.trim()).filter(Boolean);
   return (
     <PageLayout>
       <article>

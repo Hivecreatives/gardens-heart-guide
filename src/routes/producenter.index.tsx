@@ -23,9 +23,9 @@ function GardarPage() {
   const [query, setQuery] = useState("");
   const q = query.trim().toLowerCase();
   const filtered = farms.filter(f => {
-    if (filter !== "Alla" && f.category !== filter) return false;
+    if (filter !== "Alla" && !getFarmCategories(f).includes(filter)) return false;
     if (!q) return true;
-    return f.name.toLowerCase().includes(q) || f.location.toLowerCase().includes(q);
+    return getFarmSearchHaystack(f).includes(q);
   });
   return (
     <PageLayout>

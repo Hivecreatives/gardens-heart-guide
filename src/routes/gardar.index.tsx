@@ -29,7 +29,7 @@ function GardarPage() {
       <section className="section-pad">
         <div className="container-x">
           <div className="flex flex-wrap gap-2 mb-6">
-            {["Alla", "Öl", "Vin", "Sprit", "Cider", "Mousserande"].map((t) => (
+            {["Alla", "Öl", "Vin", "Sprit", "Cider", "Övrigt"].map((t) => (
               <button
                 key={t}
                 onClick={() => setFilter(t)}

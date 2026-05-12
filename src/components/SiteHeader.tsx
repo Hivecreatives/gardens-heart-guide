@@ -1,0 +1,63 @@
+import { Link } from "@tanstack/react-router";
+import { useState } from "react";
+import { Menu, X, Wine } from "lucide-react";
+
+const nav = [
+  { to: "/gardar", label: "Gårdar" },
+  { to: "/regioner", label: "Regioner" },
+  { to: "/kategorier", label: "Kategorier" },
+  { to: "/karta", label: "Karta" },
+  { to: "/blogg-nyheter", label: "Blogg" },
+  { to: "/om-oss", label: "Om oss" },
+] as const;
+
+export function SiteHeader() {
+  const [open, setOpen] = useState(false);
+  return (
+    <header className="sticky top-0 z-40 bg-background/85 backdrop-blur border-b border-border">
+      <div className="container-x flex items-center justify-between h-[72px]">
+        <Link to="/" className="flex items-center gap-2.5">
+          <span className="grid place-items-center h-9 w-9 rounded-full bg-primary text-primary-foreground">
+            <Wine className="h-4.5 w-4.5" strokeWidth={1.8} />
+          </span>
+          <span className="font-display text-[1.15rem] text-heading font-semibold leading-none">
+            Gårdsförsäljning<br />
+            <span className="text-[.78rem] tracking-wider text-body font-sans uppercase">av Alkohol</span>
+          </span>
+        </Link>
+        <nav className="hidden lg:flex items-center gap-7">
+          {nav.map(n => (
+            <Link
+              key={n.to}
+              to={n.to}
+              className="text-[.93rem] text-body hover:text-primary transition-colors"
+              activeProps={{ className: "text-primary font-medium" }}
+            >
+              {n.label}
+            </Link>
+          ))}
+        </nav>
+        <div className="hidden lg:block">
+          <Link to="/kontakt" className="btn-primary !py-2.5 !px-5 text-sm">Synas hos oss</Link>
+        </div>
+        <button className="lg:hidden p-2 -mr-2 text-heading" onClick={() => setOpen(!open)} aria-label="Meny">
+          {open ? <X /> : <Menu />}
+        </button>
+      </div>
+      {open && (
+        <div className="lg:hidden border-t border-border bg-background">
+          <div className="container-x py-4 flex flex-col gap-1">
+            {nav.map(n => (
+              <Link key={n.to} to={n.to} className="py-2 text-body" onClick={() => setOpen(false)}>
+                {n.label}
+              </Link>
+            ))}
+            <Link to="/kontakt" className="btn-primary mt-3 self-start" onClick={() => setOpen(false)}>
+              Synas hos oss
+            </Link>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+}

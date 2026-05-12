@@ -75,11 +75,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Gårdsförsäljning av Alkohol — Sveriges destillerier, bryggerier & vingårdar" },
       { name: "description", content: "Hitta destillerier, bryggerier och vingårdar med gårdsförsäljning i hela Sverige." },
       { name: "author", content: "Gårdsförsäljning" },
-      { property: "og:title", content: "Gårdsförsäljning av Alkohol" },
-      { property: "og:description", content: "En guide till Sveriges lokala destillerier, bryggerier och vingårdar." },
+      { property: "og:title", content: "Gårdsförsäljning av Alkohol — Sveriges destillerier, bryggerier & vingårdar" },
+      { property: "og:description", content: "Hitta destillerier, bryggerier och vingårdar med gårdsförsäljning i hela Sverige." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Gårdsförsäljning av Alkohol — Sveriges destillerier, bryggerier & vingårdar" },
+      { name: "twitter:description", content: "Hitta destillerier, bryggerier och vingårdar med gårdsförsäljning i hela Sverige." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/048da626-2928-4ffd-b18e-331df7659f5e/id-preview-5af496e0--2bccbe3a-ab77-4cb9-8803-73762bc23437.lovable.app-1778571833836.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/048da626-2928-4ffd-b18e-331df7659f5e/id-preview-5af496e0--2bccbe3a-ab77-4cb9-8803-73762bc23437.lovable.app-1778571833836.png" },
     ],
     links: [
       {

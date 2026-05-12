@@ -51,7 +51,7 @@ function OmOssPage() {
               dörrarna – och vad du faktiskt kan handla på plats.
             </p>
             <p className="text-body leading-relaxed mt-4">
-              Idag samarbetar vi med 170+ bryggerier, vingårdar och destillerier över hela landet. Vårt mål är att
+              Idag samarbetar vi med 300+ bryggerier, vingårdar och destillerier över hela landet. Vårt mål är att
               både hjälpa dig som besökare och stötta de producenter som vågar satsa på närodlat och hantverk.
             </p>
           </div>

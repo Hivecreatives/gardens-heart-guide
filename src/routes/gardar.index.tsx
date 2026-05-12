@@ -18,7 +18,13 @@ export const Route = createFileRoute("/gardar/")({
 
 function GardarPage() {
   const [filter, setFilter] = useState("Alla");
-  const filtered = filter === "Alla" ? farms : farms.filter(f => f.category === filter);
+  const [query, setQuery] = useState("");
+  const q = query.trim().toLowerCase();
+  const filtered = farms.filter(f => {
+    if (filter !== "Alla" && f.category !== filter) return false;
+    if (!q) return true;
+    return f.name.toLowerCase().includes(q) || f.location.toLowerCase().includes(q);
+  });
   return (
     <PageLayout>
       <PageHero
@@ -28,6 +34,18 @@ function GardarPage() {
       />
       <section className="section-pad">
         <div className="container-x">
+          <div className="mb-6">
+            <label htmlFor="producer-search" className="sr-only">Sök producent</label>
+            <input
+              id="producer-search"
+              type="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value.slice(0, 100))}
+              maxLength={100}
+              placeholder="Sök på namn eller ort…"
+              className="w-full md:max-w-md px-4 py-3 rounded-full text-sm bg-card border border-border text-body placeholder:text-muted focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/30"
+            />
+          </div>
           <div className="flex flex-wrap gap-2 mb-6">
             {["Alla", "Öl", "Vin", "Sprit", "Cider", "Övrigt"].map((t) => (
               <button

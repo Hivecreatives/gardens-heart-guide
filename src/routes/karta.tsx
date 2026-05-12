@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState, lazy, Suspense } from "react";
 import { PageLayout, PageHero } from "@/components/PageLayout";
 import { regions, farms } from "@/data/site";
+import { getFarmCategories } from "@/lib/farmCategories";
 
 const FarmsMap = lazy(() => import("@/components/FarmsMap"));
 

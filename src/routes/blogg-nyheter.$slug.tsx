@@ -50,7 +50,7 @@ function ArticlePage() {
         )}
         <div className="space-y-5 text-body leading-relaxed text-[1.05rem]">
           {a.excerpt && <p className="text-lg text-heading font-medium">{a.excerpt}</p>}
-          {(a.content || "").split(/\n\n+/).filter(Boolean).map((block, i) => {
+          {(a.content || "").split(/\n\n+/).filter(Boolean).map((block: string, i: number) => {
             if (block.startsWith("## ")) return <h2 key={i} className="text-2xl mt-10">{block.slice(3)}</h2>;
             return <p key={i}>{block}</p>;
           })}

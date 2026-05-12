@@ -3,7 +3,7 @@ import { PageLayout, PageHero } from "@/components/PageLayout";
 import { ImageCard } from "@/components/Cards";
 import { categories } from "@/data/site";
 
-export const Route = createFileRoute("/kategorier")({
+export const Route = createFileRoute("/kategorier/")({
   head: () => ({
     meta: [
       { title: "Kategorier — Gårdsförsäljning av Alkohol" },

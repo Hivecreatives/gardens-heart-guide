@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, MapPin } from "lucide-react";
+import { getFarmCategories } from "@/lib/farmCategories";
 
 export function ImageCard({
   to, params, image, title, meta, blurb,

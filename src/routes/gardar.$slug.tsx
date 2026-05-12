@@ -39,6 +39,8 @@ export const Route = createFileRoute("/gardar/$slug")({
 
 function FarmPage() {
   const farm = Route.useLoaderData();
+  const lead = farm.blurb.length > 220 ? farm.blurb.slice(0, 217).trimEnd() + "…" : farm.blurb;
+  const paragraphs: string[] = farm.blurb.split(/\n+|(?<=\.)\s{2,}/).map((p: string) => p.trim()).filter(Boolean);
   return (
     <PageLayout>
       <article>
@@ -58,9 +60,9 @@ function FarmPage() {
               {farm.category} · {farm.region}
             </div>
             <h1 className="text-4xl lg:text-5xl">{farm.name}</h1>
-            <p className="mt-5 text-lg text-body leading-relaxed">{farm.blurb}</p>
+            <p className="mt-5 text-lg text-body leading-relaxed">{lead}</p>
             <ul className="mt-8 space-y-3 text-sm">
-              <li className="flex gap-3"><MapPin className="h-4 w-4 mt-0.5 text-primary" /> {farm.location}, {farm.region}</li>
+              <li className="flex gap-3"><MapPin className="h-4 w-4 mt-0.5 text-primary" /> {farm.location}</li>
               <li className="flex gap-3"><Clock className="h-4 w-4 mt-0.5 text-primary" /> Lör–sön 11–16, övriga tider efter överenskommelse</li>
               <li className="flex gap-3"><Phone className="h-4 w-4 mt-0.5 text-primary" /> 070-123 45 67</li>
               <li className="flex gap-3"><Globe className="h-4 w-4 mt-0.5 text-primary" /> www.exempel.se</li>
@@ -76,15 +78,9 @@ function FarmPage() {
           <div className="container-x grid lg:grid-cols-3 gap-10">
             <div className="lg:col-span-2 prose-like">
               <h2 className="text-3xl mb-6">Om {farm.name}</h2>
-              <p className="text-body leading-relaxed">
-                {farm.name} är en av {farm.region}s mest spännande producenter inom kategorin {farm.category.toLowerCase()}.
-                Här får du möjlighet att möta människorna bakom dryckerna, se hur tillverkningen går till och ta med dig
-                dina favoriter direkt hem från gården.
-              </p>
-              <p className="text-body leading-relaxed mt-4">
-                Gårdens läge i {farm.location} ger råvaror och miljö som präglar smaken. Besök gärna under helgerna då
-                gårdsbutiken är öppen, eller boka en privat provning för en grupp.
-              </p>
+              {paragraphs.map((p: string, i: number) => (
+                <p key={i} className="text-body leading-relaxed mt-4 first:mt-0">{p}</p>
+              ))}
             </div>
             <aside className="bg-card border border-border rounded-xl p-6 h-fit">
               <h3 className="font-display text-lg mb-4">Snabbfakta</h3>

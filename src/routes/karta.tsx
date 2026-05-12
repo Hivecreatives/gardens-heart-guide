@@ -27,7 +27,7 @@ function KartaPage() {
         <div className="container-x grid lg:grid-cols-[300px_1fr] gap-8">
           <aside className="bg-card border border-border rounded-xl p-6 h-fit">
             <h3 className="font-display text-lg mb-4">Filter</h3>
-            <FilterGroup label="Kategori" items={["Öl", "Vin", "Sprit", "Cider", "Mousserande"]} />
+            <FilterGroup label="Kategori" items={["Öl", "Vin", "Sprit", "Cider", "Övrigt"]} />
             <FilterGroup label="Region" items={regions.map(r => r.name)} />
           </aside>
           <div className="relative rounded-2xl overflow-hidden border border-border bg-section min-h-[600px]">

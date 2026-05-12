@@ -43,31 +43,24 @@ function ArticlePage() {
         <div className="flex items-center gap-2 text-sm text-muted-foreground mt-4">
           <Calendar className="h-4 w-4" /> {a.date}
         </div>
-        <div className="rounded-2xl overflow-hidden border border-border my-10">
-          <img src={a.image} alt={a.title} className="w-full h-[420px] object-cover" />
-        </div>
+        {a.image && (
+          <div className="rounded-2xl overflow-hidden border border-border my-10">
+            <img src={a.image} alt={a.title} className="w-full h-[420px] object-cover" />
+          </div>
+        )}
         <div className="space-y-5 text-body leading-relaxed text-[1.05rem]">
-          <p className="text-lg text-heading font-medium">{a.excerpt}</p>
-          <p>
-            Sveriges dryckeslandskap har förändrats radikalt det senaste decenniet. Allt fler bönder och hantverkare
-            har fått möjlighet att sälja sina egna drycker direkt från gården, vilket öppnat upp för en helt ny typ
-            av besöksnäring runt om i landet.
-          </p>
-          <p>
-            För dig som besökare innebär det fantastiska upplevelser: att möta människorna bakom flaskan, gå runt
-            i produktionslokalen och få provsmaka direkt vid källan. Många producenter erbjuder också enklare
-            servering och guidade rundvandringar.
-          </p>
-          <h2 className="text-2xl mt-10">Tips inför besöket</h2>
-          <ul className="list-disc pl-6 space-y-2">
-            <li>Kolla öppettiderna i förväg – många producenter har bokningsbara tider.</li>
-            <li>Planera din rutt och kombinera gärna 2–3 producenter på samma helg.</li>
-            <li>Ta med kontanter eller kort – men räkna inte med Swish överallt.</li>
-            <li>Var beredd på att utse en alkoholfri förare.</li>
-          </ul>
-          <p>
-            Vi uppdaterar listan löpande med nya producenter. Har du tips på en plats vi missat? Hör gärna av dig.
-          </p>
+          {a.excerpt && <p className="text-lg text-heading font-medium">{a.excerpt}</p>}
+          {(a.content || "").split(/\n\n+/).filter(Boolean).map((block, i) => {
+            if (block.startsWith("## ")) return <h2 key={i} className="text-2xl mt-10">{block.slice(3)}</h2>;
+            return <p key={i}>{block}</p>;
+          })}
+          {a.url && (
+            <p className="pt-4">
+              <a href={a.url} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                Läs originalet på gardsforsaljningavalkohol.se →
+              </a>
+            </p>
+          )}
         </div>
       </article>
     </PageLayout>

@@ -46,7 +46,7 @@ function OmOssPage() {
             <span className="kicker">Vår historia</span>
             <h2 className="text-3xl md:text-4xl mt-4 mb-6">En guide byggd av entusiaster</h2>
             <p className="text-body leading-relaxed">
-              Sedan 2020 har gårdsförsäljning av alkohol blivit verklighet i fler delar av Sverige. Vi insåg snabbt
+              Sedan 2025 har gårdsförsäljning av alkohol blivit verklighet i fler delar av Sverige. Vi insåg snabbt
               att det saknades en plats där besökare enkelt kunde hitta vilka producenter som faktiskt öppnar
               dörrarna – och vad du faktiskt kan handla på plats.
             </p>

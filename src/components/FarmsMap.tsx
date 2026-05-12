@@ -26,9 +26,9 @@ export default function FarmsMap({ farms }: { farms: Farm[] }) {
 
       const icon = L.divIcon({
         className: "",
-        html: '<div style="width:14px;height:14px;border-radius:50%;background:hsl(var(--primary,142 40% 30%));border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,.4)"></div>',
-        iconSize: [14, 14],
-        iconAnchor: [7, 7],
+        html: '<div style="width:16px;height:16px;border-radius:50%;background:#c2410c;border:2px solid #ffffff;box-shadow:0 0 0 1px rgba(0,0,0,.35),0 2px 6px rgba(0,0,0,.45)"></div>',
+        iconSize: [16, 16],
+        iconAnchor: [8, 8],
       });
 
       const points: [number, number][] = [];

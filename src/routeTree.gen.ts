@@ -15,6 +15,7 @@ import { Route as OmOssRouteImport } from './routes/om-oss'
 import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as KategorierRouteImport } from './routes/kategorier'
 import { Route as KartaRouteImport } from './routes/karta'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as BloggNyheterRouteImport } from './routes/blogg-nyheter'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as RegionerIndexRouteImport } from './routes/regioner.index'
@@ -54,6 +55,11 @@ const KategorierRoute = KategorierRouteImport.update({
 const KartaRoute = KartaRouteImport.update({
   id: '/karta',
   path: '/karta',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BloggNyheterRoute = BloggNyheterRouteImport.update({
@@ -110,6 +116,7 @@ const BloggNyheterSlugRoute = BloggNyheterSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blogg-nyheter': typeof BloggNyheterRouteWithChildren
+  '/faq': typeof FaqRoute
   '/karta': typeof KartaRoute
   '/kategorier': typeof KategorierRouteWithChildren
   '/kontakt': typeof KontaktRoute
@@ -127,6 +134,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/faq': typeof FaqRoute
   '/karta': typeof KartaRoute
   '/kontakt': typeof KontaktRoute
   '/om-oss': typeof OmOssRoute
@@ -143,6 +151,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/blogg-nyheter': typeof BloggNyheterRouteWithChildren
+  '/faq': typeof FaqRoute
   '/karta': typeof KartaRoute
   '/kategorier': typeof KategorierRouteWithChildren
   '/kontakt': typeof KontaktRoute
@@ -163,6 +172,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/blogg-nyheter'
+    | '/faq'
     | '/karta'
     | '/kategorier'
     | '/kontakt'
@@ -180,6 +190,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/faq'
     | '/karta'
     | '/kontakt'
     | '/om-oss'
@@ -195,6 +206,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/blogg-nyheter'
+    | '/faq'
     | '/karta'
     | '/kategorier'
     | '/kontakt'
@@ -214,6 +226,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BloggNyheterRoute: typeof BloggNyheterRouteWithChildren
+  FaqRoute: typeof FaqRoute
   KartaRoute: typeof KartaRoute
   KategorierRoute: typeof KategorierRouteWithChildren
   KontaktRoute: typeof KontaktRoute
@@ -264,6 +277,13 @@ declare module '@tanstack/react-router' {
       path: '/karta'
       fullPath: '/karta'
       preLoaderRoute: typeof KartaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blogg-nyheter': {
@@ -398,6 +418,7 @@ const RegionerRouteWithChildren = RegionerRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BloggNyheterRoute: BloggNyheterRouteWithChildren,
+  FaqRoute: FaqRoute,
   KartaRoute: KartaRoute,
   KategorierRoute: KategorierRouteWithChildren,
   KontaktRoute: KontaktRoute,
@@ -408,3 +429,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

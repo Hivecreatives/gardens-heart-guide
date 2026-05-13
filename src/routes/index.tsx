@@ -153,15 +153,22 @@ function HomePage() {
       {/* CTA */}
       <section className="section-pad">
         <div className="container-x">
-          <div className="bg-primary text-primary-foreground rounded-2xl p-10 md:p-16 grid md:grid-cols-[1.4fr_1fr] gap-8 items-center">
-            <div>
+          <div
+            className="relative overflow-hidden bg-primary text-primary-foreground rounded-2xl p-10 md:p-16 grid md:grid-cols-[1.4fr_1fr] gap-8 items-center"
+            style={{
+              backgroundImage: `linear-gradient(135deg, color-mix(in oklab, var(--primary) 80%, transparent), color-mix(in oklab, var(--primary) 55%, transparent)), url(${ctaBg})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div className="relative">
               <span className="text-sm uppercase tracking-wider text-primary-foreground font-medium">Vill du synas?</span>
               <h2 className="text-3xl md:text-4xl mt-4 text-primary-foreground">Är du producent med gårdsförsäljning?</h2>
-              <p className="mt-4 text-primary-foreground/80 max-w-xl">
+              <p className="mt-4 text-primary-foreground/90 max-w-xl">
                 Bli en del av plattformen och låt fler upptäcka din verksamhet. Vi hjälper dig att synas för rätt besökare.
               </p>
             </div>
-            <div className="flex md:justify-end">
+            <div className="relative flex md:justify-end">
               <Link to="/kontakt" className="btn-primary">Kontakta oss</Link>
             </div>
           </div>

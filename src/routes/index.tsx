@@ -154,7 +154,7 @@ function HomePage() {
         <div className="container-x">
           <div className="bg-primary text-primary-foreground rounded-2xl p-10 md:p-16 grid md:grid-cols-[1.4fr_1fr] gap-8 items-center">
             <div>
-              <span className="text-sm uppercase tracking-wider text-accent font-medium">Vill du synas?</span>
+              <span className="text-sm uppercase tracking-wider text-primary-foreground font-medium">Vill du synas?</span>
               <h2 className="text-3xl md:text-4xl mt-4 text-primary-foreground">Är du producent med gårdsförsäljning?</h2>
               <p className="mt-4 text-primary-foreground/80 max-w-xl">
                 Bli en del av plattformen och låt fler upptäcka din verksamhet. Vi hjälper dig att synas för rätt besökare.

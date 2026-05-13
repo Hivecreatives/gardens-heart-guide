@@ -8,7 +8,7 @@ export function InfoBanner() {
         <p>
           Vi vill uppmärksamma våra besökare på att det kan vara stor skillnad mellan gårdsförsäljning
           och enbart whiskyprovning eller besöksverksamhet. Vi rekommenderar därför att du alltid
-          dubbelkollar med destilleriet innan ditt besök så att de faktiskt erbjuder gårdsförsäljning
+          dubbelkollar med producenten innan ditt besök så att de faktiskt erbjuder gårdsförsäljning
           och inte endast provningar eller guidade turer.
         </p>
       </div>

@@ -4,6 +4,7 @@ import { ImageCard } from "@/components/Cards";
 import { regions, categories, articles } from "@/data/site";
 import { Search, Map, Tag, Calendar, ArrowRight } from "lucide-react";
 import hero from "@/assets/hero.jpg";
+import ctaBg from "@/assets/cta-bg.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({

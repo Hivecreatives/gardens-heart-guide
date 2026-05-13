@@ -56,7 +56,7 @@ function HomePage() {
               <div className="absolute bottom-5 left-5 right-5 bg-background/95 backdrop-blur rounded-xl p-4 border border-border flex items-center justify-between">
                 <div>
                   <div className="text-xs text-muted-foreground uppercase tracking-wider">Veckans producent</div>
-                  <div className="font-display text-lg text-heading">Kullaberg Vingård, Höganäs</div>
+                  <div className="font-display text-lg text-heading">Kullabergs Vingård, Nyhamnsläge</div>
                 </div>
                 <Link to="/producenter/$slug" params={{ slug: "kullabergs-vingard" }} className="btn-secondary !py-2 !px-4 text-xs">Besök</Link>
               </div>

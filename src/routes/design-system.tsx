@@ -105,6 +105,7 @@ const sections = [
   { id: "colors", label: "Colors" },
   { id: "shadows", label: "Shadows" },
   { id: "borders", label: "Borders" },
+  { id: "icons", label: "Icons" },
   { id: "design-md", label: "design.md" },
 ];
 

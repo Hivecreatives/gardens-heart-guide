@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { Check, Copy } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { Check, Copy, Download, Search } from "lucide-react";
+import JSZip from "jszip";
 import { PageLayout } from "@/components/PageLayout";
+import { filledIcons } from "@/assets/icons";
 
 export const Route = createFileRoute("/design-system")({
   head: () => ({

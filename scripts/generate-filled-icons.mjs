@@ -1,17 +1,19 @@
-// Build-time: convert Lucide stroke SVGs to filled SVGs (fill="currentColor").
-// Uses svg-outline-stroke (potrace-based) + svgo for cleanup.
-import outlineStroke from "svg-outline-stroke";
+// Build-time: convert Lucide stroke SVGs to filled SVGs using Inkscape's
+// geometric "Stroke to Path" (object-stroke-to-path), then clean with SVGO.
+// Requires Inkscape on PATH. Locally: `nix run nixpkgs#inkscape -- ...`.
+import { execFileSync } from "node:child_process";
 import { optimize } from "svgo";
 import fs from "node:fs";
 import path from "node:path";
+import os from "node:os";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const OUT_DIR = path.join(ROOT, "src/assets/icons");
 const LUCIDE_DIR = path.join(ROOT, "node_modules/lucide-static/icons");
+const TMP = fs.mkdtempSync(path.join(os.tmpdir(), "icons-"));
 
-// Icons referenced in the codebase (PascalCase). *Icon aliases collapse to base.
 const NAMES = [
   "ArrowLeft","ArrowRight","ArrowUpRight","Calendar","Check","ChevronDown",
   "ChevronLeft","ChevronRight","ChevronUp","Circle","Copy","ExternalLink",
@@ -25,6 +27,16 @@ const pascalToKebab = (n) =>
 
 fs.mkdirSync(OUT_DIR, { recursive: true });
 
+// Resolve Inkscape (prefer system, fall back to nix).
+function inkscapeRun(inFile, outFile) {
+  const actions = `select-all;object-stroke-to-path;export-plain-svg;export-filename:${outFile};export-do`;
+  try {
+    execFileSync("inkscape", [`--actions=${actions}`, inFile], { stdio: "pipe" });
+    return;
+  } catch {}
+  execFileSync("nix", ["run", "nixpkgs#inkscape", "--", `--actions=${actions}`, inFile], { stdio: "pipe" });
+}
+
 const svgoCleanup = (svg) =>
   optimize(svg, {
     multipass: true,
@@ -32,20 +44,31 @@ const svgoCleanup = (svg) =>
       { name: "preset-default", params: { overrides: { removeViewBox: false } } },
       { name: "removeDimensions" },
       {
-        name: "addAttributesToSVGElement",
-        params: { attributes: [{ fill: "currentColor" }] },
-      },
-      {
         name: "removeAttrs",
-        params: { attrs: "(stroke.*|fill-rule)" },
+        params: {
+          attrs: [
+            "stroke.*", "class", "id",
+            "sodipodi:.*", "inkscape:.*",
+            "xmlns:sodipodi", "xmlns:inkscape", "xmlns:svg",
+            "version", "baseProfile",
+            "path:style",
+          ],
+        },
       },
-      // Drop fill="black" on inner paths so currentColor inherits.
       {
-        name: "removeFillBlack",
+        name: "forceCurrentColor",
         fn: () => ({
           element: {
-            enter: (node) => {
-              if (node.attributes?.fill === "black") delete node.attributes.fill;
+            enter: (node, parent) => {
+              if (node.name === "svg") {
+                node.attributes.fill = "currentColor";
+              }
+              if (node.name === "path") {
+                // Strip baked black fill so currentColor inherits, then re-apply explicitly.
+                delete node.attributes.style;
+                node.attributes.fill = "currentColor";
+                node.attributes["fill-rule"] = "evenodd";
+              }
             },
           },
         }),
@@ -62,21 +85,26 @@ for (const name of NAMES) {
     console.warn(`! missing source: ${kebab}.svg`);
     continue;
   }
-  const input = fs.readFileSync(src, "utf8");
-  let outlined;
+  const tmpIn = path.join(TMP, `${kebab}.in.svg`);
+  const tmpOut = path.join(TMP, `${kebab}.out.svg`);
+  fs.copyFileSync(src, tmpIn);
   try {
-    outlined = await outlineStroke(input, { color: "black", steps: 4, optTolerance: 0.2 });
+    inkscapeRun(tmpIn, tmpOut);
   } catch (e) {
-    console.warn(`! outline failed for ${kebab}: ${e.message}`);
+    console.warn(`! inkscape failed for ${kebab}: ${e.message}`);
     continue;
   }
+  if (!fs.existsSync(tmpOut)) {
+    console.warn(`! no output for ${kebab}`);
+    continue;
+  }
+  const outlined = fs.readFileSync(tmpOut, "utf8");
   const cleaned = svgoCleanup(outlined);
   fs.writeFileSync(path.join(OUT_DIR, `${kebab}.svg`), cleaned);
   manifest.push({ name, kebab });
   console.log(`✓ ${kebab}`);
 }
 
-// Generate index.ts: static imports of every SVG as raw string.
 const imports = manifest
   .map((m, i) => `import s${i} from "./${m.kebab}.svg?raw";`)
   .join("\n");

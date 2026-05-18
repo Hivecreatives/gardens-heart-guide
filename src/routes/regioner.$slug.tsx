@@ -8,10 +8,10 @@ export const Route = createFileRoute("/regioner/$slug")({
     const r = regions.find(x => x.slug === params.slug);
     return {
       meta: [
-        { title: `Producenter i ${r?.name ?? "regionen"} — Gårdsförsäljning` },
+        { title: `Gårdsförsäljare i ${r?.name ?? "regionen"} — Gårdsförsäljning` },
         { name: "description", content: `Bryggerier, vingårdar och destillerier i ${r?.name ?? "Sverige"} med gårdsförsäljning.` },
         { property: "og:title", content: `${r?.name ?? "Region"} — Gårdsförsäljning` },
-        { property: "og:description", content: `Producenter med gårdsförsäljning i ${r?.name ?? ""}.` },
+        { property: "og:description", content: `Gårdsförsäljare med gårdsförsäljning i ${r?.name ?? ""}.` },
         { property: "og:image", content: r?.image ?? "" },
       ],
     };
@@ -43,7 +43,7 @@ function RegionPage() {
             <span className="kicker">Region</span>
             <h1 className="text-4xl md:text-5xl mt-3">{region.name}</h1>
             <p className="mt-4 text-body">
-              {region.count} producenter i {region.name} öppnar dörrarna för gårdsförsäljning. Här är ett urval.
+              {region.count} gårdsförsäljare i {region.name} öppnar dörrarna för gårdsförsäljning. Här är ett urval.
             </p>
           </div>
         </div>
@@ -51,7 +51,7 @@ function RegionPage() {
       <section className="section-pad">
         <div className="container-x">
           {list.length === 0 ? (
-            <p className="text-body">Vi lägger snart till producenter från {region.name}. <Link to="/gardsforsaljare" className="text-primary underline">Visa alla producenter</Link></p>
+            <p className="text-body">Vi lägger snart till gårdsförsäljare från {region.name}. <Link to="/gardsforsaljare" className="text-primary underline">Visa alla gårdsförsäljare</Link></p>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
               {list.map((f: Farm) => <FarmCard key={f.slug} farm={f} />)}

@@ -1,38 +1,56 @@
-# Add Pages section to Design System
+## Goal
 
-Add a new "Pages" section in `src/routes/design-system.tsx` that maps all routes in the site. Dynamic routes (`$slug`) are represented by a single example link using the first item from the corresponding data array.
+Replace every occurrence of `producent` / `producenter` (any case) in `src/` with `gårdsförsäljare` / `gårdsförsäljare` equivalents, preserving Swedish capitalization and grammar. URL `/gardsforsaljare` is already in place — no route changes.
 
-## Section data
+## Replacement rules (case-preserving)
 
-Static routes:
-- `/` — Hem
-- `/kategorier` — Kategorier
-- `/regioner` — Regioner
-- `/producenter` — Producenter
-- `/karta` — Karta
-- `/blogg-nyheter` — Blogg & Nyheter
-- `/om-oss` — Om oss
-- `/faq` — FAQ
-- `/kontakt` — Kontakt
-- `/design-system` — Design System
+| From | To |
+|---|---|
+| `Producenter` | `Gårdsförsäljare` |
+| `producenter` | `gårdsförsäljare` |
+| `Producentens` | `Gårdsförsäljarens` |
+| `producentens` | `gårdsförsäljarens` |
+| `Producenten` | `Gårdsförsäljaren` |
+| `producenten` | `gårdsförsäljaren` |
+| `Producent` | `Gårdsförsäljare` |
+| `producent` | `gårdsförsäljare` |
 
-Dynamic routes (first item only, imported from `@/data/site`):
-- `/kategorier/$slug` → first `categories[0].slug` (e.g. `/kategorier/ol`)
-- `/regioner/$slug` → first `regions[0].slug`
-- `/producenter/$slug` → first `farms[0].slug` (e.g. `/producenter/wine-mechanics`)
-- `/blogg-nyheter/$slug` → first `articles[0].slug`
+Order matters — apply longest forms first (`Producenter` before `Producent`, `producentens` before `producenten` before `producent`) so shorter patterns don't truncate longer ones.
 
-## Implementation
+Compound words also get rewritten: `dryckesproducenter` → `dryckesgårdsförsäljare`, `egenproducerade` is left alone (different stem: "producera", not "producent").
 
-1. Import `categories, regions, farms, articles` from `@/data/site`.
-2. Build a `pages` array: `{ label, path, route, type: 'static' | 'dynamic', example? }`.
-3. Add `{ id: "pages", label: "Pages" }` to the `sections` array (place before `design-md`).
-4. Render a new `<section id="pages">` with `SectionHeading` and a clean table:
-   - Columns: Page, Route pattern, Example URL, Open
-   - Static rows show route pattern in `Route`, `—` in Example.
-   - Dynamic rows show `/foo/$slug` in Route and the resolved `/foo/<first-slug>` in Example.
-   - "Open" column = anchor link `<a href={example} target="_blank">↗</a>` styled like other monospace cells.
-5. Keep styling consistent with the existing Typography table (`rounded-lg border bg-card`, `bg-section` thead, `font-mono text-xs text-body` for code-like cells).
-6. Update the `buildDesignMd()` output to include a `## Pages` markdown table so the copyable `design.md` stays complete.
+## Files affected (from grep)
 
-No other files change. No new dependencies.
+- `src/routes/gardsforsaljare.$slug.tsx` — meta title, og:title, notFound heading, back-link
+- `src/routes/gardsforsaljare.index.tsx` — kicker, hero title, hero lead, search label, result count
+- `src/routes/regioner.$slug.tsx` — meta title, og:description, count text, empty state
+- `src/routes/regioner.index.tsx` — likely meta/copy (will verify)
+- `src/routes/kategorier.$slug.tsx` — meta title/desc, count, empty state
+- `src/routes/kategorier.index.tsx` — meta desc, og:desc, card meta `{c.count} producenter`
+- `src/routes/karta.tsx` — hero title, lead, result count
+- `src/routes/om-oss.tsx` — og:desc, hero lead, feature copy, body prose, "Är du producent?" CTA
+- `src/routes/faq.tsx` — meta description, ~40 occurrences across question/answer strings, section title "Producenter och kategorier", "På plats hos producenten"
+- `src/routes/blogg-nyheter.index.tsx` — og:desc, hero lead
+- `src/routes/blogg-nyheter.$slug.tsx` — meta description fallback
+- `src/components/FarmsMap.tsx` — popup link text "Visa producent →"
+- `src/components/InfoBanner.tsx` — "dubbelkolla med producenten…"
+- `src/routes/design-system.tsx` — any remaining "Producent" labels
+
+## What does NOT change
+
+- URLs / route file names (`/gardsforsaljare` already done)
+- Data files (`src/data/site.ts`) — content data unaffected
+- The verb form `producerade` / `egenproducerade` / `närproducerat` (different root)
+- Variable names, type names, imports, comments
+
+## Implementation approach
+
+Single Node script run via `code--exec` that:
+1. Walks `src/**/*.{ts,tsx}` (skip `routeTree.gen.ts`).
+2. For each file, applies the 8 ordered regex replacements (whole words via `\b`).
+3. Leaves `produc(era|erad|erade|erande|tion|ent-...code-identifiers)` untouched by anchoring on the exact stems above.
+4. Writes file only if content changed; logs the diff count.
+
+Then a verification grep confirms zero remaining `producent` matches in `src/` (excluding generated files and the verb stem).
+
+Total expected edits: ~80 string replacements across ~14 files. No behavior, route, or type changes.

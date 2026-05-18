@@ -10,7 +10,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Gårdsförsäljning av Alkohol — Sveriges destillerier, bryggerier & vingårdar" },
-      { name: "description", content: "Hitta destillerier, bryggerier och vingårdar med gårdsförsäljning i hela Sverige. Upptäck lokala drycker direkt från producenten." },
+      { name: "description", content: "Hitta destillerier, bryggerier och vingårdar med gårdsförsäljning i hela Sverige. Upptäck lokala drycker direkt från gårdsförsäljaren." },
       { property: "og:title", content: "Gårdsförsäljning av Alkohol" },
       { property: "og:description", content: "En guide till Sveriges lokala destillerier, bryggerier och vingårdar." },
     ],
@@ -19,7 +19,7 @@ export const Route = createFileRoute("/")({
 });
 
 const features = [
-  { icon: Search, title: "Enkel sökning", text: "Hitta producenter nära dig eller i en specifik region med vårt sökverktyg." },
+  { icon: Search, title: "Enkel sökning", text: "Hitta gårdsförsäljare nära dig eller i en specifik region med vårt sökverktyg." },
   { icon: Map, title: "Interaktiv karta", text: "Utforska vingårdar, bryggerier och destillerier visuellt och planera ditt besök." },
   { icon: Tag, title: "Drycktyper", text: "Filtrera på öl, vin, sprit, cider och mousserande direkt från gården." },
   { icon: Calendar, title: "Säsong & öppettider", text: "Se aktuella öppettider, evenemang och vad som finns i butiken just nu." },
@@ -32,21 +32,21 @@ function HomePage() {
       <section className="relative bg-section overflow-hidden">
         <div className="container-x grid lg:grid-cols-12 gap-10 lg:gap-16 py-16 lg:py-24 items-center">
           <div className="lg:col-span-6">
-            <span className="kicker mb-5">Över 300 producenter</span>
+            <span className="kicker mb-5">Över 300 gårdsförsäljare</span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl mt-4 leading-[1.08]">
               Hitta destillerier, bryggerier &amp; vingårdar med <em className="not-italic text-primary">gårdsförsäljning</em>
             </h1>
             <p className="mt-6 text-lg text-body leading-relaxed max-w-xl">
-              Den kompletta guiden till svenska producenter som öppnar dörrarna för
+              Den kompletta guiden till svenska gårdsförsäljare som öppnar dörrarna för
               direktförsäljning. Stöd lokala hantverkare och upptäck den svenska
               dryckeskulturen — på riktigt.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/gardsforsaljare" className="btn-primary">Utforska producenter</Link>
+              <Link to="/gardsforsaljare" className="btn-primary">Utforska gårdsförsäljare</Link>
               <Link to="/karta" className="btn-secondary">Visa kartan</Link>
             </div>
             <div className="mt-10 grid grid-cols-3 gap-6 max-w-md border-t border-border pt-7">
-              <Stat n="300+" l="Producenter" />
+              <Stat n="300+" l="Gårdsförsäljare" />
               <Stat n="19" l="Län" />
               <Stat n="5" l="Drycktyper" />
             </div>
@@ -56,7 +56,7 @@ function HomePage() {
               <img src={hero} alt="Svensk vingård i sommarljus" width={1600} height={1024} className="w-full h-[420px] lg:h-[520px] object-cover" />
               <div className="absolute bottom-5 left-5 right-5 bg-background/95 backdrop-blur rounded-xl p-4 border border-border flex items-center justify-between">
                 <div>
-                  <div className="text-xs text-muted-foreground uppercase tracking-wider">Veckans producent</div>
+                  <div className="text-xs text-muted-foreground uppercase tracking-wider">Veckans gårdsförsäljare</div>
                   <div className="font-display text-lg text-heading">Kullabergs Vingård, Nyhamnsläge</div>
                 </div>
                 <Link to="/gardsforsaljare/$slug" params={{ slug: "kullabergs-vingard" }} className="btn-secondary !py-2 !px-4 text-xs">Besök</Link>
@@ -71,8 +71,8 @@ function HomePage() {
         <div className="container-x">
           <div className="max-w-2xl mb-14">
             <span className="kicker">Varför Gårdsförsäljning</span>
-            <h2 className="text-3xl md:text-4xl mt-4">En enkel väg till svenska producenter</h2>
-            <p className="mt-4 text-body">Vi samlar producenter, bryggerier och destillerier som säljer direkt – så att du kan handla närproducerat och möta människorna bakom dryckerna.</p>
+            <h2 className="text-3xl md:text-4xl mt-4">En enkel väg till svenska gårdsförsäljare</h2>
+            <p className="mt-4 text-body">Vi samlar gårdsförsäljare, bryggerier och destillerier som säljer direkt – så att du kan handla närproducerat och möta människorna bakom dryckerna.</p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map(f => (
@@ -95,7 +95,7 @@ function HomePage() {
             <div className="max-w-2xl">
               <span className="kicker">Utforska Sverige</span>
               <h2 className="text-3xl md:text-4xl mt-4">Populära regioner</h2>
-              <p className="mt-4 text-body">Upptäck vilka producenter som finns i ditt län eller där du vill resa nästa helg.</p>
+              <p className="mt-4 text-body">Upptäck vilka gårdsförsäljare som finns i ditt län eller där du vill resa nästa helg.</p>
             </div>
             <Link to="/regioner" className="text-primary font-medium inline-flex items-center gap-2 hover:gap-3 transition-all">
               Se alla regioner <ArrowRight className="h-4 w-4" />
@@ -103,7 +103,7 @@ function HomePage() {
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {regions.map(r => (
-              <ImageCard key={r.slug} to="/regioner/$slug" params={{ slug: r.slug }} image={r.image} title={r.name} meta={`${r.count} producenter`} />
+              <ImageCard key={r.slug} to="/regioner/$slug" params={{ slug: r.slug }} image={r.image} title={r.name} meta={`${r.count} gårdsförsäljare`} />
             ))}
           </div>
         </div>
@@ -116,7 +116,7 @@ function HomePage() {
             <div className="max-w-2xl">
               <span className="kicker">Drycker</span>
               <h2 className="text-3xl md:text-4xl mt-4">Utforska efter kategori</h2>
-              <p className="mt-4 text-body">Från lagrad pilsner till torr cider – välj din typ och hitta producenter som tillverkar den.</p>
+              <p className="mt-4 text-body">Från lagrad pilsner till torr cider – välj din typ och hitta gårdsförsäljare som tillverkar den.</p>
             </div>
             <Link to="/kategorier" className="text-primary font-medium inline-flex items-center gap-2 hover:gap-3 transition-all">
               Alla kategorier <ArrowRight className="h-4 w-4" />
@@ -124,7 +124,7 @@ function HomePage() {
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {categories.map(c => (
-              <ImageCard key={c.slug} to="/kategorier/$slug" params={{ slug: c.slug }} image={c.image} title={c.name} meta={`${c.count} producenter`} blurb={c.blurb} />
+              <ImageCard key={c.slug} to="/kategorier/$slug" params={{ slug: c.slug }} image={c.image} title={c.name} meta={`${c.count} gårdsförsäljare`} blurb={c.blurb} />
             ))}
           </div>
         </div>
@@ -136,7 +136,7 @@ function HomePage() {
           <div className="flex items-end justify-between flex-wrap gap-6 mb-12">
             <div className="max-w-2xl">
               <span className="kicker">Blogg &amp; Nyheter</span>
-              <h2 className="text-3xl md:text-4xl mt-4">Inspiration från svenska producenter</h2>
+              <h2 className="text-3xl md:text-4xl mt-4">Inspiration från svenska gårdsförsäljare</h2>
             </div>
             <Link to="/blogg-nyheter" className="text-primary font-medium inline-flex items-center gap-2 hover:gap-3 transition-all">
               Se alla artiklar <ArrowRight className="h-4 w-4" />
@@ -163,7 +163,7 @@ function HomePage() {
           >
             <div className="relative">
               <span className="text-sm uppercase tracking-wider text-primary-foreground font-medium">Vill du synas?</span>
-              <h2 className="text-3xl md:text-4xl mt-4 text-primary-foreground">Är du producent med gårdsförsäljning?</h2>
+              <h2 className="text-3xl md:text-4xl mt-4 text-primary-foreground">Är du gårdsförsäljare med gårdsförsäljning?</h2>
               <p className="mt-4 text-primary-foreground/90 max-w-xl">
                 Bli en del av plattformen och låt fler upptäcka din verksamhet. Vi hjälper dig att synas för rätt besökare.
               </p>

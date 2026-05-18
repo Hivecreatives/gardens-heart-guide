@@ -9,7 +9,7 @@ export const Route = createFileRoute("/blogg-nyheter/")({
       { title: "Blogg & Nyheter — Gårdsförsäljning av Alkohol" },
       { name: "description", content: "Artiklar om svenska bryggerier, vingårdar och destillerier." },
       { property: "og:title", content: "Blogg & Nyheter" },
-      { property: "og:description", content: "Artiklar om svenska producenter och dryckeskultur." },
+      { property: "og:description", content: "Artiklar om svenska gårdsförsäljare och dryckeskultur." },
     ],
   }),
   component: BloggPage,
@@ -21,7 +21,7 @@ function BloggPage() {
       <PageHero
         kicker="Blogg & Nyheter"
         title="Inspiration, guider och nyheter"
-        lead="Vi skriver om svenska producenter, ölrundor, vinprovningar och spännande gårdsbesök runt om i landet."
+        lead="Vi skriver om svenska gårdsförsäljare, ölrundor, vinprovningar och spännande gårdsbesök runt om i landet."
       />
       <section className="section-pad">
         <div className="container-x grid md:grid-cols-2 lg:grid-cols-3 gap-7">

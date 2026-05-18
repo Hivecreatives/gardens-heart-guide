@@ -8,8 +8,8 @@ export const Route = createFileRoute("/kategorier/$slug")({
     const c = categories.find(x => x.slug === params.slug);
     return {
       meta: [
-        { title: `${c?.name ?? "Kategori"} — Svenska producenter` },
-        { name: "description", content: c?.blurb ?? "Svenska producenter." },
+        { title: `${c?.name ?? "Kategori"} — Svenska gårdsförsäljare` },
+        { name: "description", content: c?.blurb ?? "Svenska gårdsförsäljare." },
         { property: "og:title", content: `${c?.name ?? "Kategori"} — Gårdsförsäljning` },
         { property: "og:description", content: c?.blurb ?? "" },
         { property: "og:image", content: c?.image ?? "" },
@@ -40,7 +40,7 @@ function CategoryPage() {
             <span className="kicker">Kategori</span>
             <h1 className="text-4xl md:text-5xl mt-3">{cat.name}</h1>
             <p className="mt-4 text-body text-lg">{cat.blurb}</p>
-            <p className="mt-3 text-sm text-muted-foreground">{cat.count} producenter</p>
+            <p className="mt-3 text-sm text-muted-foreground">{cat.count} gårdsförsäljare</p>
           </div>
           <div className="rounded-2xl overflow-hidden border border-border">
             <img src={cat.image} alt={cat.name} className="w-full h-[340px] object-cover" />
@@ -50,7 +50,7 @@ function CategoryPage() {
       <section className="section-pad">
         <div className="container-x">
           {list.length === 0 ? (
-            <p className="text-body">Vi listar snart producenter inom {cat.name.toLowerCase()}. <Link to="/gardsforsaljare" className="text-primary underline">Visa alla producenter</Link></p>
+            <p className="text-body">Vi listar snart gårdsförsäljare inom {cat.name.toLowerCase()}. <Link to="/gardsforsaljare" className="text-primary underline">Visa alla gårdsförsäljare</Link></p>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
               {list.map((f: Farm) => <FarmCard key={f.slug} farm={f} />)}

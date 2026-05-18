@@ -20,7 +20,7 @@ function KontaktPage() {
       <PageHero
         kicker="Kontakt"
         title="Hör av dig"
-        lead="Är du producent och vill synas hos oss? Eller har du tips på en gård vi missat? Skriv några rader, vi svarar inom ett par dagar."
+        lead="Är du gårdsförsäljare och vill synas hos oss? Eller har du tips på en gård vi missat? Skriv några rader, vi svarar inom ett par dagar."
       />
       <section className="section-pad">
         <div className="container-x grid lg:grid-cols-[1.2fr_1fr] gap-12">
@@ -45,7 +45,7 @@ function KontaktPage() {
               </ul>
             </div>
             <div className="bg-primary text-primary-foreground rounded-2xl p-7">
-              <h3 className="font-display text-xl text-primary-foreground mb-3">För producenter</h3>
+              <h3 className="font-display text-xl text-primary-foreground mb-3">För gårdsförsäljare</h3>
               <p className="text-sm text-primary-foreground/85 leading-relaxed">
                 Berätta gärna om din gård – kategori, region, öppettider och en kort presentation. Vi återkopplar inom ett par dagar.
               </p>

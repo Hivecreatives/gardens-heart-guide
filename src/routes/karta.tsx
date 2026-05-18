@@ -35,8 +35,8 @@ function KartaPage() {
     <PageLayout>
       <PageHero
         kicker="Karta"
-        title="Hitta producenter på kartan"
-        lead="Visualisera Sveriges producenter och planera ditt nästa besök. Filtrera på kategori och region."
+        title="Hitta gårdsförsäljare på kartan"
+        lead="Visualisera Sveriges gårdsförsäljare och planera ditt nästa besök. Filtrera på kategori och region."
       />
       <section className="section-pad">
         <div className="container-x grid lg:grid-cols-[300px_1fr] gap-8">
@@ -44,7 +44,7 @@ function KartaPage() {
             <h3 className="font-display text-lg mb-4">Filter</h3>
             <FilterGroup label="Kategori" items={CATEGORIES} selected={cats} onToggle={v => toggle(cats, setCats, v)} />
             <FilterGroup label="Region" items={regions.map(r => r.name)} selected={regs} onToggle={v => toggle(regs, setRegs, v)} />
-            <div className="mt-4 text-sm text-muted-foreground">{filtered.length} producenter visas</div>
+            <div className="mt-4 text-sm text-muted-foreground">{filtered.length} gårdsförsäljare visas</div>
           </aside>
           <div className="relative rounded-2xl overflow-hidden border border-border bg-section min-h-[600px] h-[70vh]">
             <Suspense fallback={<div className="absolute inset-0 grid place-items-center text-muted-foreground">Laddar karta…</div>}>

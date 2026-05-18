@@ -14,7 +14,7 @@ export const Route = createFileRoute("/faq")({
       {
         name: "description",
         content:
-          "Svar på de 48 vanligaste frågorna om gårdsförsäljning av alkohol i Sverige – regler, åldersgränser, mängder, producenter och praktiska tips inför ditt besök.",
+          "Svar på de 48 vanligaste frågorna om gårdsförsäljning av alkohol i Sverige – regler, åldersgränser, mängder, gårdsförsäljare och praktiska tips inför ditt besök.",
       },
       { property: "og:title", content: "FAQ — Gårdsförsäljning av Alkohol" },
       {
@@ -36,11 +36,11 @@ const groups: FaqGroup[] = [
     items: [
       {
         q: "Vad är gårdsförsäljning av alkohol?",
-        a: "Gårdsförsäljning innebär att en producent får sälja sina egna alkoholhaltiga drycker direkt till besökare på den plats där de tillverkas, vid sidan av Systembolagets monopol.",
+        a: "Gårdsförsäljning innebär att en gårdsförsäljare får sälja sina egna alkoholhaltiga drycker direkt till besökare på den plats där de tillverkas, vid sidan av Systembolagets monopol.",
       },
       {
         q: "Är gårdsförsäljning lagligt i Sverige?",
-        a: "Frågan har utretts i flera omgångar och en lag om gårdsförsäljning har varit på väg att införas. Reglerna förändras löpande – kontrollera alltid aktuellt rättsläge och vad respektive producent faktiskt får sälja på plats.",
+        a: "Frågan har utretts i flera omgångar och en lag om gårdsförsäljning har varit på väg att införas. Reglerna förändras löpande – kontrollera alltid aktuellt rättsläge och vad respektive gårdsförsäljare faktiskt får sälja på plats.",
       },
       {
         q: "Vad är skillnaden mellan gårdsförsäljning och en vanlig provning?",
@@ -48,15 +48,15 @@ const groups: FaqGroup[] = [
       },
       {
         q: "Varför är det skillnad på olika gårdar?",
-        a: "Alla producenter erbjuder inte gårdsförsäljning – vissa har enbart provningar, guidade turer eller butik utan alkohol. Det beror på tillstånd, lokalernas utformning och vad respektive producent valt att satsa på.",
+        a: "Alla gårdsförsäljare erbjuder inte gårdsförsäljning – vissa har enbart provningar, guidade turer eller butik utan alkohol. Det beror på tillstånd, lokalernas utformning och vad respektive gårdsförsäljare valt att satsa på.",
       },
       {
-        q: "Hur vet jag om en producent faktiskt har gårdsförsäljning?",
-        a: "Vi rekommenderar att du alltid dubbelkollar med producenten innan ditt besök så att de faktiskt erbjuder gårdsförsäljning och inte endast provningar eller guidade turer.",
+        q: "Hur vet jag om en gårdsförsäljare faktiskt har gårdsförsäljning?",
+        a: "Vi rekommenderar att du alltid dubbelkollar med gårdsförsäljaren innan ditt besök så att de faktiskt erbjuder gårdsförsäljning och inte endast provningar eller guidade turer.",
       },
       {
         q: "Konkurrerar gårdsförsäljning med Systembolaget?",
-        a: "Gårdsförsäljning är tänkt som ett komplement till Systembolaget och omfattar oftast endast egenproducerade drycker i begränsad mängd direkt på producentens plats.",
+        a: "Gårdsförsäljning är tänkt som ett komplement till Systembolaget och omfattar oftast endast egenproducerade drycker i begränsad mängd direkt på gårdsförsäljarens plats.",
       },
     ],
   },
@@ -69,7 +69,7 @@ const groups: FaqGroup[] = [
       },
       {
         q: "Måste jag legitimera mig?",
-        a: "Ja, producenten är skyldig att kontrollera ålder och kan neka köp om du inte kan visa godkänd ID-handling.",
+        a: "Ja, gårdsförsäljaren är skyldig att kontrollera ålder och kan neka köp om du inte kan visa godkänd ID-handling.",
       },
       {
         q: "Får jag handla åt någon annan?",
@@ -77,15 +77,15 @@ const groups: FaqGroup[] = [
       },
       {
         q: "Får jag handla om jag är märkbart berusad?",
-        a: "Nej, producenten får inte sälja alkohol till någon som är märkbart påverkad och har rätt att neka köp.",
+        a: "Nej, gårdsförsäljaren får inte sälja alkohol till någon som är märkbart påverkad och har rätt att neka köp.",
       },
       {
         q: "Behöver jag boka i förväg?",
-        a: "Många mindre producenter har begränsade öppettider och tar emot besökare endast efter bokning. Kontrollera alltid på producentens egen webbplats.",
+        a: "Många mindre gårdsförsäljare har begränsade öppettider och tar emot besökare endast efter bokning. Kontrollera alltid på gårdsförsäljarens egen webbplats.",
       },
       {
         q: "Får barn följa med på besöket?",
-        a: "Barn är ofta välkomna på själva gården, men får inte delta i provning eller köp. Kolla med producenten vad som gäller hos just dem.",
+        a: "Barn är ofta välkomna på själva gården, men får inte delta i provning eller köp. Kolla med gårdsförsäljaren vad som gäller hos just dem.",
       },
     ],
   },
@@ -94,11 +94,11 @@ const groups: FaqGroup[] = [
     items: [
       {
         q: "Vilka drycker får säljas vid gårdsförsäljning?",
-        a: "Endast drycker som producenten själv tillverkar på platsen, till exempel öl, cider, vin, mjöd eller sprit. Vidareförsäljning av andras produkter ingår inte.",
+        a: "Endast drycker som gårdsförsäljaren själv tillverkar på platsen, till exempel öl, cider, vin, mjöd eller sprit. Vidareförsäljning av andras produkter ingår inte.",
       },
       {
         q: "Finns det en maxmängd jag får köpa?",
-        a: "Förslag och regler innehåller volymbegränsningar per besökare och dag, exempelvis ett begränsat antal liter öl, vin och sprit. Producenten informerar om aktuella gränser.",
+        a: "Förslag och regler innehåller volymbegränsningar per besökare och dag, exempelvis ett begränsat antal liter öl, vin och sprit. Gårdsförsäljaren informerar om aktuella gränser.",
       },
       {
         q: "Får jag köpa hur stora flaskor som helst?",
@@ -106,15 +106,15 @@ const groups: FaqGroup[] = [
       },
       {
         q: "Kan jag förbeställa och hämta?",
-        a: "Vissa producenter låter dig förbeställa, men själva överlämnandet och köpet måste ske fysiskt på gården – aldrig via post eller bud.",
+        a: "Vissa gårdsförsäljare låter dig förbeställa, men själva överlämnandet och köpet måste ske fysiskt på gården – aldrig via post eller bud.",
       },
       {
-        q: "Får producenten skicka hem flaskorna till mig?",
+        q: "Får gårdsförsäljaren skicka hem flaskorna till mig?",
         a: "Nej. Vid gårdsförsäljning ska du själv hämta dryckerna på plats – hemleverans omfattas inte.",
       },
       {
         q: "Säljs alkoholfria varianter också?",
-        a: "Många producenter säljer även alkoholfria drycker, glas, böcker och presentartiklar i sin gårdsbutik utan särskilda alkoholregler.",
+        a: "Många gårdsförsäljare säljer även alkoholfria drycker, glas, böcker och presentartiklar i sin gårdsbutik utan särskilda alkoholregler.",
       },
     ],
   },
@@ -123,7 +123,7 @@ const groups: FaqGroup[] = [
     items: [
       {
         q: "Vilka öppettider gäller?",
-        a: "Öppettiderna varierar kraftigt mellan producenter och säsong. Många har endast öppet vissa dagar i veckan eller efter bokning.",
+        a: "Öppettiderna varierar kraftigt mellan gårdsförsäljare och säsong. Många har endast öppet vissa dagar i veckan eller efter bokning.",
       },
       {
         q: "Är det öppet året runt?",
@@ -135,11 +135,11 @@ const groups: FaqGroup[] = [
       },
       {
         q: "Kan jag betala kontant?",
-        a: "Många mindre producenter tar endast kort eller Swish. Räkna inte med att kunna betala kontant.",
+        a: "Många mindre gårdsförsäljare tar endast kort eller Swish. Räkna inte med att kunna betala kontant.",
       },
       {
         q: "Kan jag betala med Swish?",
-        a: "Swish är vanligt hos mindre producenter, men vissa kräver kortbetalning. Kontrollera gärna i förväg om du är osäker.",
+        a: "Swish är vanligt hos mindre gårdsförsäljare, men vissa kräver kortbetalning. Kontrollera gärna i förväg om du är osäker.",
       },
       {
         q: "Är priserna högre eller lägre än på Systembolaget?",
@@ -148,11 +148,11 @@ const groups: FaqGroup[] = [
     ],
   },
   {
-    title: "På plats hos producenten",
+    title: "På plats hos gårdsförsäljaren",
     items: [
       {
         q: "Får jag provsmaka innan jag köper?",
-        a: "Många producenter erbjuder provsmakning, ofta mot avgift. Vissa låter dig smaka enstaka droppar gratis i samband med köp.",
+        a: "Många gårdsförsäljare erbjuder provsmakning, ofta mot avgift. Vissa låter dig smaka enstaka droppar gratis i samband med köp.",
       },
       {
         q: "Måste jag boka provning?",
@@ -172,7 +172,7 @@ const groups: FaqGroup[] = [
       },
       {
         q: "Är gårdarna tillgängliga för rullstol?",
-        a: "Tillgängligheten varierar eftersom många producenter ligger i äldre byggnader. Hör av dig till producenten för att få besked.",
+        a: "Tillgängligheten varierar eftersom många gårdsförsäljare ligger i äldre byggnader. Hör av dig till gårdsförsäljaren för att få besked.",
       },
     ],
   },
@@ -181,7 +181,7 @@ const groups: FaqGroup[] = [
     items: [
       {
         q: "Hur tar jag mig till en gård?",
-        a: "De flesta gårdar ligger på landsbygden och nås enklast med bil. Vissa nås även med buss eller cykel – se producentens vägbeskrivning.",
+        a: "De flesta gårdar ligger på landsbygden och nås enklast med bil. Vissa nås även med buss eller cykel – se gårdsförsäljarens vägbeskrivning.",
       },
       {
         q: "Får jag köra bil efter en provning?",
@@ -189,7 +189,7 @@ const groups: FaqGroup[] = [
       },
       {
         q: "Kan jag övernatta nära gårdarna?",
-        a: "Många gårdar samarbetar med lokala B&B, hotell eller har egna rum. Tipsen finns ofta på producentens webbplats.",
+        a: "Många gårdar samarbetar med lokala B&B, hotell eller har egna rum. Tipsen finns ofta på gårdsförsäljarens webbplats.",
       },
       {
         q: "Får jag ta med mina inköp på flyget?",
@@ -206,31 +206,31 @@ const groups: FaqGroup[] = [
     ],
   },
   {
-    title: "Producenter och kategorier",
+    title: "Gårdsförsäljare och kategorier",
     items: [
       {
-        q: "Vilka typer av producenter erbjuder gårdsförsäljning?",
+        q: "Vilka typer av gårdsförsäljare erbjuder gårdsförsäljning?",
         a: "Bryggerier, vingårdar, destillerier, mjöderier och cidertillverkare är de vanligaste kategorierna i Sverige.",
       },
       {
         q: "Var hittar jag närmaste gård?",
-        a: "Använd vår karta och våra regionssidor för att hitta producenter nära dig.",
+        a: "Använd vår karta och våra regionssidor för att hitta gårdsförsäljare nära dig.",
       },
       {
         q: "Finns det gårdsförsäljning i hela Sverige?",
-        a: "Ja, det finns producenter från Skåne i söder till Norrland i norr, men koncentrationen är högst i södra och mellersta Sverige.",
+        a: "Ja, det finns gårdsförsäljare från Skåne i söder till Norrland i norr, men koncentrationen är högst i södra och mellersta Sverige.",
       },
       {
-        q: "Hur hittar jag ekologiska producenter?",
-        a: "Använd våra kategorifilter eller titta efter KRAV- och EU-ekologisk märkning på respektive producents webbplats.",
+        q: "Hur hittar jag ekologiska gårdsförsäljare?",
+        a: "Använd våra kategorifilter eller titta efter KRAV- och EU-ekologisk märkning på respektive gårdsförsäljares webbplats.",
       },
       {
-        q: "Säljer alla producenter både öl, vin och sprit?",
+        q: "Säljer alla gårdsförsäljare både öl, vin och sprit?",
         a: "Nej, de flesta är specialiserade på en kategori. En vingård säljer vin, ett destilleri säljer sprit och så vidare.",
       },
       {
-        q: "Är jag som producent välkommen att synas hos er?",
-        a: "Ja, vi presenterar gärna fler svenska producenter. Kontakta oss via vår kontaktsida så berättar vi mer.",
+        q: "Är jag som gårdsförsäljare välkommen att synas hos er?",
+        a: "Ja, vi presenterar gärna fler svenska gårdsförsäljare. Kontakta oss via vår kontaktsida så berättar vi mer.",
       },
     ],
   },
@@ -239,7 +239,7 @@ const groups: FaqGroup[] = [
     items: [
       {
         q: "Kan gårdsförsäljning kombineras med andra upplevelser?",
-        a: "Många gårdar erbjuder mat, café, picknick eller vandringsleder. Fråga producenten eller kolla deras evenemangskalender.",
+        a: "Många gårdar erbjuder mat, café, picknick eller vandringsleder. Fråga gårdsförsäljaren eller kolla deras evenemangskalender.",
       },
       {
         q: "Är det dyrt att åka på gårdsbesök?",
@@ -247,18 +247,18 @@ const groups: FaqGroup[] = [
       },
       {
         q: "Kan jag boka gårdsbesök som företagsaktivitet?",
-        a: "Ja, många producenter tar emot grupper och företag för skräddarsydda upplevelser. Kontakta producenten direkt för upplägg och pris.",
+        a: "Ja, många gårdsförsäljare tar emot grupper och företag för skräddarsydda upplevelser. Kontakta gårdsförsäljaren direkt för upplägg och pris.",
       },
       {
         q: "Kan jag använda gårdsförsäljning för bröllop eller fest?",
-        a: "Du får handla för eget bruk, men för större evenemang och utskänkning krävs separata serveringstillstånd som producenten eller arrangören kan informera om.",
+        a: "Du får handla för eget bruk, men för större evenemang och utskänkning krävs separata serveringstillstånd som gårdsförsäljaren eller arrangören kan informera om.",
       },
       {
         q: "Hur uppdaterar ni informationen på sidan?",
-        a: "Vi arbetar löpande med att hålla uppgifter aktuella, men öppettider och utbud förändras snabbt – dubbelkolla alltid med producenten innan besök.",
+        a: "Vi arbetar löpande med att hålla uppgifter aktuella, men öppettider och utbud förändras snabbt – dubbelkolla alltid med gårdsförsäljaren innan besök.",
       },
       {
-        q: "Vad gör jag om informationen om en producent är felaktig?",
+        q: "Vad gör jag om informationen om en gårdsförsäljare är felaktig?",
         a: "Hör av dig till oss via kontaktsidan så uppdaterar vi informationen så snart vi kan.",
       },
     ],

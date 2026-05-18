@@ -9,7 +9,7 @@ export const Route = createFileRoute("/blogg-nyheter/$slug")({
     return {
       meta: [
         { title: `${a?.title ?? "Artikel"} — Gårdsförsäljning` },
-        { name: "description", content: a?.excerpt ?? "Artikel om svenska producenter." },
+        { name: "description", content: a?.excerpt ?? "Artikel om svenska gårdsförsäljare." },
         { property: "og:title", content: a?.title ?? "" },
         { property: "og:description", content: a?.excerpt ?? "" },
         { property: "og:image", content: a?.image ?? "" },

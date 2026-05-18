@@ -8,9 +8,9 @@ export const Route = createFileRoute("/gardsforsaljare/$slug")({
     const f = farms.find(x => x.slug === params.slug);
     return {
       meta: [
-        { title: `${f?.name ?? "Producent"} — Gårdsförsäljning av Alkohol` },
-        { name: "description", content: f?.blurb ?? "Svensk producent med gårdsförsäljning." },
-        { property: "og:title", content: f?.name ?? "Producent" },
+        { title: `${f?.name ?? "Gårdsförsäljare"} — Gårdsförsäljning av Alkohol` },
+        { name: "description", content: f?.blurb ?? "Svensk gårdsförsäljare med gårdsförsäljning." },
+        { property: "og:title", content: f?.name ?? "Gårdsförsäljare" },
         { property: "og:description", content: f?.blurb ?? "" },
         { property: "og:image", content: f?.image ?? "" },
       ],
@@ -24,7 +24,7 @@ export const Route = createFileRoute("/gardsforsaljare/$slug")({
   notFoundComponent: () => (
     <PageLayout>
       <div className="container-x py-32 text-center">
-        <h1 className="text-4xl mb-4">Producenten finns inte</h1>
+        <h1 className="text-4xl mb-4">Gårdsförsäljaren finns inte</h1>
         <Link to="/gardsforsaljare" className="btn-secondary mt-4">Tillbaka</Link>
       </div>
     </PageLayout>
@@ -46,7 +46,7 @@ function FarmPage() {
       <article>
         <div className="container-x pt-10">
           <Link to="/gardsforsaljare" className="inline-flex items-center gap-2 text-sm text-body hover:text-primary">
-            <ArrowLeft className="h-4 w-4" /> Alla producenter
+            <ArrowLeft className="h-4 w-4" /> Alla gårdsförsäljare
           </Link>
         </div>
         <div className="container-x py-10 grid lg:grid-cols-12 gap-10">

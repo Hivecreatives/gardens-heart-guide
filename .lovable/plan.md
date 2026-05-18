@@ -1,55 +1,62 @@
-## Design System Guide page
+## Icons section on `/design-system`
 
-Create a new route `/design-system` that documents the project's design tokens in a clean, developer-friendly layout inspired by Figma docs.
+Add a new "Icons" section that lists every `lucide-react` icon used in the project, rendered as **filled** SVGs (strokes expanded to paths, `fill="currentColor"`, no stroke attributes), with a **Download all (.zip)** button.
 
-### Route & navigation
-- New file: `src/routes/design-system.tsx` wrapped in `PageLayout`
-- Add a "Design System" link in `SiteHeader` (optionally only in footer if you'd rather keep main nav clean — see open question)
-- Per-route `head()` with title + description (no og:image)
+### 1. Inventory (33 icons in use)
 
-### Page layout
-- Two-column on desktop (`lg:grid-cols-[220px_1fr]`), single column on mobile
-- Left: sticky sidebar (`sticky top-20`) with anchor links to each section (Typography, Colors, Shadows, Borders, design.md). Active section highlighted via `IntersectionObserver`
-- On mobile: sidebar collapses into a horizontal scrollable top nav (sticky under header)
-- Each section: `<section id="...">` with a large heading + short description + thin `border-b` divider
+Scanned all `import { ... } from "lucide-react"` across `src/`:
 
-### Sections
+`ArrowLeft, ArrowRight, ArrowUpRight, Calendar, Check, ChevronDown, ChevronDownIcon, ChevronLeft, ChevronLeftIcon, ChevronRight, ChevronRightIcon, ChevronUp, Circle, Copy, ExternalLink, Globe, GripVertical, Heart, Info, Mail, Map, MapPin, Menu, Minus, MoreHorizontal, Navigation, PanelLeft, Phone, Search, Sprout, Tag, Users, X`
 
-**1. Typography**
-Table with columns: Name · Font Family · Size · Weight · Line Height · Preview.
-Scales: Display (3.5rem/Playfair/600), H1 (3rem), H2 (2.25rem), H3 (1.5rem), Body Large (1.125rem/DM Sans), Body (1rem), Caption (0.875rem/muted).
-Preview cell renders sample text in the actual style.
+(The `*Icon`-suffixed names are aliases of the same icon — they'll be de-duplicated by underlying icon name.)
 
-**2. Colors**
-Responsive grid (`grid-cols-2 sm:grid-cols-3 lg:grid-cols-4`). Each card:
-- Large filled swatch (h-32) using the token
-- Token name (e.g. `--primary`)
-- HEX (from `styles.css`)
-- HSL (computed)
-Groups: Brand (primary, primary-hover, accent), Neutrals (background, section, card, foreground, body, muted-foreground, border, footer), Semantic (success #2F7D4F, warning #C49A2C, error/destructive #B23A2A, info #2F6FA3 — added as fallbacks since project doesn't define them yet).
+### 2. Stroke → fill conversion (build-time)
 
-**3. Shadows**
-Grid of cards. Each: a white box with the shadow applied, the name, and a `<code>` snippet.
-Tokens: `shadow-sm`, `shadow`, `shadow-md`, `shadow-lg`, `shadow-xl`, plus the project's custom card hover shadow.
+Lucide icons are stroke-only. Expanding strokes into filled outlines (matching what Inkscape's "Stroke to Path" does) requires real path-offsetting geometry, which is not feasible to do reliably in pure browser JS without a heavy lib. We'll do it **once at build time**:
 
-**4. Borders**
-Grid showing: solid 1px, dashed, thick 2px, rounded-sm, rounded-md (13px — project radius), rounded-full. Each with name + CSS snippet.
+- New script: `scripts/generate-filled-icons.mjs`
+- Dependencies: `svg-outline-stroke` (uses `paper-jsdom` under the hood — exactly Inkscape-style stroke-to-path) + `svgo` (cleanup)
+- Process per icon:
+  1. Pull the source SVG from `lucide-static/icons/<kebab-name>.svg`
+  2. Run through `svg-outline-stroke` to convert all strokes into filled paths
+  3. Run `svgo` to: drop `stroke*` attributes, strip `sodipodi:*` / `inkscape:*` namespaces and metadata, merge paths, set `fill="currentColor"` on the root
+  4. Write to `src/assets/icons/<kebab-name>.svg`
+- Emit a tiny `src/assets/icons/index.ts` exporting `{ name, kebab, raw }` for each so the route can import them statically (no glob runtime cost).
 
-**5. design.md code block**
-Full markdown documentation rendered inside `<pre><code class="font-mono">` with a dark background. Sticky "Copy" button top-right using `navigator.clipboard.writeText`. Content includes markdown tables for all tokens above.
+Script runs manually via `bun run scripts/generate-filled-icons.mjs` (also added as `"icons:build"` in `package.json`). Generated files are committed.
 
-### Styling
-- Reuse existing tokens from `src/styles.css` (no hardcoded colors except the new semantic ones)
-- Monospace font: add `--font-mono: "JetBrains Mono", ui-monospace, monospace` to `styles.css` and use `font-mono` utility for all code snippets
-- Section headings use existing `font-display`
-- Code blocks: `bg-foreground text-background` for the design.md block; inline snippets use `bg-section` with `border`
+### 3. New section on `/design-system`
+
+Add to the `sections` array: `{ id: "icons", label: "Icons" }`.
+
+Layout inside `<section id="icons">`:
+
+- Section header (reuse `<SectionHeading />`) — title "Icons", description noting "Lucide icons, stroke expanded to filled paths, `fill=currentColor`".
+- Toolbar row:
+  - Search input (filter by name, client-side)
+  - **Download all SVG (.zip)** button (right-aligned, primary style)
+- Grid: `grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3`
+  - Each card: filled-SVG preview (h-12, color = `text-primary` so the stroke color matches the site's brand green), icon name below in mono, hover state reveals a "Copy SVG" mini-button.
+
+The SVGs render via `dangerouslySetInnerHTML` from the imported raw strings; because the root has `fill="currentColor"`, Tailwind `text-primary` controls the color exactly like in the rest of the site.
+
+### 4. Download-all (.zip)
+
+- Add `jszip` dependency.
+- Button handler builds a zip in-memory: each entry `<kebab-name>.svg` containing the generated filled SVG, then triggers download via a blob URL + temporary `<a download="lucide-filled-icons.zip">`. Loading state on the button while zipping.
+
+### 5. design.md addendum
+
+Append an "Icons" section to the generated `design.md` listing the icon names and noting that filled SVGs ship under `src/assets/icons/`.
 
 ### Technical notes
-- Hex→HSL conversion done at module scope (small helper, ~15 lines)
-- Copy button uses local `useState` for "Copied!" feedback
-- Active-section tracking: single `IntersectionObserver` with `rootMargin: "-30% 0px -60% 0px"`
-- No new dependencies
+
+- All new code is presentation-layer; no routes/data changes elsewhere.
+- No network calls — icons are bundled.
+- The conversion script is the only Node-only piece; it never ships to the browser. Browser only sees the pre-generated SVG strings + JSZip.
+- Stroke color in the preview = `currentColor` driven by `text-primary` (#336645), matching the rest of the site exactly.
 
 ### Open questions
-1. Add the link to the main header nav, or only to the footer (more common for internal docs)?
-2. Should the semantic colors (success/warning/error/info) also be added as real CSS variables in `src/styles.css`, or only shown on this page as reference values?
+
+1. **Color in the downloaded SVG files**: leave as `fill="currentColor"` (recommended — user picks color when consuming), or bake the site's primary `#336645` into each SVG?
+2. Should the icons grid include the **aliased** `*Icon` names as separate entries, or deduplicate to a single card per underlying icon?

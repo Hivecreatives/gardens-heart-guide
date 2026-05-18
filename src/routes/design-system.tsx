@@ -363,6 +363,58 @@ function DesignSystemPage() {
               </div>
             </section>
 
+            {/* Icons */}
+            <section id="icons" className="scroll-mt-32">
+              <SectionHeading
+                title="Icons"
+                desc='Lucide-ikoner som används i projektet. Strokes är expanderade till fyllda paths med fill="currentColor".'
+              />
+              <div className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between mb-6">
+                <div className="relative flex-1 max-w-sm">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <input
+                    type="text"
+                    value={iconQuery}
+                    onChange={(e) => setIconQuery(e.target.value)}
+                    placeholder="Sök ikon…"
+                    className="w-full pl-9 pr-3 py-2 text-sm rounded-md border border-border bg-card text-heading placeholder:text-muted-foreground focus:outline-none focus:border-primary"
+                  />
+                </div>
+                <button
+                  onClick={downloadAllIcons}
+                  disabled={zipping}
+                  className="inline-flex items-center gap-2 px-4 py-2 text-sm rounded-md bg-primary text-primary-foreground hover:bg-primary-hover transition-colors disabled:opacity-60"
+                >
+                  <Download className="w-4 h-4" />
+                  {zipping ? "Packar…" : `Ladda ner alla (${filledIcons.length})`}
+                </button>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                {visibleIcons.map((icon) => (
+                  <button
+                    key={icon.kebab}
+                    type="button"
+                    onClick={() => copyIconSvg(icon.raw)}
+                    title={`Klicka för att kopiera SVG: ${icon.kebab}`}
+                    className="group flex flex-col items-center justify-center gap-2 p-4 rounded-lg border border-border bg-card hover:border-primary hover:bg-section transition-colors"
+                  >
+                    <span
+                      className="text-primary [&>svg]:w-7 [&>svg]:h-7"
+                      dangerouslySetInnerHTML={{ __html: icon.raw }}
+                    />
+                    <span className="font-mono text-[10.5px] text-body truncate w-full text-center">
+                      {icon.kebab}
+                    </span>
+                  </button>
+                ))}
+                {visibleIcons.length === 0 && (
+                  <div className="col-span-full text-sm text-muted-foreground py-8 text-center">
+                    Inga ikoner matchar "{iconQuery}".
+                  </div>
+                )}
+              </div>
+            </section>
+
             {/* design.md */}
             <section id="design-md" className="scroll-mt-32">
               <SectionHeading title="design.md" desc="Komplett markdown-export av alla tokens." />

@@ -222,7 +222,7 @@ const groups: FaqGroup[] = [
       },
       {
         q: "Hur hittar jag ekologiska gårdsförsäljare?",
-        a: "Använd våra kategorifilter eller titta efter KRAV- och EU-ekologisk märkning på respektive producents webbplats.",
+        a: "Använd våra kategorifilter eller titta efter KRAV- och EU-ekologisk märkning på respektive gårdsförsäljares webbplats.",
       },
       {
         q: "Säljer alla gårdsförsäljare både öl, vin och sprit?",

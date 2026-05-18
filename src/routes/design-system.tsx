@@ -4,6 +4,25 @@ import { Check, Copy, Download, Search } from "lucide-react";
 import JSZip from "jszip";
 import { PageLayout } from "@/components/PageLayout";
 import { filledIcons } from "@/assets/icons";
+import { categories, regions, farms, articles } from "@/data/site";
+
+type PageRow = { label: string; route: string; example: string; dynamic: boolean };
+const pages: PageRow[] = [
+  { label: "Hem", route: "/", example: "/", dynamic: false },
+  { label: "Kategorier", route: "/kategorier", example: "/kategorier", dynamic: false },
+  { label: "Kategori (dynamisk)", route: "/kategorier/$slug", example: `/kategorier/${categories[0]?.slug ?? ""}`, dynamic: true },
+  { label: "Regioner", route: "/regioner", example: "/regioner", dynamic: false },
+  { label: "Region (dynamisk)", route: "/regioner/$slug", example: `/regioner/${regions[0]?.slug ?? ""}`, dynamic: true },
+  { label: "Producenter", route: "/producenter", example: "/producenter", dynamic: false },
+  { label: "Producent (dynamisk)", route: "/producenter/$slug", example: `/producenter/${farms[0]?.slug ?? ""}`, dynamic: true },
+  { label: "Karta", route: "/karta", example: "/karta", dynamic: false },
+  { label: "Blogg & Nyheter", route: "/blogg-nyheter", example: "/blogg-nyheter", dynamic: false },
+  { label: "Artikel (dynamisk)", route: "/blogg-nyheter/$slug", example: `/blogg-nyheter/${articles[0]?.slug ?? ""}`, dynamic: true },
+  { label: "Om oss", route: "/om-oss", example: "/om-oss", dynamic: false },
+  { label: "FAQ", route: "/faq", example: "/faq", dynamic: false },
+  { label: "Kontakt", route: "/kontakt", example: "/kontakt", dynamic: false },
+  { label: "Design System", route: "/design-system", example: "/design-system", dynamic: false },
+];
 
 export const Route = createFileRoute("/design-system")({
   head: () => ({

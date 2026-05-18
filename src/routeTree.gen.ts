@@ -16,6 +16,7 @@ import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as KategorierRouteImport } from './routes/kategorier'
 import { Route as KartaRouteImport } from './routes/karta'
 import { Route as FaqRouteImport } from './routes/faq'
+import { Route as DesignSystemRouteImport } from './routes/design-system'
 import { Route as BloggNyheterRouteImport } from './routes/blogg-nyheter'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as RegionerIndexRouteImport } from './routes/regioner.index'
@@ -60,6 +61,11 @@ const KartaRoute = KartaRouteImport.update({
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DesignSystemRoute = DesignSystemRouteImport.update({
+  id: '/design-system',
+  path: '/design-system',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BloggNyheterRoute = BloggNyheterRouteImport.update({
@@ -116,6 +122,7 @@ const BloggNyheterSlugRoute = BloggNyheterSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blogg-nyheter': typeof BloggNyheterRouteWithChildren
+  '/design-system': typeof DesignSystemRoute
   '/faq': typeof FaqRoute
   '/karta': typeof KartaRoute
   '/kategorier': typeof KategorierRouteWithChildren
@@ -134,6 +141,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/design-system': typeof DesignSystemRoute
   '/faq': typeof FaqRoute
   '/karta': typeof KartaRoute
   '/kontakt': typeof KontaktRoute
@@ -151,6 +159,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/blogg-nyheter': typeof BloggNyheterRouteWithChildren
+  '/design-system': typeof DesignSystemRoute
   '/faq': typeof FaqRoute
   '/karta': typeof KartaRoute
   '/kategorier': typeof KategorierRouteWithChildren
@@ -172,6 +181,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/blogg-nyheter'
+    | '/design-system'
     | '/faq'
     | '/karta'
     | '/kategorier'
@@ -190,6 +200,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/design-system'
     | '/faq'
     | '/karta'
     | '/kontakt'
@@ -206,6 +217,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/blogg-nyheter'
+    | '/design-system'
     | '/faq'
     | '/karta'
     | '/kategorier'
@@ -226,6 +238,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BloggNyheterRoute: typeof BloggNyheterRouteWithChildren
+  DesignSystemRoute: typeof DesignSystemRoute
   FaqRoute: typeof FaqRoute
   KartaRoute: typeof KartaRoute
   KategorierRoute: typeof KategorierRouteWithChildren
@@ -284,6 +297,13 @@ declare module '@tanstack/react-router' {
       path: '/faq'
       fullPath: '/faq'
       preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/design-system': {
+      id: '/design-system'
+      path: '/design-system'
+      fullPath: '/design-system'
+      preLoaderRoute: typeof DesignSystemRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blogg-nyheter': {
@@ -418,6 +438,7 @@ const RegionerRouteWithChildren = RegionerRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BloggNyheterRoute: BloggNyheterRouteWithChildren,
+  DesignSystemRoute: DesignSystemRoute,
   FaqRoute: FaqRoute,
   KartaRoute: KartaRoute,
   KategorierRoute: KategorierRouteWithChildren,

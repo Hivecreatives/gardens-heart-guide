@@ -442,6 +442,48 @@ function DesignSystemPage() {
               </div>
             </section>
 
+            {/* Pages */}
+            <section id="pages" className="scroll-mt-32">
+              <SectionHeading title="Pages" desc="Alla sidor i sajten. Dynamiska routes visas med första exemplet." />
+              <div className="overflow-x-auto rounded-lg border border-border bg-card">
+                <table className="w-full text-sm">
+                  <thead className="bg-section text-heading">
+                    <tr>
+                      {["Sida", "Route", "Exempel", "Öppna"].map(h => (
+                        <th key={h} className="text-left font-medium px-4 py-3">{h}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {pages.map(p => (
+                      <tr key={p.route} className="border-t border-border">
+                        <td className="px-4 py-3 font-medium text-heading">
+                          {p.label}
+                          {p.dynamic && (
+                            <span className="ml-2 inline-block text-[10px] uppercase tracking-wider font-mono text-accent border border-border rounded px-1.5 py-0.5">
+                              dynamic
+                            </span>
+                          )}
+                        </td>
+                        <td className="px-4 py-3 font-mono text-xs text-body">{p.route}</td>
+                        <td className="px-4 py-3 font-mono text-xs text-body">{p.example}</td>
+                        <td className="px-4 py-3">
+                          <a
+                            href={p.example}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-1 font-mono text-xs text-primary hover:underline"
+                          >
+                            ↗
+                          </a>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
             {/* design.md */}
             <section id="design-md" className="scroll-mt-32">
               <SectionHeading title="design.md" desc="Komplett markdown-export av alla tokens." />

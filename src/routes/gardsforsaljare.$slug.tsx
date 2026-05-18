@@ -3,7 +3,7 @@ import { PageLayout } from "@/components/PageLayout";
 import { farms } from "@/data/site";
 import { MapPin, Globe, ArrowLeft, ExternalLink, Navigation, Phone } from "lucide-react";
 
-export const Route = createFileRoute("/producenter/$slug")({
+export const Route = createFileRoute("/gardsforsaljare/$slug")({
   head: ({ params }) => {
     const f = farms.find(x => x.slug === params.slug);
     return {

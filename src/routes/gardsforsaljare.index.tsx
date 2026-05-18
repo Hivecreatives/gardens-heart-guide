@@ -6,7 +6,7 @@ import { FarmCard } from "@/components/Cards";
 import { farms } from "@/data/site";
 import { getFarmCategories, getFarmSearchHaystack } from "@/lib/farmCategories";
 
-export const Route = createFileRoute("/producenter/")({
+export const Route = createFileRoute("/gardsforsaljare/")({
   head: () => ({
     meta: [
       { title: "Alla producenter — Gårdsförsäljning av Alkohol" },

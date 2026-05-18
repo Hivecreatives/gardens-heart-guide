@@ -125,6 +125,7 @@ const sections = [
   { id: "shadows", label: "Shadows" },
   { id: "borders", label: "Borders" },
   { id: "icons", label: "Icons" },
+  { id: "pages", label: "Pages" },
   { id: "design-md", label: "design.md" },
 ];
 

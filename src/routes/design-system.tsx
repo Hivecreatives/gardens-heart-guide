@@ -173,6 +173,37 @@ function DesignSystemPage() {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const [iconQuery, setIconQuery] = useState("");
+  const [zipping, setZipping] = useState(false);
+  const visibleIcons = useMemo(() => {
+    const q = iconQuery.trim().toLowerCase();
+    if (!q) return filledIcons;
+    return filledIcons.filter(
+      (i) => i.name.toLowerCase().includes(q) || i.kebab.includes(q),
+    );
+  }, [iconQuery]);
+
+  const downloadAllIcons = async () => {
+    setZipping(true);
+    try {
+      const zip = new JSZip();
+      for (const i of filledIcons) zip.file(`${i.kebab}.svg`, i.raw);
+      const blob = await zip.generateAsync({ type: "blob" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "lucide-filled-icons.zip";
+      a.click();
+      URL.revokeObjectURL(url);
+    } finally {
+      setZipping(false);
+    }
+  };
+
+  const copyIconSvg = (raw: string) => {
+    navigator.clipboard.writeText(raw);
+  };
+
   return (
     <PageLayout>
       <div className="container-x py-12 lg:py-16">

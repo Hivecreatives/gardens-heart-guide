@@ -23,7 +23,7 @@ export function ImageCard({
 
 export function FarmCard({ farm }: { farm: { slug: string; name: string; region: string; category: string; image: string; location: string; blurb: string } }) {
   return (
-    <Link to="/producenter/$slug" params={{ slug: farm.slug }} className="card-soft group block">
+    <Link to="/gardsforsaljare/$slug" params={{ slug: farm.slug }} className="card-soft group block">
       <div className="aspect-[5/3] overflow-hidden">
         <img src={farm.image} alt={farm.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
       </div>

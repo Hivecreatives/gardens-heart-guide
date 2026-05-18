@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import logo from "@/assets/logo.webp";
 
 const nav = [
-  { to: "/producenter", label: "Producenter" },
+  { to: "/gardsforsaljare", label: "Gårdsförsäljare" },
   { to: "/regioner", label: "Regioner" },
   { to: "/kategorier", label: "Kategorier" },
   { to: "/karta", label: "Karta" },

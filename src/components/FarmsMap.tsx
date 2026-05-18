@@ -37,7 +37,7 @@ export default function FarmsMap({ farms }: { farms: Farm[] }) {
         points.push([f.lat, f.lng]);
         const m = L.marker([f.lat, f.lng], { icon }).addTo(map);
         m.bindPopup(
-          `<div style="font-family:inherit;min-width:180px"><strong>${f.name}</strong><br/><span style="color:#666;font-size:12px">${f.category} · ${f.region}</span><br/><a href="/producenter/${f.slug}" style="color:#1a6d3a;text-decoration:underline">Visa producent →</a></div>`
+          `<div style="font-family:inherit;min-width:180px"><strong>${f.name}</strong><br/><span style="color:#666;font-size:12px">${f.category} · ${f.region}</span><br/><a href="/gardsforsaljare/${f.slug}" style="color:#1a6d3a;text-decoration:underline">Visa producent →</a></div>`
         );
       }
       if (points.length) map.fitBounds(points as any, { padding: [30, 30] });

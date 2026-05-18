@@ -137,6 +137,7 @@ function buildDesignMd() {
   ).join("\n");
   const shadowRows = shadows.map(s => `| ${s.name} | \`${s.css}\` |`).join("\n");
   const borderRows = borders.map(b => `| ${b.name} | \`${b.css}\` |`).join("\n");
+  const pageRows = pages.map(p => `| ${p.label} | \`${p.route}\` | \`${p.example}\` |`).join("\n");
   return `# Design System
 
 ## Typography
@@ -162,6 +163,12 @@ ${shadowRows}
 | Name | CSS |
 | --- | --- |
 ${borderRows}
+
+## Pages
+
+| Page | Route | Example |
+| --- | --- | --- |
+${pageRows}
 `;
 }
 

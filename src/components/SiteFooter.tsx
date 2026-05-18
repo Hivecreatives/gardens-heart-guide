@@ -16,7 +16,7 @@ export function SiteFooter() {
           </p>
         </div>
         <FooterCol title="Utforska" links={[
-          ["/producenter", "Alla producenter"],
+          ["/gardsforsaljare", "Alla producenter"],
           ["/regioner", "Regioner"],
           ["/kategorier", "Kategorier"],
           ["/karta", "Karta"],

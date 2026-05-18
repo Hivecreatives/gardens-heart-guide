@@ -50,7 +50,7 @@ function CategoryPage() {
       <section className="section-pad">
         <div className="container-x">
           {list.length === 0 ? (
-            <p className="text-body">Vi listar snart producenter inom {cat.name.toLowerCase()}. <Link to="/producenter" className="text-primary underline">Visa alla producenter</Link></p>
+            <p className="text-body">Vi listar snart producenter inom {cat.name.toLowerCase()}. <Link to="/gardsforsaljare" className="text-primary underline">Visa alla producenter</Link></p>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
               {list.map((f: Farm) => <FarmCard key={f.slug} farm={f} />)}

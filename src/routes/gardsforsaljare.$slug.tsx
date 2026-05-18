@@ -25,7 +25,7 @@ export const Route = createFileRoute("/gardsforsaljare/$slug")({
     <PageLayout>
       <div className="container-x py-32 text-center">
         <h1 className="text-4xl mb-4">Producenten finns inte</h1>
-        <Link to="/producenter" className="btn-secondary mt-4">Tillbaka</Link>
+        <Link to="/gardsforsaljare" className="btn-secondary mt-4">Tillbaka</Link>
       </div>
     </PageLayout>
   ),
@@ -45,7 +45,7 @@ function FarmPage() {
     <PageLayout>
       <article>
         <div className="container-x pt-10">
-          <Link to="/producenter" className="inline-flex items-center gap-2 text-sm text-body hover:text-primary">
+          <Link to="/gardsforsaljare" className="inline-flex items-center gap-2 text-sm text-body hover:text-primary">
             <ArrowLeft className="h-4 w-4" /> Alla producenter
           </Link>
         </div>

@@ -4,6 +4,25 @@ import { Check, Copy, Download, Search } from "lucide-react";
 import JSZip from "jszip";
 import { PageLayout } from "@/components/PageLayout";
 import { filledIcons } from "@/assets/icons";
+import { categories, regions, farms, articles } from "@/data/site";
+
+type PageRow = { label: string; route: string; example: string; dynamic: boolean };
+const pages: PageRow[] = [
+  { label: "Hem", route: "/", example: "/", dynamic: false },
+  { label: "Kategorier", route: "/kategorier", example: "/kategorier", dynamic: false },
+  { label: "Kategori (dynamisk)", route: "/kategorier/$slug", example: `/kategorier/${categories[0]?.slug ?? ""}`, dynamic: true },
+  { label: "Regioner", route: "/regioner", example: "/regioner", dynamic: false },
+  { label: "Region (dynamisk)", route: "/regioner/$slug", example: `/regioner/${regions[0]?.slug ?? ""}`, dynamic: true },
+  { label: "Producenter", route: "/producenter", example: "/producenter", dynamic: false },
+  { label: "Producent (dynamisk)", route: "/producenter/$slug", example: `/producenter/${farms[0]?.slug ?? ""}`, dynamic: true },
+  { label: "Karta", route: "/karta", example: "/karta", dynamic: false },
+  { label: "Blogg & Nyheter", route: "/blogg-nyheter", example: "/blogg-nyheter", dynamic: false },
+  { label: "Artikel (dynamisk)", route: "/blogg-nyheter/$slug", example: `/blogg-nyheter/${articles[0]?.slug ?? ""}`, dynamic: true },
+  { label: "Om oss", route: "/om-oss", example: "/om-oss", dynamic: false },
+  { label: "FAQ", route: "/faq", example: "/faq", dynamic: false },
+  { label: "Kontakt", route: "/kontakt", example: "/kontakt", dynamic: false },
+  { label: "Design System", route: "/design-system", example: "/design-system", dynamic: false },
+];
 
 export const Route = createFileRoute("/design-system")({
   head: () => ({
@@ -106,6 +125,7 @@ const sections = [
   { id: "shadows", label: "Shadows" },
   { id: "borders", label: "Borders" },
   { id: "icons", label: "Icons" },
+  { id: "pages", label: "Pages" },
   { id: "design-md", label: "design.md" },
 ];
 
@@ -117,6 +137,7 @@ function buildDesignMd() {
   ).join("\n");
   const shadowRows = shadows.map(s => `| ${s.name} | \`${s.css}\` |`).join("\n");
   const borderRows = borders.map(b => `| ${b.name} | \`${b.css}\` |`).join("\n");
+  const pageRows = pages.map(p => `| ${p.label} | \`${p.route}\` | \`${p.example}\` |`).join("\n");
   return `# Design System
 
 ## Typography
@@ -142,6 +163,12 @@ ${shadowRows}
 | Name | CSS |
 | --- | --- |
 ${borderRows}
+
+## Pages
+
+| Page | Route | Example |
+| --- | --- | --- |
+${pageRows}
 `;
 }
 
@@ -412,6 +439,48 @@ function DesignSystemPage() {
                     Inga ikoner matchar "{iconQuery}".
                   </div>
                 )}
+              </div>
+            </section>
+
+            {/* Pages */}
+            <section id="pages" className="scroll-mt-32">
+              <SectionHeading title="Pages" desc="Alla sidor i sajten. Dynamiska routes visas med första exemplet." />
+              <div className="overflow-x-auto rounded-lg border border-border bg-card">
+                <table className="w-full text-sm">
+                  <thead className="bg-section text-heading">
+                    <tr>
+                      {["Sida", "Route", "Exempel", "Öppna"].map(h => (
+                        <th key={h} className="text-left font-medium px-4 py-3">{h}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {pages.map(p => (
+                      <tr key={p.route} className="border-t border-border">
+                        <td className="px-4 py-3 font-medium text-heading">
+                          {p.label}
+                          {p.dynamic && (
+                            <span className="ml-2 inline-block text-[10px] uppercase tracking-wider font-mono text-accent border border-border rounded px-1.5 py-0.5">
+                              dynamic
+                            </span>
+                          )}
+                        </td>
+                        <td className="px-4 py-3 font-mono text-xs text-body">{p.route}</td>
+                        <td className="px-4 py-3 font-mono text-xs text-body">{p.example}</td>
+                        <td className="px-4 py-3">
+                          <a
+                            href={p.example}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-1 font-mono text-xs text-primary hover:underline"
+                          >
+                            ↗
+                          </a>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </section>
 

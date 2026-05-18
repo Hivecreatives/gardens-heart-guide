@@ -1,62 +1,59 @@
-## Icons section on `/design-system`
+## Goal
 
-Add a new "Icons" section that lists every `lucide-react` icon used in the project, rendered as **filled** SVGs (strokes expanded to paths, `fill="currentColor"`, no stroke attributes), with a **Download all (.zip)** button.
+Regenerate the filled icons in `src/assets/icons/` so each one looks like the Cpu example you pasted — true geometric stroke-to-path expansion (clean outlined paths with `fill-rule="evenodd"` for holes), not the potrace-traced blobs the current generator produces.
 
-### 1. Inventory (33 icons in use)
+## Why the current output is wrong
 
-Scanned all `import { ... } from "lucide-react"` across `src/`:
+`scripts/generate-filled-icons.mjs` uses `svg-outline-stroke`, which **rasterizes then traces** the SVG with potrace. That's why your current `heart.svg`, `map-pin.svg`, etc. have organic, slightly lumpy single paths instead of crisp outlined strokes with proper inner holes.
 
-`ArrowLeft, ArrowRight, ArrowUpRight, Calendar, Check, ChevronDown, ChevronDownIcon, ChevronLeft, ChevronLeftIcon, ChevronRight, ChevronRightIcon, ChevronUp, Circle, Copy, ExternalLink, Globe, GripVertical, Heart, Info, Mail, Map, MapPin, Menu, Minus, MoreHorizontal, Navigation, PanelLeft, Phone, Search, Sprout, Tag, Users, X`
+What you want (and what Inkscape's "Stroke to Path" does) is **geometric** outlining: take each stroked path and compute the exact polygon that the stroke would paint, preserving sharp corners, line caps, joins, and producing even-odd holes where strokes overlap.
 
-(The `*Icon`-suffixed names are aliases of the same icon — they'll be de-duplicated by underlying icon name.)
+## Approach
 
-### 2. Stroke → fill conversion (build-time)
+Replace the potrace pipeline with a real geometric stroke expander. Two viable options:
 
-Lucide icons are stroke-only. Expanding strokes into filled outlines (matching what Inkscape's "Stroke to Path" does) requires real path-offsetting geometry, which is not feasible to do reliably in pure browser JS without a heavy lib. We'll do it **once at build time**:
+**Option A — Inkscape CLI (matches your reference exactly)**
+- Install via `nix run nixpkgs#inkscape`
+- For each Lucide source SVG, run:
+  `inkscape --actions="select-all;object-stroke-to-path;export-plain-svg" --export-filename=out.svg in.svg`
+- Then run SVGO to strip Inkscape/sodipodi metadata, remove `stroke*` attrs, force `fill="currentColor"`, add `fill-rule="evenodd"`, drop width/height, keep viewBox.
+- Pros: exactly the algorithm + output style you referenced.
+- Cons: heavier dependency (only at build time, not shipped).
 
-- New script: `scripts/generate-filled-icons.mjs`
-- Dependencies: `svg-outline-stroke` (uses `paper-jsdom` under the hood — exactly Inkscape-style stroke-to-path) + `svgo` (cleanup)
-- Process per icon:
-  1. Pull the source SVG from `lucide-static/icons/<kebab-name>.svg`
-  2. Run through `svg-outline-stroke` to convert all strokes into filled paths
-  3. Run `svgo` to: drop `stroke*` attributes, strip `sodipodi:*` / `inkscape:*` namespaces and metadata, merge paths, set `fill="currentColor"` on the root
-  4. Write to `src/assets/icons/<kebab-name>.svg`
-- Emit a tiny `src/assets/icons/index.ts` exporting `{ name, kebab, raw }` for each so the route can import them statically (no glob runtime cost).
+**Option B — Pure JS with `paper-jsdom-canvas`**
+- Use Paper.js `PathItem` API: parse each `<path>`, call `path.strokeWidth = N; path = path.toPath()` then boolean-union overlapping outlines.
+- Pros: no native binary, runs anywhere bun runs.
+- Cons: subtle differences from Inkscape on line joins; needs more glue code.
 
-Script runs manually via `bun run scripts/generate-filled-icons.mjs` (also added as `"icons:build"` in `package.json`). Generated files are committed.
+**Recommendation: Option A.** It is what your reference SVG was produced with, so output will match the Cpu example's character (sharp corners, `fill-rule="evenodd"`, two-path structure for icons with holes like `Circle`, `MapPin`, `Tag`, `Info`).
 
-### 3. New section on `/design-system`
+## Changes
 
-Add to the `sections` array: `{ id: "icons", label: "Icons" }`.
+1. **Rewrite `scripts/generate-filled-icons.mjs`**
+   - Drop `svg-outline-stroke` + `optTolerance` config.
+   - For each icon in `NAMES`: copy `lucide-static/icons/<kebab>.svg` to a temp file, invoke Inkscape with `select-all;object-stroke-to-path;export-plain-svg`, read the result.
+   - Pipe through SVGO with these plugins:
+     - `preset-default` (keep viewBox)
+     - `removeDimensions`
+     - `removeAttrs` for `(stroke.*|sodipodi:.*|inkscape:.*|xmlns:sodipodi|xmlns:inkscape|id|class)`
+     - Custom plugin: set `fill="currentColor"` on root `<svg>`, add `fill-rule="evenodd"` to every `<path>`, delete inner `fill="black"` / `fill="#000"`.
+   - Write to `src/assets/icons/<kebab>.svg`.
+   - Regenerate `index.ts` (unchanged shape).
 
-Layout inside `<section id="icons">`:
+2. **No changes to `src/routes/design-system.tsx`**
+   - It already imports `filledIcons` and renders each via `dangerouslySetInnerHTML`. Once the underlying SVG files are regenerated, the Icons section and the "Download all SVG (.zip)" button automatically serve the new geometry. Color still inherits via `text-primary` on the wrapper.
 
-- Section header (reuse `<SectionHeading />`) — title "Icons", description noting "Lucide icons, stroke expanded to filled paths, `fill=currentColor`".
-- Toolbar row:
-  - Search input (filter by name, client-side)
-  - **Download all SVG (.zip)** button (right-aligned, primary style)
-- Grid: `grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3`
-  - Each card: filled-SVG preview (h-12, color = `text-primary` so the stroke color matches the site's brand green), icon name below in mono, hover state reveals a "Copy SVG" mini-button.
+3. **No runtime dependency changes**
+   - `jszip` stays. `svg-outline-stroke` can be removed from `package.json` (build-time only). Inkscape is invoked via `nix run` — not added to `package.json`.
 
-The SVGs render via `dangerouslySetInnerHTML` from the imported raw strings; because the root has `fill="currentColor"`, Tailwind `text-primary` controls the color exactly like in the rest of the site.
+## Acceptance check
 
-### 4. Download-all (.zip)
+After regenerating, spot-check 4 icons by opening the new SVG files and confirming:
+- Root `<svg>` has `fill="currentColor"`, viewBox preserved, no width/height.
+- Paths have `fill-rule="evenodd"` where the icon has holes (e.g. `circle`, `map-pin`, `info`, `tag`).
+- No `stroke`, `stroke-width`, `stroke-linecap`, `sodipodi:*`, or `inkscape:*` attributes anywhere.
+- Visual: open `/design-system#icons` in preview and confirm icons look like crisp outlined strokes (not blobby traces), matching the Cpu reference's character.
 
-- Add `jszip` dependency.
-- Button handler builds a zip in-memory: each entry `<kebab-name>.svg` containing the generated filled SVG, then triggers download via a blob URL + temporary `<a download="lucide-filled-icons.zip">`. Loading state on the button while zipping.
+## Open question
 
-### 5. design.md addendum
-
-Append an "Icons" section to the generated `design.md` listing the icon names and noting that filled SVGs ship under `src/assets/icons/`.
-
-### Technical notes
-
-- All new code is presentation-layer; no routes/data changes elsewhere.
-- No network calls — icons are bundled.
-- The conversion script is the only Node-only piece; it never ships to the browser. Browser only sees the pre-generated SVG strings + JSZip.
-- Stroke color in the preview = `currentColor` driven by `text-primary` (#336645), matching the rest of the site exactly.
-
-### Open questions
-
-1. **Color in the downloaded SVG files**: leave as `fill="currentColor"` (recommended — user picks color when consuming), or bake the site's primary `#336645` into each SVG?
-2. Should the icons grid include the **aliased** `*Icon` names as separate entries, or deduplicate to a single card per underlying icon?
+Want me to also bake `fill="currentColor"` into the **inner paths** explicitly (Cpu example does this on each `<path>`), or keep it only on the root `<svg>` and let inheritance handle it? Root-only is cleaner; per-path matches your reference byte-for-byte. I'll default to per-path to match your example unless you say otherwise.

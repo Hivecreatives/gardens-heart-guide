@@ -25,6 +25,7 @@ export function SiteFooter() {
           ["/blogg-nyheter", "Blogg & Nyheter"],
           ["/om-oss", "Om oss"],
           ["/kontakt", "Kontakta oss"],
+          ["/design-system", "Design System"],
         ]} />
         <div>
           <h4 className="text-background font-display text-base mb-4">Kontakt</h4>

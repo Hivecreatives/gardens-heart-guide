@@ -9,63 +9,28 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as RegionerRouteImport } from './routes/regioner'
-import { Route as OmOssRouteImport } from './routes/om-oss'
-import { Route as KontaktRouteImport } from './routes/kontakt'
-import { Route as KategorierRouteImport } from './routes/kategorier'
-import { Route as KartaRouteImport } from './routes/karta'
-import { Route as GardsforsaljareRouteImport } from './routes/gardsforsaljare'
-import { Route as FaqRouteImport } from './routes/faq'
-import { Route as DesignSystemRouteImport } from './routes/design-system'
-import { Route as BloggNyheterRouteImport } from './routes/blogg-nyheter'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as RegionerIndexRouteImport } from './routes/regioner.index'
-import { Route as KategorierIndexRouteImport } from './routes/kategorier.index'
-import { Route as GardsforsaljareIndexRouteImport } from './routes/gardsforsaljare.index'
+import { Route as BloggNyheterRouteImport } from './routes/blogg-nyheter'
+import { Route as DesignSystemRouteImport } from './routes/design-system'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as GardsforsaljareRouteImport } from './routes/gardsforsaljare'
+import { Route as KartaRouteImport } from './routes/karta'
+import { Route as KategorierRouteImport } from './routes/kategorier'
+import { Route as KontaktRouteImport } from './routes/kontakt'
+import { Route as OmOssRouteImport } from './routes/om-oss'
+import { Route as RegionerRouteImport } from './routes/regioner'
 import { Route as BloggNyheterIndexRouteImport } from './routes/blogg-nyheter.index'
-import { Route as RegionerSlugRouteImport } from './routes/regioner.$slug'
-import { Route as KategorierSlugRouteImport } from './routes/kategorier.$slug'
-import { Route as GardsforsaljareSlugRouteImport } from './routes/gardsforsaljare.$slug'
 import { Route as BloggNyheterSlugRouteImport } from './routes/blogg-nyheter.$slug'
+import { Route as GardsforsaljareIndexRouteImport } from './routes/gardsforsaljare.index'
+import { Route as GardsforsaljareSlugRouteImport } from './routes/gardsforsaljare.$slug'
+import { Route as KategorierIndexRouteImport } from './routes/kategorier.index'
+import { Route as KategorierSlugRouteImport } from './routes/kategorier.$slug'
+import { Route as RegionerIndexRouteImport } from './routes/regioner.index'
+import { Route as RegionerSlugRouteImport } from './routes/regioner.$slug'
 
-const RegionerRoute = RegionerRouteImport.update({
-  id: '/regioner',
-  path: '/regioner',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OmOssRoute = OmOssRouteImport.update({
-  id: '/om-oss',
-  path: '/om-oss',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const KontaktRoute = KontaktRouteImport.update({
-  id: '/kontakt',
-  path: '/kontakt',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const KategorierRoute = KategorierRouteImport.update({
-  id: '/kategorier',
-  path: '/kategorier',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const KartaRoute = KartaRouteImport.update({
-  id: '/karta',
-  path: '/karta',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GardsforsaljareRoute = GardsforsaljareRouteImport.update({
-  id: '/gardsforsaljare',
-  path: '/gardsforsaljare',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FaqRoute = FaqRouteImport.update({
-  id: '/faq',
-  path: '/faq',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DesignSystemRoute = DesignSystemRouteImport.update({
-  id: '/design-system',
-  path: '/design-system',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BloggNyheterRoute = BloggNyheterRouteImport.update({
@@ -73,50 +38,85 @@ const BloggNyheterRoute = BloggNyheterRouteImport.update({
   path: '/blogg-nyheter',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const DesignSystemRoute = DesignSystemRouteImport.update({
+  id: '/design-system',
+  path: '/design-system',
   getParentRoute: () => rootRouteImport,
 } as any)
-const RegionerIndexRoute = RegionerIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => RegionerRoute,
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const KategorierIndexRoute = KategorierIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => KategorierRoute,
+const GardsforsaljareRoute = GardsforsaljareRouteImport.update({
+  id: '/gardsforsaljare',
+  path: '/gardsforsaljare',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const GardsforsaljareIndexRoute = GardsforsaljareIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => GardsforsaljareRoute,
+const KartaRoute = KartaRouteImport.update({
+  id: '/karta',
+  path: '/karta',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KategorierRoute = KategorierRouteImport.update({
+  id: '/kategorier',
+  path: '/kategorier',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KontaktRoute = KontaktRouteImport.update({
+  id: '/kontakt',
+  path: '/kontakt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OmOssRoute = OmOssRouteImport.update({
+  id: '/om-oss',
+  path: '/om-oss',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegionerRoute = RegionerRouteImport.update({
+  id: '/regioner',
+  path: '/regioner',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const BloggNyheterIndexRoute = BloggNyheterIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => BloggNyheterRoute,
 } as any)
-const RegionerSlugRoute = RegionerSlugRouteImport.update({
+const BloggNyheterSlugRoute = BloggNyheterSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
-  getParentRoute: () => RegionerRoute,
+  getParentRoute: () => BloggNyheterRoute,
 } as any)
-const KategorierSlugRoute = KategorierSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => KategorierRoute,
+const GardsforsaljareIndexRoute = GardsforsaljareIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => GardsforsaljareRoute,
 } as any)
 const GardsforsaljareSlugRoute = GardsforsaljareSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
   getParentRoute: () => GardsforsaljareRoute,
 } as any)
-const BloggNyheterSlugRoute = BloggNyheterSlugRouteImport.update({
+const KategorierIndexRoute = KategorierIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => KategorierRoute,
+} as any)
+const KategorierSlugRoute = KategorierSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
-  getParentRoute: () => BloggNyheterRoute,
+  getParentRoute: () => KategorierRoute,
+} as any)
+const RegionerIndexRoute = RegionerIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => RegionerRoute,
+} as any)
+const RegionerSlugRoute = RegionerSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => RegionerRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -250,60 +250,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/regioner': {
-      id: '/regioner'
-      path: '/regioner'
-      fullPath: '/regioner'
-      preLoaderRoute: typeof RegionerRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/om-oss': {
-      id: '/om-oss'
-      path: '/om-oss'
-      fullPath: '/om-oss'
-      preLoaderRoute: typeof OmOssRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/kontakt': {
-      id: '/kontakt'
-      path: '/kontakt'
-      fullPath: '/kontakt'
-      preLoaderRoute: typeof KontaktRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/kategorier': {
-      id: '/kategorier'
-      path: '/kategorier'
-      fullPath: '/kategorier'
-      preLoaderRoute: typeof KategorierRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/karta': {
-      id: '/karta'
-      path: '/karta'
-      fullPath: '/karta'
-      preLoaderRoute: typeof KartaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/gardsforsaljare': {
-      id: '/gardsforsaljare'
-      path: '/gardsforsaljare'
-      fullPath: '/gardsforsaljare'
-      preLoaderRoute: typeof GardsforsaljareRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/faq': {
-      id: '/faq'
-      path: '/faq'
-      fullPath: '/faq'
-      preLoaderRoute: typeof FaqRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/design-system': {
-      id: '/design-system'
-      path: '/design-system'
-      fullPath: '/design-system'
-      preLoaderRoute: typeof DesignSystemRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blogg-nyheter': {
@@ -313,33 +264,61 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BloggNyheterRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/design-system': {
+      id: '/design-system'
+      path: '/design-system'
+      fullPath: '/design-system'
+      preLoaderRoute: typeof DesignSystemRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/regioner/': {
-      id: '/regioner/'
-      path: '/'
-      fullPath: '/regioner/'
-      preLoaderRoute: typeof RegionerIndexRouteImport
-      parentRoute: typeof RegionerRoute
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/kategorier/': {
-      id: '/kategorier/'
-      path: '/'
-      fullPath: '/kategorier/'
-      preLoaderRoute: typeof KategorierIndexRouteImport
-      parentRoute: typeof KategorierRoute
+    '/gardsforsaljare': {
+      id: '/gardsforsaljare'
+      path: '/gardsforsaljare'
+      fullPath: '/gardsforsaljare'
+      preLoaderRoute: typeof GardsforsaljareRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/gardsforsaljare/': {
-      id: '/gardsforsaljare/'
-      path: '/'
-      fullPath: '/gardsforsaljare/'
-      preLoaderRoute: typeof GardsforsaljareIndexRouteImport
-      parentRoute: typeof GardsforsaljareRoute
+    '/karta': {
+      id: '/karta'
+      path: '/karta'
+      fullPath: '/karta'
+      preLoaderRoute: typeof KartaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kategorier': {
+      id: '/kategorier'
+      path: '/kategorier'
+      fullPath: '/kategorier'
+      preLoaderRoute: typeof KategorierRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kontakt': {
+      id: '/kontakt'
+      path: '/kontakt'
+      fullPath: '/kontakt'
+      preLoaderRoute: typeof KontaktRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/om-oss': {
+      id: '/om-oss'
+      path: '/om-oss'
+      fullPath: '/om-oss'
+      preLoaderRoute: typeof OmOssRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/regioner': {
+      id: '/regioner'
+      path: '/regioner'
+      fullPath: '/regioner'
+      preLoaderRoute: typeof RegionerRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/blogg-nyheter/': {
       id: '/blogg-nyheter/'
@@ -348,19 +327,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BloggNyheterIndexRouteImport
       parentRoute: typeof BloggNyheterRoute
     }
-    '/regioner/$slug': {
-      id: '/regioner/$slug'
+    '/blogg-nyheter/$slug': {
+      id: '/blogg-nyheter/$slug'
       path: '/$slug'
-      fullPath: '/regioner/$slug'
-      preLoaderRoute: typeof RegionerSlugRouteImport
-      parentRoute: typeof RegionerRoute
+      fullPath: '/blogg-nyheter/$slug'
+      preLoaderRoute: typeof BloggNyheterSlugRouteImport
+      parentRoute: typeof BloggNyheterRoute
     }
-    '/kategorier/$slug': {
-      id: '/kategorier/$slug'
-      path: '/$slug'
-      fullPath: '/kategorier/$slug'
-      preLoaderRoute: typeof KategorierSlugRouteImport
-      parentRoute: typeof KategorierRoute
+    '/gardsforsaljare/': {
+      id: '/gardsforsaljare/'
+      path: '/'
+      fullPath: '/gardsforsaljare/'
+      preLoaderRoute: typeof GardsforsaljareIndexRouteImport
+      parentRoute: typeof GardsforsaljareRoute
     }
     '/gardsforsaljare/$slug': {
       id: '/gardsforsaljare/$slug'
@@ -369,12 +348,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GardsforsaljareSlugRouteImport
       parentRoute: typeof GardsforsaljareRoute
     }
-    '/blogg-nyheter/$slug': {
-      id: '/blogg-nyheter/$slug'
+    '/kategorier/': {
+      id: '/kategorier/'
+      path: '/'
+      fullPath: '/kategorier/'
+      preLoaderRoute: typeof KategorierIndexRouteImport
+      parentRoute: typeof KategorierRoute
+    }
+    '/kategorier/$slug': {
+      id: '/kategorier/$slug'
       path: '/$slug'
-      fullPath: '/blogg-nyheter/$slug'
-      preLoaderRoute: typeof BloggNyheterSlugRouteImport
-      parentRoute: typeof BloggNyheterRoute
+      fullPath: '/kategorier/$slug'
+      preLoaderRoute: typeof KategorierSlugRouteImport
+      parentRoute: typeof KategorierRoute
+    }
+    '/regioner/': {
+      id: '/regioner/'
+      path: '/'
+      fullPath: '/regioner/'
+      preLoaderRoute: typeof RegionerIndexRouteImport
+      parentRoute: typeof RegionerRoute
+    }
+    '/regioner/$slug': {
+      id: '/regioner/$slug'
+      path: '/$slug'
+      fullPath: '/regioner/$slug'
+      preLoaderRoute: typeof RegionerSlugRouteImport
+      parentRoute: typeof RegionerRoute
     }
   }
 }
@@ -450,13 +450,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

@@ -1,48 +1,6 @@
 // Redaktionella blogginlägg för Gårdsförsäljning Sverige.
 import type { Article } from "./site";
-import regBlekinge from "@/assets/region-blekinge.jpg";
-import blogButik from "@/assets/blog-butik.jpg";
-import catCider from "@/assets/cat-cider.jpg";
-import regDalarna from "@/assets/region-dalarna.jpg";
-import blogFaq from "@/assets/blog-faq.jpg";
-import regGotland from "@/assets/region-gotland.jpg";
-import regHalland from "@/assets/region-halland.jpg";
-import blogHallbar from "@/assets/blog-hallbar.jpg";
-import blogHistoria from "@/assets/blog-historia.jpg";
-import blogJul from "@/assets/blog-jul.jpg";
-import blogMat from "@/assets/blog-mat.jpg";
-import blogMust from "@/assets/blog-must.jpg";
-import regNorrbotten from "@/assets/region-norrbotten.jpg";
-import catOl from "@/assets/cat-ol.jpg";
-import blogResa from "@/assets/blog-resa.jpg";
-import blogSasong from "@/assets/blog-sasong.jpg";
-import regSkane from "@/assets/region-skane.jpg";
-import regSmaland from "@/assets/region-smaland.jpg";
-import blogSommar from "@/assets/blog-sommar.jpg";
-import catSprit from "@/assets/cat-sprit.jpg";
-import regSthlm from "@/assets/region-sthlm.jpg";
-import regUppsala from "@/assets/region-uppsala.jpg";
-import regVg from "@/assets/region-vg.jpg";
-import catVin from "@/assets/cat-vin.jpg";
 
-import blogWhisky from "@/assets/blog-whisky.jpg";
-import blogGin from "@/assets/blog-gin.jpg";
-import blogAkvavit from "@/assets/blog-akvavit.jpg";
-import blogMousserande from "@/assets/blog-mousserande.jpg";
-import blogDruvor from "@/assets/blog-druvor.jpg";
-import blogHumle from "@/assets/blog-humle.jpg";
-import blogOlstilar from "@/assets/blog-olstilar.jpg";
-import blogVinprovning from "@/assets/blog-vinprovning.jpg";
-import blogOlrunda from "@/assets/blog-olrunda.jpg";
-import blogGardsbutik from "@/assets/blog-gardsbutik.jpg";
-import blogPresent from "@/assets/blog-present.jpg";
-import blogLagring from "@/assets/blog-lagring.jpg";
-import blogAlkoholfritt from "@/assets/blog-alkoholfritt.jpg";
-import blogGrupp from "@/assets/blog-grupp.jpg";
-import blogOppettider from "@/assets/blog-oppettider.jpg";
-import blogGoteborg from "@/assets/blog-goteborg.jpg";
-import blogOsterlen from "@/assets/blog-osterlen.jpg";
-import blogSkargard from "@/assets/blog-skargard.jpg";
 
 export const blogPosts: Article[] = [
   { slug: "gardsforsaljning-av-alkohol-i-sverige-sa-fungerar-det", title: "Gårdsförsäljning av alkohol i Sverige – så fungerar det 2026", date: "1 augusti 2026", excerpt: "Lär dig hur gårdsförsäljning av alkohol fungerar i Sverige 2026. Praktisk guide om regler, volymbegränsningar och hur du hittar lokala dryckesproducenter.", image: "https://gardsforsaljningavalkohol.se/wp-content/uploads/2026/02/988618-2-768x427.jpg", content: "Sedan den nya försökslagstiftningen för gårdsförsäljning av alkohol trädde i kraft 2025 har det svenska dryckeslandskapet förändrats i grunden. För dig som besökare innebär det att du nu kan köpa med dig hantverksmässigt framställda drycker direkt från producenten efter ett studiebesök eller en provning. Under 2026 har systemet satt sig ordentligt, och allt fler småskaliga bryggerier, vingårdar och destillerier väljer att öppna upp sina dörrar för direktförsäljning. I denna guide går vi igenom exakt vad som gäller när du vill handla lokala drycker direkt på gården.\n\n## Reglerna för gårdsförsäljning i praktiken\n\nDet är viktigt att förstå att gårdsförsäljning i Sverige inte fungerar som en vanlig matvarubutik eller som Systembolaget. Försäljningen är hårt reglerad och knuten till en upplevelse på platsen. Syftet med lagen är att främja besöksnäringen och stötta småskaliga producenter, snarare än att skapa en ny kanal för masskonsumtion.\n\nFör att du ska få köpa alkoholhaltiga drycker direkt från en gårdsförsäljare krävs det enligt lagstiftningen att du först deltar i en betald aktivitet. Detta kan innebära:\n\n- En guidad tur i produktionen där du lär dig om hantverket.\n- En organiserad provning av gårdens sortiment.\n- En föreläsning om råvaror och tillverkningsprocessen.\n\nNär du har genomfört aktiviteten har du rätt att köpa en begränsad mängd av de drycker som produceras på plats. Det är alltså inte möjligt att bara \"svänga förbi\" och plocka upp en flaska utan att interagera med producenten och deras hantverk.\n\n## Hur mycket får man köpa med sig hem?\n\nEftersom gårdsförsäljning är en försöksverksamhet finns det tydliga begränsningar för hur mycket varje enskild kund får handla vid ett besökstillfälle. Dessa volymgränser är satta för att balansera näringslivets behov med folkhälsopolitiska mål. Under 2026 gäller följande begränsningar per person:\n\n- Vin (inklusive fruktvin): Upp till 0,75 liter per kund.\n- Starköl: Upp till 1,5 liter per kund.\n- Spritdrycker: Upp till 0,25 liter per kund.\n- Cider och andra jästa drycker: Upp till 1,5 liter per kund.\n\nDet är värt att notera att dessa volymer gäller det faktiska köpet per besökare. Producenterna är skyldiga att dokumentera försäljningen för att säkerställa att reglerna efterlevs. För många lokala producenter innebär detta att de satsar mer på exklusiva små batcher och unika buteljer som verkligen representerar deras specifika gård.\n\n## Vilka producenter omfattas av lagen?\n\nInte alla som tillverkar dryck har rätt till gårdsförsäljning. Lagen riktar sig till småskaliga, oberoende producenter. Detta inkluderar mikrobryggerier, mindre vingårdar och hantverksdestillerier. För att klassas som en gårdsförsäljare måste producenten uppfylla vissa kriterier gällande produktionsvolym, vilket innebär att de stora industrijättarna inte är en del av detta system.\n\nDetta skapar en unik nisch för den som är intresserad av lokala drycker. När du besöker en producent 2026 kan du räkna med att möta människorna bakom drycken. Ofta är det ägaren själv eller huvudbryggaren som leder provningen, vilket ger en djupare förståelse för de regionala råvarorna – från skånska druvor till norrländskt källvatten.\n\n## Planera ditt besök hos en gårdsförsäljare\n\nEftersom kraven på en motprestation i form av en aktivitet är obligatoriska, rekommenderas det starkt att boka ditt besök i förväg. Många populära gårdar har begränsat antal platser på sina visningar, särskilt under sommarsäsongen. Här är några praktiska tips för en lyckad tur:\n\n- Kontrollera öppettider: Gårdsförsäljare har ofta specifika tider för sina guidade turer.\n- Förboka aktiviteten: Använd producentens webbplats för att säkra en plats på en provning.\n- Transport: Tänk på att om du deltar i en provning bör du ha en utsedd förare eller använda kollektivtrafik, då alkohol serveras i samband med aktiviteten.\n- Åldersgräns: Precis som på Systembolaget gäller 20-årsgräns för inköp av alkohol, även vid gårdsförsäljning.\n\nGenom att planera besöket får du inte bara chansen att köpa unika flaskor, utan du får också en rikare upplevelse av det svenska mathantverket. Det är en möjlighet att se hur korn blir till malt, hur äpplen pressas till must eller hur vinrankor sköts om i det svenska klimatet.\n\n## Framtiden för lokala drycker i Sverige\n\nFörsökslagstiftningen som löper under 2026 är en viktig testperiod för att utvärdera hur gårdsförsäljning påverkar samhället. Hittills har intresset varit enormt, och många producenter har investerat i besöksfaciliteter för att kunna välkomna gäster på ett professionellt sätt. För den svenska landsbygden innebär detta nya arbetstillfällen och en ökad attraktionskraft för både inhemska och internationella turister.\n\nFör konsumenten betyder det en ökad valfrihet och en närmare koppling till ursprunget. Att kunna köpa en flaska vin som odlats på den sluttning man just blickat ut över, eller en öl bryggd med humle från grannbyn, skapar ett mervärde som en vanlig butikshylla aldrig kan förmedla. Det är en hyllning till det lokala och det hantverksmässiga.\n\nAtt utforska Sveriges utbud av lokala drycker har aldrig varit enklare eller mer givande. Oavsett om du är en hängiven ölkännare eller bara nyfiken på svenskt vin, finns det en värld av smaker som väntar på att upptäckas. Vi på Gårdsförsäljning Sverige hjälper dig att hitta rätt – använd vår interaktiva karta för att upptäcka certifierade gårdsförsäljare nära dig och börja planera din nästa smakresa redan idag." },

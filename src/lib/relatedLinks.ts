@@ -1,6 +1,7 @@
 // Härleder relevanta regioner, kategorier och gårdsförsäljare för en artikel
 // baserat på artikelns titel, ingress och innehåll.
 import { farms, regions, categories, type Article, type Farm, type Region, type Category } from "@/data/site";
+import { getFarmCategories } from "@/lib/farmCategories";
 
 const CATEGORY_HINTS: Record<string, RegExp[]> = {
   ol: [/\böl\b/i, /bryggeri/i, /ipa\b/i, /lager\b/i, /humle/i, /stout/i, /pilsner/i],

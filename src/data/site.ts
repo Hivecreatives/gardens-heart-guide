@@ -1,5 +1,4 @@
 import { blogPosts } from "./blogPosts";
-import catMousserande from "@/assets/cat-mousserande.jpg";
 
 export type Region = { slug: string; name: string; count: number; image: string };
 export type Category = { slug: string; name: string; count: number; image: string; blurb: string };
@@ -345,7 +344,7 @@ export const categories: Category[] = [
   { slug: "vin", name: "Vin", count: 60, image: "https://gardsforsaljningavalkohol.se/wp-content/uploads/2026/05/6a0b05d63ecdf.jpg", blurb: "Svenska vingårdar med rött, vitt och rosé direkt från källan." },
   { slug: "sprit", name: "Sprit", count: 61, image: "https://gardsforsaljningavalkohol.se/wp-content/uploads/2026/05/6a0b05cccfa06.jpg", blurb: "Destillerier som tillverkar gin, whisky, akvavit och vodka." },
   { slug: "cider", name: "Cider", count: 12, image: "https://gardsforsaljningavalkohol.se/wp-content/uploads/2026/05/6a0b05d60f457.jpg", blurb: "Cidertillverkare med pressade äpplen från egna odlingar." },
-  { slug: "ovrigt", name: "Övrigt", count: 37, image: catMousserande, blurb: "Gårdsförsäljare med blandat sortiment och nischade drycker." },
+  { slug: "ovrigt", name: "Övrigt", count: 37, image: "https://gardsforsaljningavalkohol.se/wp-content/uploads/2026/05/988671-1-768x432-1.jpg", blurb: "Gårdsförsäljare med blandat sortiment och nischade drycker." },
 ];
 
 const sourceArticles: Article[] = [

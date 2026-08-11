@@ -75,19 +75,41 @@ export function getRelatedLinks(article: Article): RelatedLinks {
     .map((f) => {
       let score = 0;
       if (regionNames.has(f.region)) score += 2;
-      if (categoryNames.has(f.category)) score += 2;
-      if (f.blurb) score += 0.5;
+      if (categoryNames.has(f.category)) score += 3;
+      if (f.website) score += 1;
+      if (f.address) score += 1;
+      if (f.blurb && f.blurb.length > 200) score += 1;
       return { f, score };
     })
     .filter((x) => x.score >= 4)
     .sort((a, b) => b.score - a.score)
     .map((x) => x.f);
 
-  let related = [...named, ...scored].slice(0, 6);
-  if (related.length === 0) {
-    related = farms.filter((f) => regionNames.has(f.region)).slice(0, 6);
-  }
-  if (related.length === 0) related = farms.slice(0, 6);
+  // Sprid urvalet så att listan inte fylls av samma region/kategori.
+  const pick = (list: Farm[], maxPerRegion: number, maxPerCategory: number, out: Farm[]) => {
+    const byRegion = new Map<string, number>();
+    const byCategory = new Map<string, number>();
+    for (const f of out) {
+      byRegion.set(f.region, (byRegion.get(f.region) ?? 0) + 1);
+      byCategory.set(f.category, (byCategory.get(f.category) ?? 0) + 1);
+    }
+    for (const f of list) {
+      if (out.length >= 6) break;
+      if (out.includes(f)) continue;
+      if ((byRegion.get(f.region) ?? 0) >= maxPerRegion) continue;
+      if ((byCategory.get(f.category) ?? 0) >= maxPerCategory) continue;
+      byRegion.set(f.region, (byRegion.get(f.region) ?? 0) + 1);
+      byCategory.set(f.category, (byCategory.get(f.category) ?? 0) + 1);
+      out.push(f);
+    }
+  };
+
+  const related: Farm[] = [...named].slice(0, 3);
+  pick(scored, 2, 3, related);
+  if (related.length < 6) pick(scored, 6, 6, related);
+  if (related.length < 6) pick(farms.filter((f) => regionNames.has(f.region)), 6, 6, related);
+  if (related.length < 6) pick(farms, 6, 6, related);
+
 
   return { regions: matchedRegions, categories: matchedCategories, farms: related };
 }

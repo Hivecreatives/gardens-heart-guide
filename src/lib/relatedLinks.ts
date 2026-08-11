@@ -1,6 +1,7 @@
 // Härleder relevanta regioner, kategorier och gårdsförsäljare för en artikel
 // baserat på artikelns titel, ingress och innehåll.
 import { farms, regions, categories, type Article, type Farm, type Region, type Category } from "@/data/site";
+import { getFarmCategories } from "@/lib/farmCategories";
 
 const CATEGORY_HINTS: Record<string, RegExp[]> = {
   ol: [/\böl\b/i, /bryggeri/i, /ipa\b/i, /lager\b/i, /humle/i, /stout/i, /pilsner/i],
@@ -32,8 +33,8 @@ const REGION_HINTS: Record<string, RegExp[]> = {
   orebro: [/örebro/i],
 };
 
-function matches(text: string, patterns: RegExp[]) {
-  return patterns.some((p) => p.test(text));
+function hits(text: string, patterns: RegExp[]) {
+  return patterns.reduce((n, p) => n + (p.test(text) ? 1 : 0), 0);
 }
 
 export type RelatedLinks = {
@@ -44,25 +45,43 @@ export type RelatedLinks = {
 
 export function getRelatedLinks(article: Article): RelatedLinks {
   const text = `${article.title} ${article.excerpt ?? ""} ${article.content ?? ""}`;
+  const titleText = `${article.title} ${article.excerpt ?? ""}`;
 
-  let matchedRegions = regions.filter(
-    (r) => matches(text, REGION_HINTS[r.slug] ?? []) || new RegExp(r.name, "i").test(text),
-  );
-  let matchedCategories = categories.filter(
-    (c) => matches(text, CATEGORY_HINTS[c.slug] ?? []) || new RegExp(c.name, "i").test(text),
-  );
+  // Poängsätt kategorier/regioner: träffar i rubrik/ingress väger tyngst.
+  const scoreCategory = (c: Category) =>
+    hits(titleText, CATEGORY_HINTS[c.slug] ?? []) * 5 +
+    hits(text, CATEGORY_HINTS[c.slug] ?? []) +
+    (new RegExp(`\\b${c.name}\\b`, "i").test(titleText) ? 5 : 0);
+  const scoreRegion = (r: Region) =>
+    hits(titleText, REGION_HINTS[r.slug] ?? []) * 5 +
+    hits(text, REGION_HINTS[r.slug] ?? []) +
+    (new RegExp(`\\b${r.name}\\b`, "i").test(titleText) ? 5 : 0);
 
-  // Fallback: alltid visa de största regionerna/kategorierna så varje artikel
-  // har relevanta vidarelänkar.
-  if (matchedRegions.length === 0) {
-    matchedRegions = [...regions].sort((a, b) => b.count - a.count).slice(0, 4);
-  }
+  const rankedCategories = categories
+    .map((c) => ({ c, s: scoreCategory(c) }))
+    .filter((x) => x.s > 0)
+    .sort((a, b) => b.s - a.s);
+  const rankedRegions = regions
+    .map((r) => ({ r, s: scoreRegion(r) }))
+    .filter((x) => x.s > 0)
+    .sort((a, b) => b.s - a.s);
+
+  // Behåll bara kategorier/regioner nära toppträffen, annars blir länkarna irrelevanta.
+  let matchedCategories = rankedCategories
+    .filter((x) => x.s >= rankedCategories[0]!.s / 2)
+    .slice(0, 2)
+    .map((x) => x.c);
+  let matchedRegions = rankedRegions
+    .filter((x) => x.s >= rankedRegions[0]!.s / 2)
+    .slice(0, 3)
+    .map((x) => x.r);
+
   if (matchedCategories.length === 0) {
     matchedCategories = [...categories].sort((a, b) => b.count - a.count).slice(0, 3);
   }
-
-  matchedRegions = matchedRegions.slice(0, 5);
-  matchedCategories = matchedCategories.slice(0, 4);
+  if (matchedRegions.length === 0) {
+    matchedRegions = [...regions].sort((a, b) => b.count - a.count).slice(0, 4);
+  }
 
   const regionNames = new Set(matchedRegions.map((r) => r.name));
   const categoryNames = new Set(matchedCategories.map((c) => c.name));
@@ -70,46 +89,41 @@ export function getRelatedLinks(article: Article): RelatedLinks {
   // Gårdsförsäljare som nämns vid namn i artikeln väger tyngst.
   const named = farms.filter((f) => f.name.length > 4 && text.includes(f.name));
 
+  const inCategory = (f: Farm) =>
+    getFarmCategories(f).some((c) => categoryNames.has(c)) || categoryNames.has(f.category);
+
   const scored = farms
-    .filter((f) => !named.includes(f))
+    .filter((f) => !named.includes(f) && inCategory(f))
     .map((f) => {
       let score = 0;
-      if (regionNames.has(f.region)) score += 2;
-      if (categoryNames.has(f.category)) score += 3;
+      if (categoryNames.has(f.category)) score += 4;
+      if (regionNames.has(f.region)) score += 3;
       if (f.website) score += 1;
       if (f.address) score += 1;
       if (f.blurb && f.blurb.length > 200) score += 1;
       return { f, score };
     })
-    .filter((x) => x.score >= 4)
     .sort((a, b) => b.score - a.score)
     .map((x) => x.f);
 
-  // Sprid urvalet så att listan inte fylls av samma region/kategori.
-  const pick = (list: Farm[], maxPerRegion: number, maxPerCategory: number, out: Farm[]) => {
+  // Sprid urvalet så att listan inte fylls av samma region.
+  const pick = (list: Farm[], maxPerRegion: number, out: Farm[]) => {
     const byRegion = new Map<string, number>();
-    const byCategory = new Map<string, number>();
-    for (const f of out) {
-      byRegion.set(f.region, (byRegion.get(f.region) ?? 0) + 1);
-      byCategory.set(f.category, (byCategory.get(f.category) ?? 0) + 1);
-    }
+    for (const f of out) byRegion.set(f.region, (byRegion.get(f.region) ?? 0) + 1);
     for (const f of list) {
       if (out.length >= 6) break;
       if (out.includes(f)) continue;
       if ((byRegion.get(f.region) ?? 0) >= maxPerRegion) continue;
-      if ((byCategory.get(f.category) ?? 0) >= maxPerCategory) continue;
       byRegion.set(f.region, (byRegion.get(f.region) ?? 0) + 1);
-      byCategory.set(f.category, (byCategory.get(f.category) ?? 0) + 1);
       out.push(f);
     }
   };
 
   const related: Farm[] = [...named].slice(0, 3);
-  pick(scored, 2, 3, related);
-  if (related.length < 6) pick(scored, 6, 6, related);
-  if (related.length < 6) pick(farms.filter((f) => regionNames.has(f.region)), 6, 6, related);
-  if (related.length < 6) pick(farms, 6, 6, related);
-
+  pick(scored, 2, related);
+  if (related.length < 6) pick(scored, 6, related);
+  if (related.length < 6) pick(farms.filter(inCategory), 6, related);
 
   return { regions: matchedRegions, categories: matchedCategories, farms: related };
 }
+

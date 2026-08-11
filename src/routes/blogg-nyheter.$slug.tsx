@@ -1,7 +1,8 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { PageLayout } from "@/components/PageLayout";
 import { articles } from "@/data/site";
-import { ArrowLeft, Calendar } from "lucide-react";
+import { ArrowLeft, Calendar, MapPin, Tag, Store } from "lucide-react";
+import { getRelatedLinks } from "@/lib/relatedLinks";
 
 export const Route = createFileRoute("/blogg-nyheter/$slug")({
   head: ({ params }) => {
@@ -62,7 +63,77 @@ function ArticlePage() {
             </p>
           )}
         </div>
+        <RelatedSection article={a} />
       </article>
     </PageLayout>
+  );
+}
+
+function RelatedSection({ article }: { article: Parameters<typeof getRelatedLinks>[0] }) {
+  const related = getRelatedLinks(article);
+  return (
+    <section className="mt-16 border-t border-border pt-10 space-y-8">
+      <h2 className="text-2xl">Läs vidare</h2>
+
+      <div>
+        <h3 className="flex items-center gap-2 text-sm font-medium text-heading mb-3">
+          <MapPin className="h-4 w-4 text-primary" /> Regioner i artikeln
+        </h3>
+        <div className="flex flex-wrap gap-2">
+          {related.regions.map((r) => (
+            <Link
+              key={r.slug}
+              to="/regioner/$slug"
+              params={{ slug: r.slug }}
+              className="rounded-full border border-primary/40 px-4 py-1.5 text-sm text-primary hover:bg-primary/5"
+            >
+              {r.name}
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <h3 className="flex items-center gap-2 text-sm font-medium text-heading mb-3">
+          <Tag className="h-4 w-4 text-primary" /> Kategorier
+        </h3>
+        <div className="flex flex-wrap gap-2">
+          {related.categories.map((c) => (
+            <Link
+              key={c.slug}
+              to="/kategorier/$slug"
+              params={{ slug: c.slug }}
+              className="rounded-full border border-primary/40 px-4 py-1.5 text-sm text-primary hover:bg-primary/5"
+            >
+              {c.name}
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <h3 className="flex items-center gap-2 text-sm font-medium text-heading mb-3">
+          <Store className="h-4 w-4 text-primary" /> Gårdsförsäljare att besöka
+        </h3>
+        <div className="grid sm:grid-cols-2 gap-3">
+          {related.farms.map((f) => (
+            <Link
+              key={f.slug}
+              to="/gardsforsaljare/$slug"
+              params={{ slug: f.slug }}
+              className="flex items-center gap-3 rounded-xl border border-border bg-card p-3 hover:shadow-sm transition"
+            >
+              {f.image && (
+                <img src={f.image} alt={f.name} loading="lazy" className="h-12 w-12 rounded-lg object-cover" />
+              )}
+              <span className="min-w-0">
+                <span className="block text-sm font-medium text-heading truncate">{f.name}</span>
+                <span className="block text-xs text-muted-foreground truncate">{f.location || f.region}</span>
+              </span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
